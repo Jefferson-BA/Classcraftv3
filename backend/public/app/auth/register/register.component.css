@@ -1,0 +1,8 @@
+.register {
+  width: 300px;
+  margin: 0 auto;
+}
+.register input {
+  display: block;
+  margin: 10px 0;
+}

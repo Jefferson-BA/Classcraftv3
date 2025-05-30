@@ -1,0 +1,24 @@
+<div class="register-container">
+  <h2>Registro de Maestro</h2>
+
+  <form ng-submit="vm.register()">
+    <div>
+      <label for="username">Nombre de usuario:</label>
+      <input type="text" id="username" ng-model="vm.username" required />
+    </div>
+
+    <div>
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" ng-model="vm.email" required />
+    </div>
+
+    <div>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" ng-model="vm.password" required />
+    </div>
+
+    <button type="submit">Registrar</button>
+  </form>
+
+  <button ng-click="vm.goToLogin()">¿Ya tienes cuenta? Iniciar sesión</button>
+</div>
