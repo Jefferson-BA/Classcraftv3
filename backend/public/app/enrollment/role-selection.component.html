@@ -1,8 +1,50 @@
-<div class="role-selection">
-  <h2>Inscribirse como:</h2>
-  <div class="buttons">
-    <button ng-click="selectRole('teacher')">Maestro</button>
-    <button ng-click="selectRole('student')">Alumno</button>
-    <button ng-click="selectRole('parent')">Padre</button>
+<link rel="stylesheet" href="app/enrollment/role-selection.component.css" />
+
+<!-- Contenedor principal -->
+<div class="container">
+  <!-- Botón de regreso -->
+  <button class="back-button" onclick="goBack()">←</button>
+
+  <!-- Sección del logo -->
+  <div class="logo">
+    <img src="app/image/class.png" alt="Logo de ClassCraft" class="navbar-logo" />
+  </div>
+
+  <!-- Título principal -->
+  <h2 class="title">Inscribirse como:</h2>
+
+  <!-- Sección de selección de personajes -->
+  <div class="character-selection">
+    <!-- Tarjeta de Maestro -->
+    <div class="character-card" ng-click="vm.selectRole('teacher')">
+      <div class="character-image">
+        <img src="app/image/per4.png" alt="Maestro">
+      </div>
+      <h3 class="character-name">MAESTRO</h3>
+    </div>
+
+    <!-- Tarjeta de Alumno -->
+    <div class="character-card" ng-click="vm.selectRole('student')">
+      <div class="character-image">
+        <img src="app/image/per3.png" alt="Alumno">
+      </div>
+      <h3 class="character-name">ALUMNO</h3>
+    </div>
+
+    <!-- Tarjeta de Padre -->
+    <div class="character-card" ng-click="vm.selectRole('parent')">
+      <div class="character-image">
+        <img src="app/image/per5.png" alt="Padre">
+      </div>
+      <h3 class="character-name">PADRE</h3>
+    </div>
+  </div>
+
+  <!-- Pie del componente -->
+  <div class="footer-section">
+    <div class="footer-text">
+      <span>¿Ya cuentas con cuenta?</span>
+      <a onclick="goToLogin()" class="login-link">Conéctate aquí</a>
+    </div>
   </div>
 </div>

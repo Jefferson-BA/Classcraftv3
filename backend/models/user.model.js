@@ -1,22 +1,26 @@
 const db = require('../config/db');
 
-const getAllUsersByRole = (role, callback) => {
-  const query = 'SELECT * FROM users WHERE role = ?';
-  db.query(query, [role], callback);
-};
-
 const registerTeacher = (userData, callback) => {
-  const query = 'INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, "teacher")';
-  db.query(query, [userData.username, userData.email, userData.password], callback);
-};
+  // Verifica si el email ya existe
+  const checkQuery = 'SELECT id FROM users WHERE email = ?';
+  db.query(checkQuery, [userData.email], (err, results) => {
+    if (err) return callback(err);
+    if (results.length > 0) {
+      // Email ya registrado
+      return callback({ code: 'EMAIL_EXISTS' });
+    }
 
-const loginTeacher = (email, password, callback) => {
-  const query = 'SELECT * FROM users WHERE email = ? AND password = ? AND role = "teacher"';
-  db.query(query, [email, password], callback);
+    // Inserta el usuario con role 'teacher'
+    const insertQuery = 'INSERT INTO users (username, email, password, role, created_at) VALUES (?, ?, ?, "teacher", NOW())';
+    db.query(
+      insertQuery,
+      [userData.username, userData.email, userData.password],
+      callback
+    );
+  });
 };
 
 module.exports = {
-  getAllUsersByRole,
   registerTeacher,
-  loginTeacher
+  // ...otros métodos...
 };

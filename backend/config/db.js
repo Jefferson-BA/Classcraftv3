@@ -7,12 +7,12 @@ const connection = mysql.createConnection({
   database: 'classcraft_db'
 });
 
-
 connection.connect((err) => {
   if (err) {
-    console.error('Error al conectar con MySQL:', err);
+    console.error('❌ Error al conectar con MySQL:', err);
+    process.exit(1);
   } else {
-    console.log('Conexión a MySQL exitosa');
+    console.log('✅ Conexión a MySQL exitosa');
   }
 });
 

@@ -1,22 +1,17 @@
-// backend/public/app/app.routes.js
-angular.module('app', ['ngRoute'])
+angular.module('app')
   .config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider
       .when('/', {
-        templateUrl: 'app/home/home.template.html',
-        controller: 'HomeController',
-        controllerAs: 'vm'
+        template: '<home-component></home-component>'
       })
-      .when('/register/teacher', {
-        templateUrl: 'app/auth/register/register.component.html',
+      .when('/teacher/role-selection.component.html', {
+        template: '<role-selection-component></role-selection-component>'
+      })
+      .when('/auth/register', {
+        templateUrl: 'app/auth/register/register.template.html',
         controller: 'RegisterController',
-        controllerAs: 'vm'
-      })
-      .when('/login/teacher', {
-        templateUrl: 'app/auth/login/login.component.html',
-        controller: 'LoginController',
         controllerAs: 'vm'
       })
       .otherwise({ redirectTo: '/' });

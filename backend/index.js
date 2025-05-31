@@ -1,4 +1,3 @@
-// backend/index.js
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -14,7 +13,8 @@ app.use(express.json());
 
 // Rutas API
 app.use('/api/auth', require('./routes/auth.routes'));
-// Agrega más rutas aquí si tienes otras
+app.use('/api/classes', require('./routes/class.routes'));
+app.use('/api/students', require('./routes/student.routes'));
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, 'public')));
@@ -23,8 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
-
-
 
 app.listen(port, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${port}`);

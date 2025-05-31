@@ -1,4 +1,3 @@
-<!-- backend/public/index.html -->
 <!DOCTYPE html>
 <html ng-app="app">
 
@@ -9,37 +8,51 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body>
-  <!-- Navbar siempre visible -->
-  <navbar-component></navbar-component>
+<body ng-controller="MainLayoutController as main">
+  <!-- Navbar solo si no es ruta especial -->
+  <navbar-component ng-if="!main.hideLayout()"></navbar-component>
 
   <!-- Aquí se carga el contenido según la ruta -->
   <div ng-view></div>
 
-  <!-- Footer siempre visible -->
-  <footer-component></footer-component>
+  <!-- Footer solo si no es ruta especial -->
+  <footer-component ng-if="!main.hideLayout()"></footer-component>
 
   <!-- AngularJS core -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> <!-- AngularJS principal -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script> <!-- Routing -->
+
+  <!-- Servicios (deben ir antes que los módulos y controladores que los usan) -->
+  <script src="app/core/auth.service.js"></script> <!-- Servicio de autenticación -->
 
   <!-- Módulo raíz y configuración de rutas -->
-  <script src="app/app.module.js"></script>
-  <script src="app/app.routes.js"></script>
-
-  <!-- Servicios -->
-  <script src="app/core/auth.service.js"></script>
+  <script src="app/app.module.js"></script> <!-- Define el módulo principal -->
+  <script src="app/app.routes.js"></script> <!-- Define las rutas de la app -->
 
   <!-- Componentes de autenticación -->
-  <script src="app/auth/login/login.component.js"></script>
-  <script src="app/auth/register/register.component.js"></script>
+  <script src="app/auth/login/login.component.js"></script> <!-- Componente de login -->
+  <script src="app/auth/register/register.component.js"></script> <!-- Componente de registro -->
 
   <!-- Componentes de layout -->
-  <script src="app/layout/navbar/navbar.component.js"></script>
-  <script src="app/layout/footer/footer.component.js"></script>
+  <script src="app/layout/navbar/navbar.component.js"></script> <!-- Navbar -->
+  <script src="app/layout/footer/footer.component.js"></script> <!-- Footer -->
+
+  <!-- Componente de selección de rol -->
+  <script src="app/enrollment/role-selection.component.js"></script> <!-- Selección de rol (maestro/alumno/padre) -->
 
   <!-- Página principal -->
-  <script src="app/home/home.component.js"></script>
+  <script src="app/home/home.component.js"></script> <!-- Componente de la página principal -->
+
+  <!-- Controlador para ocultar navbar/footer en rutas específicas -->
+  <script>
+    angular.module('app').controller('MainLayoutController', function($location) {
+      this.hideLayout = function() {
+        // Oculta navbar/footer en selección de rol y registro
+        const path = $location.path();
+        return path === '/teacher/role-selection.component.html' || path === '/auth/register';
+      };
+    });
+  </script>
 </body>
 
 </html>

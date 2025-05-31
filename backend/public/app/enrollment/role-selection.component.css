@@ -1,8 +1,365 @@
-.role-selection {
-  text-align: center;
-  padding: 40px;
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.role-selection .buttons button {
-  margin: 10px;
-  padding: 10px 20px;
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(ellipse at center, #1a237e 0%, #0d1135 50%, #000000 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animaciones para las estrellas */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    33% { transform: translateY(-10px) translateX(5px); }
+    66% { transform: translateY(5px) translateX(-3px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    25% { opacity: 0.8; }
+    75% { opacity: 0.6; }
+}
+
+@keyframes drift {
+    0% { transform: translateX(0px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0px); }
+}
+
+/* Estrellas de fondo con animaciones */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #ffffff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    opacity: 0.8;
+    z-index: 1;
+    animation: twinkle 4s ease-in-out infinite, float 8s ease-in-out infinite;
+}
+
+/* Capa adicional de estrellas con diferentes animaciones */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(1px 1px at 60px 20px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 120px 60px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 180px 90px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 30px 90px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 150px 20px, rgba(255,255,255,0.4), transparent);
+    background-repeat: repeat;
+    background-size: 250px 120px;
+    opacity: 0.6;
+    z-index: 1;
+    animation: pulse 6s ease-in-out infinite, drift 10s ease-in-out infinite;
+}
+
+/* Contenedor principal */
+.container {
+    background: rgba(255, 255, 255, 0.15); /* Más transparente */
+    border-radius: 25px;
+    padding: 50px;
+    max-width: 1300px; /* Más ancho */
+    width: 100%;
+    text-align: center;
+    box-shadow: 
+        0 25px 45px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Botón de regreso */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+    margin: 10px 0 10px 0;
+}
+
+.logo img {
+    max-width: 80px; /* Limitar el tamaño del logo */
+    height: auto;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.title {
+    font-size: 26px;
+    color: #fff; /* Cambiado a blanco para mejor contraste */
+    margin-bottom: 45px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Selección de personajes principal */
+.character-selection {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; /* Mayor espacio entre tarjetas */
+    margin-bottom: 40px;
+}
+
+/* Roles adicionales */
+.additional-roles {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Aumentado de 20px a 30px */
+    margin-bottom: 30px;
+}
+
+.additional-roles .character-card {
+    flex: 0 1 350px; /* Aumentado de 300px a 350px */
+    max-width: 350px; /* Aumentado de 300px a 350px */
+}
+
+/* Tarjeta de personaje */
+.character-card {
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 30px 25px; /* Más padding para tarjetas más grandes */
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08); /* Muy transparente */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    min-height: 350px; /* Tarjetas más altas */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.character-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+}
+
+.character-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Imagen del personaje */
+.character-image {
+    width: 100%;
+    height: 180px; /* Aumentado un poco para balance */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: 
+        0 12px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.character-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+}
+
+.character-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Nombre del personaje */
+.character-name {
+    font-size: 20px; /* Más grande para tarjetas más grandes */
+    font-weight: 700;
+    color: #fff; /* Texto blanco para mejor contraste */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.info-section {
+    text-align: center;
+}
+
+.info-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.info-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Sección del footer */
+.footer-section {
+    margin-top: 30px;
+}
+
+.footer-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8); /* Texto blanco semi-transparente */
+}
+
+.login-link {
+    color: #64b5f6; /* Azul más claro para mejor contraste */
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.login-link:hover {
+    text-decoration: underline;
+    color: #90caf9; /* Más claro al hover */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 25px;
+        max-width: 95%;
+        background: rgba(255, 255, 255, 0.12);
+    }
+    
+    .character-selection {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .additional-roles {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+    
+    .character-card {
+        min-height: 320px;
+        padding: 25px 20px;
+    }
+    
+    .character-image {
+        height: 160px;
+    }
+    
+    .title {
+        font-size: 22px;
+        margin-bottom: 35px;
+        color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .info-title {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .character-card {
+        padding: 20px 15px;
+        min-height: 280px;
+    }
+    
+    .character-image {
+        height: 140px;
+    }
+    
+    .character-name {
+        font-size: 18px;
+    }
+    
+    .role-info {
+        padding: 15px;
+    }
+    
+    .info-text {
+        font-size: 13px;
+    }
 }

@@ -2,74 +2,119 @@
 <link rel="stylesheet" href="app/home/home.component.css" />
 
 <div class="home-container">
-  <li>
-    <img src="app/image/bann.png" alt="" class="hero-img" />
-  </li>
-
-  <h1>Haz tus clases inolvidables</h1>
-
-  <div class="button-container">
-    <button class="cta-button" ng-click="$ctrl.navigateToRegister()">Empieza ahora ¡Es gratis!</button>
-  </div>
-
-  <div class="description">
-    <img src="app/image/video.png" alt="Video intro" class="video-img" />
-    <p>
-      Transforma cualquier clase en un juego de rol que fomenta una colaboración más estrecha entre los estudiantes
-      y alienta un mejor comportamiento.
-    </p>
-  </div>
-
-  <div class="features">
-    <h1>Herramientas poderosas <span>para impulsar el compromiso</span></h1>
-    <img src="app/image/BY RONALDO.png" alt="Herramientas" class="tools-img" />
-
-    <div class="feature-grid">
-      <div class="feature">
-        <img src="app/image/icon1.png" alt="Icono 1" />
-        <h3>Mejora el ambiente en clase</h3>
-        <p>Incentiva a los alumnos con riesgos reales y recompensas en clase.</p>
-      </div>
-      <div class="feature">
-        <img src="app/image/icon2.png" alt="Icono 2" />
-        <h3>Da a las lecciones super poderes</h3>
-        <p>Haz que las clases se vuelvan misiones con recompensas motivadoras.</p>
-      </div>
-      <div class="feature">
-        <img src="app/image/icon3.png" alt="Icono 3" />
-        <h3>Conocimiento es poder</h3>
-        <p>Motiva a los alumnos al seguir su progreso como en un juego real.</p>
-      </div>
-      <div class="feature">
-        <img src="app/image/icon4.png" alt="Icono 4" />
-        <h3>Colabora con los padres</h3>
-        <p>Informa a los padres sobre el progreso de sus hijos en tiempo real.</p>
+  <!-- Sección Hero -->
+  <section class="hero-section">
+    <img src="app/image/banner.gif" alt="Banner principal" class="hero-img" />
+    <div class="hero-content">
+      <h1 class="hero-title">Haz tus clases inolvidables</h1>
+      <div class="hero-button-container">
+        <button class="cta-button" ng-click="$ctrl.navigateToRegister()">
+          Empieza ahora ¡Es gratis!
+        </button>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="stats-section">
-    <h2>Cientos de maestros han usado ClassCombat el último año:</h2>
-    <div class="stats">
-      <div><strong>98%</strong><br />incrementó compromiso</div>
-      <div><strong>99%</strong><br />impacto positivo</div>
-      <div><strong>88%</strong><br />rendimiento académico</div>
-      <div><strong>89%</strong><br />eficacia general</div>
+  <!-- Sección de Descripción -->
+  <section class="description-section">
+    <div class="description-content">
+      <img src="app/image/video.png" alt="Video intro" class="video-img" />
+      <p class="description-text">
+        Transforma cualquier clase en un juego de rol que fomenta una colaboración más estrecha entre los estudiantes
+        y alienta un mejor comportamiento.
+      </p>
     </div>
-  </div>
+  </section>
 
-  <div class="testimonials">
-    <div class="testimonial">
-      <p>“Classcraft ha salvado mi clase. Mi clase ha cambiado de inmediato desde el punto de vista del comportamiento.”</p>
-      <h4>Conferencia, Teatro y Debate</h4>
+  <!-- Sección de Características -->
+  <section class="features-section">
+    <div class="features-header">
+      <h2 class="features-title">
+        Herramientas poderosas <span class="features-highlight">para impulsar el compromiso</span>
+      </h2>
+      <img src="app/image/bann2.png" alt="Herramientas" class="tools-img" />
     </div>
-    <div class="testimonial">
-      <p>“Cuando empecé a jugar, mis resultados en Biología subieron una A en un mes.”</p>
-      <h4>Rebeca Osborne, Bióloga</h4>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <img src="app/image/icon1.png" alt="Icono 1" class="feature-icon" />
+        <h3 class="feature-title">Mejora el ambiente en clase</h3>
+        <p class="feature-description">Incentiva a los alumnos con riesgos reales y recompensas en clase.</p>
+      </div>
+      <div class="feature-card">
+        <img src="app/image/icon2.png" alt="Icono 2" class="feature-icon" />
+        <h3 class="feature-title">Da a las lecciones super poderes</h3>
+        <p class="feature-description">Haz que las clases se vuelvan misiones con recompensas motivadoras.</p>
+      </div>
+      <div class="feature-card">
+        <img src="app/image/icon3.png" alt="Icono 3" class="feature-icon" />
+        <h3 class="feature-title">Conocimiento es poder</h3>
+        <p class="feature-description">Motiva a los alumnos al seguir su progreso como en un juego real.</p>
+      </div>
+      <div class="feature-card">
+        <img src="app/image/icon4.png" alt="Icono 4" class="feature-icon" />
+        <h3 class="feature-title">Colabora con los padres</h3>
+        <p class="feature-description">Informa a los padres sobre el progreso de sus hijos en tiempo real.</p>
+      </div>
+      <div class="feature-card">
+        <img src="app/image/icon4.png" alt="Icono 4" class="feature-icon" />
+        <h3 class="feature-title">Colabora con los padres</h3>
+        <p class="feature-description">Informa a los padres sobre el progreso de sus hijos en tiempo real.</p>
+      </div>
+      <div class="feature-card">
+        <img src="app/image/icon4.png" alt="Icono 4" class="feature-icon" />
+        <h3 class="feature-title">Colabora con los padres</h3>
+        <p class="feature-description">Informa a los padres sobre el progreso de sus hijos en tiempo real.</p>
+      </div>
     </div>
-    <div class="testimonial">
-      <p>“La transformación ha sido increíble. Ahora todos los alumnos participan con entusiasmo.”</p>
-      <h4>Darren McQuaid, Corea del Sur</h4>
+  </section>
+
+  <!-- Sección de Estadísticas -->
+  <section class="stats-section">
+    <div class="stats-content">
+      <h2 class="stats-title">Cientos de maestros han usado ClassCombat el último año:</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <strong class="stat-number">98%</strong>
+          <span class="stat-label">incrementó compromiso</span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-number">99%</strong>
+          <span class="stat-label">impacto positivo</span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-number">88%</strong>
+          <span class="stat-label">rendimiento académico</span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-number">89%</strong>
+          <span class="stat-label">eficacia general</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Sección de Testimonios -->
+  <section class="testimonials-section">
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Classcraft ha salvado mi clase. Mi clase ha cambiado de inmediato desde el punto de vista del comportamiento."
+        </p>
+        <h4 class="testimonial-author">Conferencia, Teatro y Debate</h4>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Cuando empecé a jugar, mis resultados en Biología subieron una A en un mes."
+        </p>
+        <h4 class="testimonial-author">Rebeca Osborne, Bióloga</h4>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "La transformación ha sido increíble. Ahora todos los alumnos participan con entusiasmo."
+        </p>
+        <h4 class="testimonial-author">Darren McQuaid, Corea del Sur</h4>
+      </div>
+    </div>
+  </section>
 </div>
