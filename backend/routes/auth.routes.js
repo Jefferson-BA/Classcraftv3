@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const AuthController = require('../controllers/auth.controller');
 
-// Ruta para registrar un maestro
 router.post('/register/teacher', AuthController.registerTeacher);
+router.post('/login/teacher', AuthController.loginTeacher); // <-- Este debe existir
 
 module.exports = router;

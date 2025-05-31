@@ -1,8 +1,8 @@
 angular.module('app')
-  .controller('RegisterController', function($location, AuthService) {
+  .controller('RegisterController', function ($location, AuthService) {
     const vm = this;
 
-    vm.register = function() {
+    vm.register = function () {
       if (vm.password !== vm.confirmPassword) {
         alert('Las contraseñas no coinciden');
         return;
@@ -16,21 +16,21 @@ angular.module('app')
       };
 
       AuthService.register(userData)
-        .then(function() {
+        .then(function () {
           alert('Registro exitoso');
           $location.path('/login/teacher');
         })
-        .catch(function(err) {
+        .catch(function (err) {
           alert('Error en el registro');
           console.error(err);
         });
     };
 
-    vm.goToLogin = function() {
+    vm.goToLogin = function () {
       $location.path('/login/teacher');
     };
 
-    vm.goBack = function() {
+    vm.goBack = function () {
       $location.path('/teacher/role-selection.component.html');
     };
   });

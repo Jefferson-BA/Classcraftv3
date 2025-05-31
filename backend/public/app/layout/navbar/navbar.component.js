@@ -11,7 +11,7 @@ angular.module('app')
 
       // Navegar a login
       vm.goToLogin = function() {
-        $location.path('/login');
+        $location.path('/login/teacher');
       };
 
       // Navegar a home

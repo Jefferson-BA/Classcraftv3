@@ -1,0 +1,182 @@
+<link rel="stylesheet" href="app/dashboard/teacher.component.css" />
+
+<div class="dashboard-container">
+  <h2>{{ vm.message }}</h2>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-text">CC</span>
+                </div>
+                <span class="logo-title">CLASS COMBAT</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn update-btn">
+                <i class="fas fa-sync-alt"></i>
+                Actualizar
+            </button>
+            <button class="nav-btn invite-btn">
+                <i class="fas fa-user-plus"></i>
+                Invitar un maestro
+            </button>
+            <div class="profile-btn">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-sword"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-book"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-bolt"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-snowflake"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-book-open"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+                </nav>
+                
+                <div class="sidebar-bottom">
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área de contenido -->
+        <main class="content-area">
+            <!-- Panel izquierdo - Mis clases -->
+            <div class="left-panel">
+                <div class="classes-section">
+                    <h2 class="section-title">Mis clases</h2>
+                    
+                    <div class="class-card">
+                        <div class="class-info">
+                            <h3 class="class-name">Clase ejemplo1</h3>
+                            <p class="class-students">4 alumnos</p>
+                        </div>
+                        <button class="class-menu">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="class-card">
+                        <div class="class-info">
+                            <h3 class="class-name">Clase ejemplo2</h3>
+                            <p class="class-students">15 alumnos</p>
+                        </div>
+                        <button class="class-menu">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="new-class-btn">
+                        <i class="fas fa-plus"></i>
+                        NUEVA CLASE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panel derecho - Get Started -->
+            <div class="right-panel">
+                <div class="get-started-section">
+                    <h1 class="main-title">Get Started</h1>
+                    <p class="subtitle">Complete these steps to start playing Classcraft!</p>
+                    
+                    <!-- Personaje -->
+                    <div class="character-container">
+                        <div class="character">
+                            <i class="fas fa-hat-wizard character-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Lista de tareas -->
+                    <div class="tasks-list">
+                        <div class="task-item completed">
+                            <div class="task-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="task-content">
+                                <h3 class="task-title">Complete the tutorial</h3>
+                                <button class="task-action">RESTART TUTORIAL</button>
+                            </div>
+                        </div>
+                        
+                        <div class="task-item completed">
+                            <div class="task-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="task-content">
+                                <h3 class="task-title">Crear una clase</h3>
+                                <button class="task-action">NUEVA CLASE</button>
+                            </div>
+                        </div>
+                        
+                        <div class="task-item pending">
+                            <div class="task-check">
+                                <div class="task-circle"></div>
+                            </div>
+                            <div class="task-content">
+                                <h3 class="task-title">Customize your class</h3>
+                                <button class="task-action">EDIT SETTINGS</button>
+                            </div>
+                        </div>
+                        
+                        <div class="task-item pending">
+                            <div class="task-check">
+                                <div class="task-circle"></div>
+                            </div>
+                            <div class="task-content">
+                                <h3 class="task-title">Presentar Classcraft</h3>
+                                <button class="task-action">VIEW TEACHER RESOURCES</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</div>

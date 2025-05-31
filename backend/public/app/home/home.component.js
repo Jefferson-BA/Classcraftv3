@@ -1,4 +1,3 @@
-// app/home/home.component.js
 angular.module('app').component('homeComponent', {
   templateUrl: 'app/home/home.template.html',
   controller: function($location) {
@@ -7,6 +6,11 @@ angular.module('app').component('homeComponent', {
 
     vm.navigateToRegister = function() {
       $location.path('/register/teacher');
+    };
+
+    // NUEVO: Navegar al login
+    vm.goToLogin = function() {
+      $location.path('/login/teacher');
     };
   }
 });

@@ -19,7 +19,8 @@
   <footer-component ng-if="!main.hideLayout()"></footer-component>
 
   <!-- AngularJS core -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> <!-- AngularJS principal -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <!-- AngularJS principal -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script> <!-- Routing -->
 
   <!-- Servicios (deben ir antes que los módulos y controladores que los usan) -->
@@ -37,22 +38,31 @@
   <script src="app/layout/navbar/navbar.component.js"></script> <!-- Navbar -->
   <script src="app/layout/footer/footer.component.js"></script> <!-- Footer -->
 
+  <!-- Componente del maestro -->
+  <script src="app/dashboard/teacher.component.js"></script>
   <!-- Componente de selección de rol -->
   <script src="app/enrollment/role-selection.component.js"></script> <!-- Selección de rol (maestro/alumno/padre) -->
 
   <!-- Página principal -->
   <script src="app/home/home.component.js"></script> <!-- Componente de la página principal -->
 
+  <!-- Componente del maestro -->
+
   <!-- Controlador para ocultar navbar/footer en rutas específicas -->
   <script>
-    angular.module('app').controller('MainLayoutController', function($location) {
-      this.hideLayout = function() {
-        // Oculta navbar/footer en selección de rol y registro
-        const path = $location.path();
-        return path === '/teacher/role-selection.component.html' || path === '/auth/register';
-      };
-    });
-  </script>
+  angular.module('app').controller('MainLayoutController', function ($location) {
+    this.hideLayout = function () {
+      // Oculta navbar/footer en selección de rol, registro, login y dashboard del maestro
+      const path = $location.path();
+      return (
+        path === '/teacher/role-selection.component.html' ||
+        path === '/auth/register' ||
+        path === '/login/teacher' ||
+        path === '/dashboard/teacher'
+      );
+    };
+  });
+</script>
 </body>
 
 </html>
