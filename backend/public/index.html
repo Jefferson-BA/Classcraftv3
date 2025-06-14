@@ -17,52 +17,64 @@
 
   <!-- Footer solo si no es ruta especial -->
   <footer-component ng-if="!main.hideLayout()"></footer-component>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- AngularJS core -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <!-- AngularJS principal -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script> <!-- Routing -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
 
-  <!-- Servicios (deben ir antes que los módulos y controladores que los usan) -->
-  <script src="app/core/auth.service.js"></script> <!-- Servicio de autenticación -->
+  <!-- Módulo raíz -->
+  <script src="app/app.module.js"></script>
 
-  <!-- Módulo raíz y configuración de rutas -->
-  <script src="app/app.module.js"></script> <!-- Define el módulo principal -->
-  <script src="app/app.routes.js"></script> <!-- Define las rutas de la app -->
+  <!-- Servicios -->
+  <script src="app/core/auth.service.js"></script>
+  <script src="app/core/class.service.js"></script>
 
   <!-- Componentes de autenticación -->
-  <script src="app/auth/login/login.component.js"></script> <!-- Componente de login -->
-  <script src="app/auth/register/register.component.js"></script> <!-- Componente de registro -->
+  <script src="app/auth/login/login.component.js"></script>
+  <script src="app/auth/register/register.component.js"></script>
+  <script src="app/auth/register-alumno/registerAlumno.component.js"></script>
+  <script src="app/auth/login-alumno/loginAlumno.template.js"></script>
+  <script src="app/dashboard/Alumno.component.js"></script>
 
   <!-- Componentes de layout -->
-  <script src="app/layout/navbar/navbar.component.js"></script> <!-- Navbar -->
-  <script src="app/layout/footer/footer.component.js"></script> <!-- Footer -->
+  <script src="app/layout/navbar/navbar.component.js"></script>
+  <script src="app/layout/footer/footer.component.js"></script>
 
   <!-- Componente del maestro -->
   <script src="app/dashboard/teacher.component.js"></script>
+  <script src="app/dashboard/teacher-tools/classroom/classroom.component.js"></script>
+
   <!-- Componente de selección de rol -->
-  <script src="app/enrollment/role-selection.component.js"></script> <!-- Selección de rol (maestro/alumno/padre) -->
+  <script src="app/enrollment/role-selection.component.js"></script>
 
+
+  <script src="app/core/student.service.js"></script>
   <!-- Página principal -->
-  <script src="app/home/home.component.js"></script> <!-- Componente de la página principal -->
+  <script src="app/home/home.component.js"></script>
+  <script src="app/dashboard/Alumno-tools/classroom/classroom.component.js"></script>
 
-  <!-- Componente del maestro -->
+  <!-- Rutas -->
+  <script src="app/app.routes.js"></script>
 
   <!-- Controlador para ocultar navbar/footer en rutas específicas -->
   <script>
-  angular.module('app').controller('MainLayoutController', function ($location) {
-    this.hideLayout = function () {
-      // Oculta navbar/footer en selección de rol, registro, login y dashboard del maestro
-      const path = $location.path();
-      return (
-        path === '/teacher/role-selection.component.html' ||
-        path === '/auth/register' ||
-        path === '/login/teacher' ||
-        path === '/dashboard/teacher'
-      );
-    };
-  });
-</script>
+    angular.module('app').controller('MainLayoutController', function ($location) {
+      this.hideLayout = function () {
+        const path = $location.path();
+        return (
+          path === '/teacher/role-selection.component.html' ||
+          path === '/auth/register' ||
+          path === '/login/teacher' ||
+          path === '/dashboard/teacher' ||
+          path === '/classroom' ||
+          path === '/register/alumno' ||
+          path === '/login/alumno' ||
+          path == '/dashboard/alumno'||
+          path === '/alumno/classroom'
+        );
+      };
+    });
+  </script>
 </body>
-
 </html>

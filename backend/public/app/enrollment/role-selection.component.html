@@ -3,7 +3,7 @@
 <!-- Contenedor principal -->
 <div class="container">
   <!-- Botón de regreso -->
-  <button class="back-button" onclick="goBack()">←</button>
+  <button class="back-button" ng-click="vm.goBack()">←</button>
 
   <!-- Sección del logo -->
   <div class="logo">
@@ -44,7 +44,7 @@
   <div class="footer-section">
     <div class="footer-text">
       <span>¿Ya cuentas con cuenta?</span>
-      <a onclick="goToLogin()" class="login-link">Conéctate aquí</a>
+      <a href="" class="login-link" ng-click="vm.goToLogin()">Conéctate aquí</a>
     </div>
   </div>
 </div>

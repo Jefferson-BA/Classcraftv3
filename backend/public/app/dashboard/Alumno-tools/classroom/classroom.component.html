@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Combat Dashboard Alumno</title>
+    <link rel="stylesheet" href="app/dashboard/Alumno-tools/classroom/classroom.component.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-text">CC</span>
+                </div>
+                <span class="logo-title">CLASS COMBAT</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn update-btn">
+                <i class="fas fa-sync-alt"></i>
+                Actualizar
+            </button>
+            <div class="profile-btn">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar fijo -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-section="home">
+                        <img src="app/image/icons/inicio.png" alt="Inicio" class="nav-icon">
+                        <span class="nav-label">Iniciooo</span>
+                        <a href="/alumno/classroom" class="nav-item"
+                            ng-class="{'active': vm.$location.path() === '/alumno/classroom'}">
+                            <img src="app/image/icons/batalla.png" alt="Clases" class="nav-icon">
+                            <span class="nav-label">Mis Clases</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="exams">
+                            <img src="app/image/icons/examen.png" alt="Exámenes" class="nav-icon">
+                            <span class="nav-label">Exámenes</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="map">
+                            <img src="app/image/icons/mapa.png" alt="Mapa" class="nav-icon">
+                            <span class="nav-label">Mapa</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="missions">
+                            <img src="app/image/icons/mision.png" alt="Misiones" class="nav-icon">
+                            <span class="nav-label">Misiones</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="roulette">
+                            <img src="app/image/icons/ruleta.png" alt="Ruleta" class="nav-icon">
+                            <span class="nav-label">Ruleta</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="telescope">
+                            <img src="app/image/icons/telescopio.png" alt="Telescopio" class="nav-icon">
+                            <span class="nav-label">Telescopio</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="stats">
+                            <img src="app/image/icons/estadistica.png" alt="Estadísticas" class="nav-icon">
+                            <span class="nav-label">Estadísticas</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="comments">
+                            <img src="app/image/icons/comentarios.png" alt="Comentarios" class="nav-icon">
+                            <span class="nav-label">Comentarios</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="claims">
+                            <img src="app/image/icons/reclamacion.png" alt="Reclamaciones" class="nav-icon">
+                            <span class="nav-label">Reclamaciones</span>
+                        </a>
+                </nav>
+                <div class="sidebar-bottom">
+                    <div class="user-profile-image">
+                        <img src="app/image/icons/ig.png" alt="Foto del alumno" class="profile-image">
+                        <div class="profile-frame"></div>
+                    </div>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Panel deslizable para "Mis Clases" -->
+        <div class="sliding-panel" id="classesPanel">
+            <div class="panel-header">
+                <h2 class="panel-title">Mis clases</h2>
+                <button class="close-panel" id="closePanelBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="panel-content">
+                <!-- Aquí puedes mostrar un resumen de clases si lo deseas -->
+            </div>
+        </div>
+
+        <!-- Área de contenido principal -->
+        <main class="content-area">
+            <!-- Sección de inicio (por defecto) -->
+            <div class="student-classes-container" ng-controller="StudentClassesController as vm">
+                <h2>Unirse a una clase</h2>
+                <form ng-submit="vm.joinClass()" class="join-class-form">
+                    <input type="text" ng-model="vm.codigoUnion" placeholder="Código de unión" required maxlength="10">
+                    <button type="submit">Unirse</button>
+                </form>
+
+                <h2>Mis Clases</h2>
+                <table class="class-list-table" ng-if="vm.myClasses.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Sección</th>
+                            <th>Ciclo</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="clase in vm.myClasses">
+                            <td>{{ clase.nombre_clase }}</td>
+                            <td>{{ clase.seccion }}</td>
+                            <td>{{ clase.ciclo }}</td>
+                            <td>{{ clase.fecha_inicio | date:'dd/MM/yyyy' }}</td>
+                            <td>{{ clase.fecha_fin | date:'dd/MM/yyyy' }}</td>
+                            <td>{{ clase.estado }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div ng-if="vm.myClasses.length === 0">
+                    <p>No te has unido a ninguna clase aún.</p>
+                </div>
+            </div>
+
+            <!-- Otras secciones (ocultas por defecto) -->
+            <div class="content-section" id="examsSection">
+                <div class="section-panel">
+                    <h1 class="section-title">Exámenes</h1>
+                    <p>Contenido de exámenes aquí...</p>
+                </div>
+            </div>
+
+            <div class="content-section" id="mapSection">
+                <div class="section-panel">
+                    <h1 class="section-title">Mapa</h1>
+                    <p>Contenido del mapa aquí...</p>
+                </div>
+            </div>
+            <!-- Agrega más secciones según sea necesario -->
+        </main>
+    </div>
+
+    <script>
+        // JavaScript para manejar la navegación y el panel deslizable
+        document.addEventListener('DOMContentLoaded', function () {
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const slidingPanel = document.getElementById('classesPanel');
+            const closePanelBtn = document.getElementById('closePanelBtn');
+
+            // Manejar clics en los elementos de navegación
+            navItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    if (this.getAttribute('href')) {
+                        // Deja que AngularJS maneje la navegación
+                        return;
+                    }
+
+                    e.preventDefault();
+
+                    // Remover clase active de todos los elementos
+                    navItems.forEach(nav => nav.classList.remove('active'));
+
+                    // Agregar clase active al elemento clickeado
+                    this.classList.add('active');
+
+                    const section = this.getAttribute('data-section');
+
+                    // Si es la sección de clases, mostrar el panel deslizable
+                    if (section === 'classes') {
+                        slidingPanel.classList.add('active');
+                    } else {
+                        // Ocultar panel deslizable si está abierto
+                        slidingPanel.classList.remove('active');
+
+                        // Mostrar la sección correspondiente
+                        contentSections.forEach(sec => sec.classList.remove('active'));
+                        const targetSection = document.getElementById(section + 'Section');
+                        if (targetSection) {
+                            targetSection.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            // Cerrar panel deslizable
+            closePanelBtn.addEventListener('click', function () {
+                slidingPanel.classList.remove('active');
+
+                // Volver a la sección de inicio
+                navItems.forEach(nav => nav.classList.remove('active'));
+                navItems[0].classList.add('active'); // Primer elemento (inicio)
+
+                contentSections.forEach(sec => sec.classList.remove('active'));
+                document.getElementById('homeSection').classList.add('active');
+            });
+
+            // Cerrar panel al hacer clic fuera de él
+            document.addEventListener('click', function (e) {
+                if (slidingPanel.classList.contains('active') &&
+                    !slidingPanel.contains(e.target) &&
+                    !e.target.closest('[data-section="classes"]')) {
+                    slidingPanel.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

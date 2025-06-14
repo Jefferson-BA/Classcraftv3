@@ -1,8 +1,14 @@
-<link rel="stylesheet" href="app/dashboard/teacher.component.css" />
+<!DOCTYPE html>
+<html lang="es">
 
-<div class="dashboard-container">
-  <h2>{{ vm.message }}</h2>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Combat Dashboard</title>
+    <link rel="stylesheet" href="app/dashboard/teacher.component.css">
+</head>
+
+<body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
@@ -20,7 +26,7 @@
             </button>
             <button class="nav-btn invite-btn">
                 <i class="fas fa-user-plus"></i>
-                Invitar un maestro
+                <span>Invitar un maestro</span>
             </button>
             <div class="profile-btn">
                 <i class="fas fa-user"></i>
@@ -30,53 +36,58 @@
 
     <!-- Contenido principal -->
     <div class="main-container">
-        <!-- Sidebar -->
+        <!-- Sidebar fijo -->
         <aside class="sidebar">
             <div class="sidebar-content">
                 <nav class="sidebar-nav">
-                    <a href="#" class="nav-item active">
-                        <i class="fas fa-home"></i>
+                    <a href="" class="nav-item" ng-class="{'active': vm.$location.path() === '/dashboard/teacher'}"
+                        ng-click="vm.goToDashboard()" data-section="home">
+                        <img src="app/image/icons/inicio.png" alt="Inicio" class="nav-icon">
+                        <span class="nav-label">Inicio</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-sword"></i>
+                    <a href="" class="nav-item" ng-class="{'active': vm.$location.path() === '/classroom'}"
+                        ng-click="vm.goToClassroom()" data-section="classes">
+                        <img src="app/image/icons/batalla.png" alt="Clases" class="nav-icon">
+                        <span class="nav-label">Mis Clases</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-chart-bar"></i>
+                    <a href="#" class="nav-item" data-section="exams">
+                        <img src="app/image/icons/examen.png" alt="Exámenes" class="nav-icon">
+                        <span class="nav-label">Exámenes</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-book"></i>
+                    <a href="#" class="nav-item" data-section="map">
+                        <img src="app/image/icons/mapa.png" alt="Mapa" class="nav-icon">
+                        <span class="nav-label">Mapa</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-bolt"></i>
+                    <a href="#" class="nav-item" data-section="missions">
+                        <img src="app/image/icons/mision.png" alt="Misiones" class="nav-icon">
+                        <span class="nav-label">Misiones</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-snowflake"></i>
+                    <a href="#" class="nav-item" data-section="roulette">
+                        <img src="app/image/icons/ruleta.png" alt="Ruleta" class="nav-icon">
+                        <span class="nav-label">Ruleta</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-clipboard-list"></i>
+                    <a href="#" class="nav-item" data-section="telescope">
+                        <img src="app/image/icons/telescopio.png" alt="Telescopio" class="nav-icon">
+                        <span class="nav-label">Telescopio</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-book-open"></i>
+                    <a href="#" class="nav-item" data-section="stats">
+                        <img src="app/image/icons/estadistica.png" alt="Estadísticas" class="nav-icon">
+                        <span class="nav-label">Estadísticas</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-comments"></i>
+                    <a href="#" class="nav-item" data-section="comments">
+                        <img src="app/image/icons/comentarios.png" alt="Comentarios" class="nav-icon">
+                        <span class="nav-label">Comentarios</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-chart-line"></i>
+                    <a href="#" class="nav-item" data-section="claims">
+                        <img src="app/image/icons/reclamacion.png" alt="Reclamaciones" class="nav-icon">
+                        <span class="nav-label">Reclamaciones</span>
                     </a>
                 </nav>
-                
+
                 <div class="sidebar-bottom">
-                    <div class="social-links">
-                        <a href="#" class="social-link facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link youtube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+                    <div class="user-profile-image">
+                        <img src="app/image/icons/ig.png" alt="Foto del profesor" class="profile-image">
+                        <div class="profile-frame"></div>
                     </div>
                     <button class="settings-btn">
                         <i class="fas fa-cog"></i>
@@ -85,98 +96,184 @@
             </div>
         </aside>
 
-        <!-- Área de contenido -->
-        <main class="content-area">
-            <!-- Panel izquierdo - Mis clases -->
-            <div class="left-panel">
-                <div class="classes-section">
-                    <h2 class="section-title">Mis clases</h2>
-                    
-                    <div class="class-card">
-                        <div class="class-info">
-                            <h3 class="class-name">Clase ejemplo1</h3>
-                            <p class="class-students">4 alumnos</p>
-                        </div>
-                        <button class="class-menu">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="class-card">
-                        <div class="class-info">
-                            <h3 class="class-name">Clase ejemplo2</h3>
-                            <p class="class-students">15 alumnos</p>
-                        </div>
-                        <button class="class-menu">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                    
-                    <button class="new-class-btn">
-                        <i class="fas fa-plus"></i>
-                        NUEVA CLASE
-                    </button>
-                </div>
+        <!-- Panel deslizable para "Mis Clases" -->
+        <div class="sliding-panel" id="classesPanel">
+            <div class="panel-header">
+                <h2 class="panel-title">Mis clases</h2>
+                <button class="close-panel" id="closePanelBtn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
-            <!-- Panel derecho - Get Started -->
-            <div class="right-panel">
-                <div class="get-started-section">
-                    <h1 class="main-title">Get Started</h1>
-                    <p class="subtitle">Complete these steps to start playing Classcraft!</p>
-                    
-                    <!-- Personaje -->
+            <div class="panel-content">
+                <div class="class-card">
+                    <div class="class-info">
+                        <h3 class="class-name">Clase ejemplo1</h3>
+                        <p class="class-students">4 alumnos</p>
+                    </div>
+                    <button class="class-menu">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+
+                <div class="class-card">
+                    <div class="class-info">
+                        <h3 class="class-name">Clase ejemplo2</h3>
+                        <p class="class-students">15 alumnos</p>
+                    </div>
+                    <button class="class-menu">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+
+                <button class="new-class-btn">
+                    <i class="fas fa-plus"></i>
+                    NUEVA CLASE
+                </button>
+            </div>
+        </div>
+
+        <!-- Área de contenido principal -->
+        <main class="content-area">
+            <!-- Sección de inicio (por defecto) -->
+            <div class="content-section active" id="homeSection">
+                <div class="welcome-panel">
+                    <h1 class="main-title">BIENVENIDO!</h1>
+                    <p class="subtitle">Empieza contruyendo tu clase en Classcraft!</p>
+
                     <div class="character-container">
                         <div class="character">
+
                             <i class="fas fa-hat-wizard character-icon"></i>
                         </div>
                     </div>
-                    
-                    <!-- Lista de tareas -->
+
                     <div class="tasks-list">
                         <div class="task-item completed">
                             <div class="task-check">
                                 <i class="fas fa-check"></i>
                             </div>
                             <div class="task-content">
-                                <h3 class="task-title">Complete the tutorial</h3>
-                                <button class="task-action">RESTART TUTORIAL</button>
+                                <h3 class="task-title">Ver video tutorial</h3>
+                                <a class="task-action" href="https://www.youtube.com/watch?v=FUsMCYDdQIA"
+                                    target="_blank">
+                                    No completado
+                                </a>
                             </div>
                         </div>
-                        
+
                         <div class="task-item completed">
                             <div class="task-check">
                                 <i class="fas fa-check"></i>
                             </div>
                             <div class="task-content">
                                 <h3 class="task-title">Crear una clase</h3>
-                                <button class="task-action">NUEVA CLASE</button>
+                                <button class="task-action" ng-click="vm.goToClassroom()">No completado</button>
                             </div>
                         </div>
-                        
+
                         <div class="task-item pending">
                             <div class="task-check">
                                 <div class="task-circle"></div>
                             </div>
                             <div class="task-content">
-                                <h3 class="task-title">Customize your class</h3>
-                                <button class="task-action">EDIT SETTINGS</button>
+                                <h3 class="task-title">Personalizar tu Clase</h3>
+                                <button class="task-action">No completado</button>
                             </div>
                         </div>
-                        
+
                         <div class="task-item pending">
                             <div class="task-check">
                                 <div class="task-circle"></div>
                             </div>
                             <div class="task-content">
-                                <h3 class="task-title">Presentar Classcraft</h3>
-                                <button class="task-action">VIEW TEACHER RESOURCES</button>
+                                <h3 class="task-title">Invitar estudiantes</h3>
+                                <button class="task-action">No completado</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Otras secciones (ocultas por defecto) -->
+            <div class="content-section" id="examsSection">
+                <div class="section-panel">
+                    <h1 class="section-title">Exámenes</h1>
+                    <p>Contenido de exámenes aquí...</p>
+                </div>
+            </div>
+
+            <div class="content-section" id="mapSection">
+                <div class="section-panel">
+                    <h1 class="section-title">Mapa</h1>
+                    <p>Contenido del mapa aquí...</p>
+                </div>
+            </div>
+
+            <!-- Agregar más secciones según sea necesario -->
         </main>
     </div>
+
+    <script>
+        // JavaScript para manejar la navegación y el panel deslizable
+        document.addEventListener('DOMContentLoaded', function () {
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const slidingPanel = document.getElementById('classesPanel');
+            const closePanelBtn = document.getElementById('closePanelBtn');
+
+            // Manejar clics en los elementos de navegación
+            navItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Remover clase active de todos los elementos
+                    navItems.forEach(nav => nav.classList.remove('active'));
+
+                    // Agregar clase active al elemento clickeado
+                    this.classList.add('active');
+
+                    const section = this.getAttribute('data-section');
+
+                    // Si es la sección de clases, mostrar el panel deslizable
+                    if (section === 'classes') {
+                        slidingPanel.classList.add('active');
+                    } else {
+                        // Ocultar panel deslizable si está abierto
+                        slidingPanel.classList.remove('active');
+
+                        // Mostrar la sección correspondiente
+                        contentSections.forEach(sec => sec.classList.remove('active'));
+                        const targetSection = document.getElementById(section + 'Section');
+                        if (targetSection) {
+                            targetSection.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            // Cerrar panel deslizable
+            closePanelBtn.addEventListener('click', function () {
+                slidingPanel.classList.remove('active');
+
+                // Volver a la sección de inicio
+                navItems.forEach(nav => nav.classList.remove('active'));
+                navItems[0].classList.add('active'); // Primer elemento (inicio)
+
+                contentSections.forEach(sec => sec.classList.remove('active'));
+                document.getElementById('homeSection').classList.add('active');
+            });
+
+            // Cerrar panel al hacer clic fuera de él
+            document.addEventListener('click', function (e) {
+                if (slidingPanel.classList.contains('active') &&
+                    !slidingPanel.contains(e.target) &&
+                    !e.target.closest('[data-section="classes"]')) {
+                    slidingPanel.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
-</div>
+
+</html>
