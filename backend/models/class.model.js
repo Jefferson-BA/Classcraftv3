@@ -1,50 +1,46 @@
 const db = require('../config/db');
 
-// Obtener todas las clases
 const getAllClasses = (callback) => {
-  const query = 'SELECT * FROM mis_clases';
-  db.query(query, callback);
+  db.query('SELECT * FROM mis_clases', callback);
 };
 
-// Obtener clase por ID
 const getClassById = (classId, callback) => {
-  const query = 'SELECT * FROM mis_clases WHERE id = ?';
-  db.query(query, [classId], callback);
+  db.query('SELECT * FROM mis_clases WHERE id = ?', [classId], callback);
 };
 
-// Generador de código de 6 caracteres alfanuméricos
-function generarCodigoUnion() {
-  return Math.random().toString(36).substring(2, 8).toUpperCase();
-}
-
-const createClass = (classData, callback) => {
-  const codigo_union = generarCodigoUnion();
-  const query = 'INSERT INTO mis_clases (nombre_clase, seccion, ciclo, fecha_inicio, fecha_fin, estado, codigo_union) VALUES (?, ?, ?, ?, ?, ?, ?)';
-  db.query(query, [
-    classData.nombre_clase,
-    classData.seccion,
-    classData.ciclo,
-    classData.fecha_inicio,
-    classData.fecha_fin,
-    classData.estado || 'activa',
-    codigo_union
-  ], function (err, result) {
-    if (err) return callback(err);
-    // Devuelve también el código de unión
-    callback(null, { insertId: result.insertId, codigo_union });
-  });
+const createClass = (data, callback) => {
+  const {
+    nombre_clase,
+    seccion,
+    ciclo,
+    fecha_inicio,
+    fecha_fin,
+    estado,
+    profesor_id
+  } = data;
+  // Genera un código de unión aleatorio
+  const codigo_union = Math.random().toString(36).substring(2, 8).toUpperCase();
+  db.query(
+    `INSERT INTO mis_clases (nombre_clase, seccion, ciclo, fecha_inicio, fecha_fin, estado, profesor_id, codigo_union)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [nombre_clase, seccion, ciclo, fecha_inicio, fecha_fin, estado, profesor_id, codigo_union],
+    function (err, result) {
+      if (err) return callback(err);
+      callback(null, { insertId: result.insertId, codigo_union });
+    }
+  );
 };
 
-// Actualizar clase
 const updateClass = (classId, classData, callback) => {
-  const query = 'UPDATE mis_clases SET nombre_clase = ?, seccion = ?, ciclo = ? WHERE id = ?';
-  db.query(query, [classData.nombre_clase, classData.seccion, classData.ciclo, classId], callback);
+  db.query(
+    'UPDATE mis_clases SET nombre_clase = ?, seccion = ?, ciclo = ?, fecha_inicio = ?, fecha_fin = ? WHERE id = ?',
+    [classData.nombre_clase, classData.seccion, classData.ciclo, classData.fecha_inicio, classData.fecha_fin, classId],
+    callback
+  );
 };
 
-// Eliminar clase
 const deleteClass = (classId, callback) => {
-  const query = 'DELETE FROM mis_clases WHERE id = ?';
-  db.query(query, [classId], callback);
+  db.query('DELETE FROM mis_clases WHERE id = ?', [classId], callback);
 };
 
 module.exports = {

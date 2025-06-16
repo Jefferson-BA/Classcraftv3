@@ -26,22 +26,20 @@ const getClassById = (req, res) => {
 // Obtener clases del profesor
 const getClasesProfesor = (req, res) => {
   const profesorId = req.query.profesor_id;
-  db.query(
-    'SELECT * FROM mis_clases WHERE profesor_id = ?',
-    [profesorId],
-    (err, results) => {
-      if (err) {
-        console.error('Error SQL:', err);
-        return res.status(500).json({ error: 'Error en la base de datos' });
-      }
-      res.json(results);
+
+  db.query('SELECT * FROM mis_clases WHERE profesor_id = ?', [profesorId], (err, results) => {
+    if (err) {
+      console.error('Error SQL:', err);
+      return res.status(500).json({ error: 'Error en la base de datos' });
     }
-  );
+    res.json(results);
+  });
 };
 
 // Obtener alumnos de una clase
 const getEstudiantesDeClase = (req, res) => {
   const claseId = req.params.id;
+
   db.query(
     `SELECT u.id, u.username, u.email
      FROM alumnos_clases ac
@@ -58,6 +56,8 @@ const getEstudiantesDeClase = (req, res) => {
   );
 };
 
+// === GESTIÓN DE CLASES ===
+
 // Crear clase
 const createClass = (req, res) => {
   const {
@@ -73,19 +73,27 @@ const createClass = (req, res) => {
     return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
   }
 
-  ClassModel.createClass(
-    { nombre_clase, seccion, ciclo, fecha_inicio, fecha_fin, estado: 'activa', profesor_id },
-    (err, result) => {
-      if (err) {
-        console.error('Error en createClass:', err);
-        return res.status(500).json({ message: 'Error al crear la clase.' });
-      }
-      res.status(201).json({
-        message: 'Clase agregada exitosamente',
-        codigo_union: result.codigo_union
-      });
+  const nuevaClase = {
+    nombre_clase,
+    seccion,
+    ciclo,
+    fecha_inicio,
+    fecha_fin,
+    estado: 'activa',
+    profesor_id
+  };
+
+  ClassModel.createClass(nuevaClase, (err, result) => {
+    if (err) {
+      console.error('Error en createClass:', err);
+      return res.status(500).json({ message: 'Error al crear la clase.' });
     }
-  );
+
+    res.status(201).json({
+      message: 'Clase agregada exitosamente',
+      codigo_union: result.codigo_union
+    });
+  });
 };
 
 // Actualizar clase
@@ -93,7 +101,7 @@ const updateClass = (req, res) => {
   const classId = req.params.id;
   const classData = req.body;
 
-  ClassModel.updateClass(classId, classData, (err, result) => {
+  ClassModel.updateClass(classId, classData, (err) => {
     if (err) return res.status(500).json({ error: 'Error al actualizar la clase' });
     res.json({ message: 'Clase actualizada correctamente' });
   });
@@ -108,14 +116,14 @@ const deleteClass = (req, res) => {
     if (err) return res.status(500).json({ error: 'Error al eliminar alumnos de la clase' });
 
     // Paso 2: Eliminar la clase
-    db.query('DELETE FROM mis_clases WHERE id = ?', [claseId], (err2, result) => {
+    db.query('DELETE FROM mis_clases WHERE id = ?', [claseId], (err2) => {
       if (err2) return res.status(500).json({ error: 'Error al eliminar la clase' });
       res.json({ message: 'Clase eliminada correctamente' });
     });
   });
 };
 
-// === EXPORTACIÓN ===
+// === EXPORTACIÓN DE FUNCIONES ===
 module.exports = {
   getAllClasses,
   getClassById,

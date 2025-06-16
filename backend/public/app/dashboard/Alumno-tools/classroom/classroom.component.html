@@ -129,7 +129,7 @@
                             <td>{{ clase.seccion }}</td>
                             <td>{{ clase.ciclo }}</td>
                             <td>{{ clase.fecha_inicio | date:'dd/MM/yyyy' }}</td>
-                            <td>{{ clase.fecha_fin | date:'dd/MM/yyyy' }}</td>
+                            <td>{{ clase.fecha_fin }}</td>
                             <td>{{ clase.estado }}</td>
                         </tr>
                     </tbody>
@@ -137,23 +137,22 @@
                 <div ng-if="vm.myClasses.length === 0">
                     <p>No te has unido a ninguna clase aún.</p>
                 </div>
-            </div>
 
-            <!-- Otras secciones (ocultas por defecto) -->
-            <div class="content-section" id="examsSection">
-                <div class="section-panel">
-                    <h1 class="section-title">Exámenes</h1>
-                    <p>Contenido de exámenes aquí...</p>
+                <!-- Otras secciones (ocultas por defecto) -->
+                <div class="content-section" id="examsSection">
+                    <div class="section-panel">
+                        <h1 class="section-title">Exámenes</h1>
+                        <p>Contenido de exámenes aquí...</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="content-section" id="mapSection">
-                <div class="section-panel">
-                    <h1 class="section-title">Mapa</h1>
-                    <p>Contenido del mapa aquí...</p>
+                <div class="content-section" id="mapSection">
+                    <div class="section-panel">
+                        <h1 class="section-title">Mapa</h1>
+                        <p>Contenido del mapa aquí...</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Agrega más secciones según sea necesario -->
+                <!-- Agrega más secciones según sea necesario -->
         </main>
     </div>
 

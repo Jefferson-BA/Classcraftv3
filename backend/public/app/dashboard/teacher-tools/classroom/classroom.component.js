@@ -49,7 +49,7 @@ angular.module('app')
       vm.codigoUnion = null;
     };
 
-    vm.createClass = function () {
+        vm.createClass = function () {
       const data = {
         nombre_clase: vm.className,
         seccion: vm.section,
@@ -58,6 +58,10 @@ angular.module('app')
         fecha_fin: vm.fechaFin,
         profesor_id: vm.teacherId
       };
+      if (!data.nombre_clase || !data.seccion || !data.ciclo || !data.fecha_inicio || !data.fecha_fin || !data.profesor_id) {
+        Swal.fire('Error', 'Todos los campos son obligatorios.', 'error');
+        return;
+      }
       ClassService.createClass(data)
         .then(function (response) {
           vm.codigoUnion = response.data.codigo_union;
@@ -69,8 +73,8 @@ angular.module('app')
           vm.closeCreateForm();
           vm.cargarClases();
         })
-        .catch(function () {
-          Swal.fire('Error', 'Error al crear la clase', 'error');
+        .catch(function (err) {
+          Swal.fire('Error', err.data && err.data.message ? err.data.message : 'Error al crear la clase', 'error');
         });
     };
 

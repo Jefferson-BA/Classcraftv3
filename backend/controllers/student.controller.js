@@ -4,16 +4,27 @@ const db = require('../config/db');
 // Unirse a clase por código
 const joinClass = (req, res) => {
   const { alumno_id, codigo_union } = req.body;
-  if (!alumno_id || !codigo_union) {
-    return res.status(400).json({ message: 'Faltan datos.' });
-  }
+
   db.query('SELECT id FROM mis_clases WHERE codigo_union = ?', [codigo_union], (err, results) => {
-    if (err) return res.status(500).json({ message: 'Error en la base de datos.' });
-    if (results.length === 0) return res.status(404).json({ message: 'Código no válido.' });
+    if (err || results.length === 0) {
+      return res.status(404).json({ message: 'Clase no encontrada' });
+    }
     const clase_id = results[0].id;
-    db.query('INSERT IGNORE INTO alumnos_clases (alumno_id, clase_id) VALUES (?, ?)', [alumno_id, clase_id], (err2) => {
-      if (err2) return res.status(500).json({ message: 'Error al unirse a la clase.' });
-      res.json({ message: 'Te has unido a la clase correctamente.' });
+
+    db.query('SELECT id FROM users WHERE id = ? AND role = "student"', [alumno_id], (err2, userResults) => {
+      if (err2 || userResults.length === 0) {
+        return res.status(404).json({ message: 'Alumno no válido' });
+      }
+
+      db.query('INSERT INTO alumnos_clases (alumno_id, clase_id) VALUES (?, ?)', [alumno_id, clase_id], (err3) => {
+        if (err3) {
+          if (err3.code === 'ER_DUP_ENTRY') {
+            return res.status(400).json({ message: 'Ya estás inscrito en esta clase' });
+          }
+          return res.status(500).json({ message: 'Error al unir al alumno a la clase' });
+        }
+        res.json({ message: 'Te has unido a la clase correctamente' });
+      });
     });
   });
 };
@@ -27,7 +38,9 @@ const getMyClasses = (req, res) => {
      WHERE ac.alumno_id = ?`,
     [alumno_id],
     (err, results) => {
-      if (err) return res.status(500).json({ message: 'Error en la base de datos.' });
+      if (err) {
+        return res.status(500).json({ error: 'Error en la base de datos' });
+      }
       res.json(results);
     }
   );
