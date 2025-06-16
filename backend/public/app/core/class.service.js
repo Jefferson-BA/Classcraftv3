@@ -21,6 +21,9 @@ angular.module('app')
       },
       editarClase: function (claseId, data) {
         return $http.put('/api/classes/' + claseId, data);
-      }
+      },
+      cambiarEstadoClase: function (claseId, nuevoEstado) {
+        return $http.put('/api/classes/' + claseId + '/estado', { estado: nuevoEstado });
+      },
     };
   });

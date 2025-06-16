@@ -96,6 +96,21 @@ const createClass = (req, res) => {
   });
 };
 
+// Cambiar estado de la clase
+const cambiarEstadoClase = (req, res) => {
+  const claseId = req.params.id;
+  const { estado } = req.body;
+  if (!['activa', 'finalizada', 'bloqueada'].includes(estado)) {
+    return res.status(400).json({ message: 'Estado no válido.' });
+  }
+  db.query('UPDATE mis_clases SET estado = ? WHERE id = ?', [estado, claseId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error al cambiar el estado de la clase.' });
+    }
+    res.json({ message: 'Estado de la clase actualizado.' });
+  });
+};
+
 // Actualizar clase
 const updateClass = (req, res) => {
   const classId = req.params.id;
@@ -123,6 +138,21 @@ const deleteClass = (req, res) => {
   });
 };
 
+// Eliminar alumno de una clase
+const eliminarAlumnoDeClase = (req, res) => {
+  const { claseId, alumnoId } = req.params;
+  db.query(
+    'DELETE FROM alumnos_clases WHERE clase_id = ? AND alumno_id = ?',
+    [claseId, alumnoId],
+    (err, result) => {
+      if (err) {
+        return res.status(500).json({ message: 'Error al eliminar al alumno de la clase.' });
+      }
+      res.json({ message: 'Alumno eliminado de la clase.' });
+    }
+  );
+};
+
 // === EXPORTACIÓN DE FUNCIONES ===
 module.exports = {
   getAllClasses,
@@ -131,5 +161,7 @@ module.exports = {
   getEstudiantesDeClase,
   createClass,
   updateClass,
-  deleteClass
+  deleteClass,
+  cambiarEstadoClase,
+  eliminarAlumnoDeClase
 };

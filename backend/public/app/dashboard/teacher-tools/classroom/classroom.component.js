@@ -49,7 +49,7 @@ angular.module('app')
       vm.codigoUnion = null;
     };
 
-        vm.createClass = function () {
+    vm.createClass = function () {
       const data = {
         nombre_clase: vm.className,
         seccion: vm.section,
@@ -170,6 +170,43 @@ angular.module('app')
           ClassService.editarClase(clase.id, result.value)
             .then(function () {
               Swal.fire('Actualizado', 'La clase fue actualizada.', 'success');
+              vm.cargarClases();
+            });
+        }
+      });
+    };
+    vm.finalizarClase = function (clase) {
+      Swal.fire({
+        title: '¿Finalizar esta clase?',
+        text: 'No podrás revertir esta acción.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, finalizar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          ClassService.cambiarEstadoClase(clase.id, 'finalizada')
+            .then(function () {
+              Swal.fire('Finalizada', 'La clase fue finalizada.', 'success');
+              vm.cargarClases();
+            });
+        }
+      });
+    };
+
+    vm.bloquearClase = function (clase) {
+      Swal.fire({
+        title: '¿Bloquear esta clase?',
+        text: 'Los alumnos no podrán unirse.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, bloquear',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          ClassService.cambiarEstadoClase(clase.id, 'bloqueada')
+            .then(function () {
+              Swal.fire('Bloqueada', 'La clase fue bloqueada.', 'success');
               vm.cargarClases();
             });
         }
