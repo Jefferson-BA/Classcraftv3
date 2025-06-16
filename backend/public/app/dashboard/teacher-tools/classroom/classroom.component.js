@@ -80,48 +80,18 @@ angular.module('app')
 
     // === DETALLES DE CLASE ===
     vm.verDetalles = function (clase) {
+      vm.claseSeleccionada = clase;
       ClassService.getEstudiantesDeClase(clase.id)
         .then(function (response) {
-          const alumnos = Array.isArray(response.data) ? response.data : (response.data.alumnos || []);
-          let alumnosHtml = '';
-
-          if (!alumnos || alumnos.length === 0) {
-            alumnosHtml = '<p>No hay estudiantes en esta clase.</p>';
-          } else {
-            alumnosHtml = `
-              <table style="width:100%;text-align:left">
-                <tr><th>Nombre</th><th>Email</th><th>Acciones</th></tr>
-                ${alumnos.map(alumno => `
-                  <tr>
-                    <td>${alumno.username}</td>
-                    <td>${alumno.email}</td>
-                    <td>
-                      <button onclick="angular.element(this).scope().vm.verPerfilAlumno('${alumno.id}')">Ver perfil</button>
-                      <button onclick="angular.element(this).scope().vm.eliminarAlumnoDeClase('${clase.id}', '${alumno.id}')">Eliminar</button>
-                    </td>
-                  </tr>
-                `).join('')}
-              </table>
-            `;
-          }
-
-          Swal.fire({
-            title: `Clase: ${clase.nombre_clase}`,
-            html: `
-              <p><b>Sección:</b> ${clase.seccion}</p>
-              <p><b>Ciclo:</b> ${clase.ciclo}</p>
-              <p><b>Fecha Inicio:</b> ${clase.fecha_inicio}</p>
-              <p><b>Fecha Fin:</b> ${clase.fecha_fin}</p>
-              <hr>
-              <h4>Estudiantes</h4>
-              ${alumnosHtml}
-            `,
-            width: 700,
-            showCloseButton: true,
-            showConfirmButton: false
-          });
+          vm.estudiantesClase = Array.isArray(response.data) ? response.data : (response.data.alumnos || []);
         });
     };
+
+    vm.cerrarModal = function () {
+      vm.claseSeleccionada = null;
+      vm.estudiantesClase = [];
+    };
+
 
     // === ELIMINAR CLASE ===
     vm.eliminarClase = function (clase) {
@@ -227,6 +197,7 @@ angular.module('app')
           ClassService.eliminarAlumnoDeClase(claseId, alumnoId)
             .then(function () {
               Swal.fire('Eliminado', 'El estudiante fue eliminado.', 'success');
+              // Refresca la lista de alumnos de la clase
               vm.verDetalles({ id: claseId });
             });
         }

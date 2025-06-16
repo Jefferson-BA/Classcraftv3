@@ -16,14 +16,15 @@ angular.module('app')
       getEstudiantesDeClase: function (claseId) {
         return $http.get('/api/classes/' + claseId + '/alumnos');
       },
-      eliminarAlumnoDeClase: function (claseId, alumnoId) {
-        return $http.delete('/api/classes/' + claseId + '/alumnos/' + alumnoId);
-      },
+      
       editarClase: function (claseId, data) {
         return $http.put('/api/classes/' + claseId, data);
       },
-      cambiarEstadoClase: function (claseId, nuevoEstado) {
+      cambiarEstadoClase: function(claseId, nuevoEstado) {
         return $http.put('/api/classes/' + claseId + '/estado', { estado: nuevoEstado });
       },
+      eliminarAlumnoDeClase: function(claseId, alumnoId) {
+        return $http.delete('/api/classes/' + claseId + '/alumno/' + alumnoId);
+      }
     };
   });

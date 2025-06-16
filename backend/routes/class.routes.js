@@ -22,9 +22,11 @@ router.put('/:id', ClassController.updateClass);
 
 // Eliminar clase
 router.delete('/:id', ClassController.deleteClass);
-// estado de la clase
+
+// Cambiar estado de la clase
 router.put('/:id/estado', ClassController.cambiarEstadoClase);
-//eliminar alumno de la clase
+
+// Eliminar alumno de la clase
 router.delete('/:claseId/alumno/:alumnoId', ClassController.eliminarAlumnoDeClase);
 
 module.exports = router;

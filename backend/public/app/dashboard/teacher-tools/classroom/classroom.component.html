@@ -213,32 +213,31 @@
             <!-- Modal de detalles de clase -->
             <div class="modal" ng-if="vm.claseSeleccionada">
                 <div class="modal-content">
-                    <h3>Detalles de la clase: {{ vm.claseSeleccionada.nombre_clase }}</h3>
-                    <p>Sección: {{ vm.claseSeleccionada.seccion }}</p>
-                    <p>Ciclo: {{ vm.claseSeleccionada.ciclo }}</p>
-                    <p>Fecha Inicio: {{ vm.claseSeleccionada.fecha_inicio | date:'dd/MM/yyyy' }}</p>
-                    <p>Fecha Fin: {{ vm.claseSeleccionada.fecha_fin | date:'dd/MM/yyyy' }}</p>
+                    <h3>Clase: {{ vm.claseSeleccionada.nombre_clase }}</h3>
+                    <p><b>Sección:</b> {{ vm.claseSeleccionada.seccion }}</p>
+                    <p><b>Ciclo:</b> {{ vm.claseSeleccionada.ciclo }}</p>
+                    <p><b>Fecha Inicio:</b> {{ vm.claseSeleccionada.fecha_inicio }}</p>
+                    <p><b>Fecha Fin:</b> {{ vm.claseSeleccionada.fecha_fin }}</p>
+                    <hr>
                     <h4>Estudiantes</h4>
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="alumno in vm.estudiantesClase">
-                                <td>{{ alumno.username }}</td>
-                                <td>{{ alumno.email }}</td>
-                                <td>
-                                    <button ng-click="vm.verPerfilAlumno(alumno)">Ver perfil</button>
-                                    <button ng-click="vm.eliminarAlumnoDeClase(alumno)">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                        <tr ng-repeat="alumno in vm.estudiantesClase">
+                            <td>{{ alumno.username }}</td>
+                            <td>{{ alumno.email }}</td>
+                            <td>
+                                <button ng-click="vm.verPerfilAlumno(alumno.id)">Ver perfil</button>
+                                <button
+                                    ng-click="vm.eliminarAlumnoDeClase(vm.claseSeleccionada.id, alumno.id)">Eliminar</button>
+                            </td>
+                        </tr>
                     </table>
                     <button ng-click="vm.cerrarModal()">Cerrar</button>
+
                 </div>
             </div>
             <div ng-if="vm.classList.length === 0 && !vm.showCreateForm" class="no-classes-msg">
@@ -246,6 +245,7 @@
             </div>
         </main>
     </div>
+    
 
     <script>
         // JavaScript para manejar la navegación

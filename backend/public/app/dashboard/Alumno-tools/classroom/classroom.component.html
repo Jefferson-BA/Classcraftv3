@@ -37,7 +37,7 @@
                 <nav class="sidebar-nav">
                     <a href="#" class="nav-item active" data-section="home">
                         <img src="app/image/icons/inicio.png" alt="Inicio" class="nav-icon">
-                        <span class="nav-label">Iniciooo</span>
+                        <span class="nav-label">Inicio</span>
                         <a href="/alumno/classroom" class="nav-item"
                             ng-class="{'active': vm.$location.path() === '/alumno/classroom'}">
                             <img src="app/image/icons/batalla.png" alt="Clases" class="nav-icon">
@@ -137,6 +137,9 @@
                 <div ng-if="vm.myClasses.length === 0">
                     <p>No te has unido a ninguna clase aún.</p>
                 </div>
+                <td>
+                    <button ng-click="vm.salirDeClase(clase.id)">Salir</button>
+                </td>
 
                 <!-- Otras secciones (ocultas por defecto) -->
                 <div class="content-section" id="examsSection">

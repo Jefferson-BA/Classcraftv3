@@ -109,7 +109,7 @@ const cambiarEstadoClase = (req, res) => {
     }
     res.json({ message: 'Estado de la clase actualizado.' });
   });
-};
+};  
 
 // Actualizar clase
 const updateClass = (req, res) => {
