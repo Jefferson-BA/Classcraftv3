@@ -98,6 +98,19 @@ const deleteStudent = (req, res) => {
     res.json({ message: 'Estudiante eliminado correctamente' });
   });
 };
+exports.darOro = (req, res) => {
+  const { studentId } = req.params;
+  const { cantidad } = req.body;
+  db.query(
+    'UPDATE students SET oro = oro + ? WHERE id = ?',
+    [cantidad, studentId],
+    (err, result) => {
+      if (err) return res.status(500).json({ message: 'Error al actualizar oro' });
+      res.json({ message: 'Oro actualizado' });
+    }
+  );
+};
+
 
 module.exports = {
   getAllStudents,

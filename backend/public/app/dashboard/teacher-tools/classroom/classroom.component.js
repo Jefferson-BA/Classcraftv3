@@ -165,22 +165,12 @@ angular.module('app')
     };
 
     vm.bloquearClase = function (clase) {
-      Swal.fire({
-        title: '¿Bloquear esta clase?',
-        text: 'Los alumnos no podrán unirse.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, bloquear',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          ClassService.cambiarEstadoClase(clase.id, 'bloqueada')
-            .then(function () {
-              Swal.fire('Bloqueada', 'La clase fue bloqueada.', 'success');
-              vm.cargarClases();
-            });
-        }
-      });
+      const nuevoEstado = clase.estado === 'bloqueada' ? 'activa' : 'bloqueada';
+      ClassService.cambiarEstadoClase(clase.id, nuevoEstado)
+        .then(function () {
+          clase.estado = nuevoEstado;
+          Swal.fire('Listo', 'El estado de la clase ha sido actualizado.', 'success');
+        });
     };
 
     // === FUNCIONES DE ESTUDIANTES ===

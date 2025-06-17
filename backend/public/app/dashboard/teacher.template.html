@@ -62,7 +62,8 @@
                         <img src="app/image/icons/mision.png" alt="Misiones" class="nav-icon">
                         <span class="nav-label">Misiones</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="roulette">
+                    <a href="" class="nav-item" ng-class="{'active': vm.$location.path() === '/random-events'}"
+                        ng-click="vm.goToRandomEvents()" data-section="roulette">
                         <img src="app/image/icons/ruleta.png" alt="Ruleta" class="nav-icon">
                         <span class="nav-label">Ruleta</span>
                     </a>

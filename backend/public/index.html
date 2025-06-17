@@ -54,6 +54,9 @@
   <script src="app/home/home.component.js"></script>
   <script src="app/dashboard/Alumno-tools/classroom/classroom.component.js"></script>
 
+  <script src="app/dashboard/teacher-tools/random-events/randomEvents.component.js"></script>
+  <link rel="stylesheet" href="app/dashboard/teacher-tools/random-events/randomEvents.component.css">
+
   <!-- Rutas -->
   <script src="app/app.routes.js"></script>
 
@@ -70,11 +73,13 @@
           path === '/classroom' ||
           path === '/register/alumno' ||
           path === '/login/alumno' ||
-          path == '/dashboard/alumno'||
-          path === '/alumno/classroom'
+          path == '/dashboard/alumno' ||
+          path === '/alumno/classroom' ||
+          path === '/random-events'
         );
       };
     });
   </script>
 </body>
+
 </html>

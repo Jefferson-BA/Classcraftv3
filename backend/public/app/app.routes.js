@@ -69,6 +69,11 @@ angular.module('app')
         controller: 'StudentClassesController',
         controllerAs: 'vm'
       })
+      .when('/random-events', {
+        templateUrl: 'app/dashboard/teacher-tools/random-events/randomEvents.component.html',
+        controller: 'RandomEventsController',
+        controllerAs: 'vm'
+      })
 
       // FALLBACK
       .otherwise({ redirectTo: '/' });

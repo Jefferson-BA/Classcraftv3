@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Combat Dashboard - Ruleta de Eventos</title>
+    <link rel="stylesheet" href="randomEvents.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navbar Principal -->
+    <nav class="re-navbar">
+        <div class="re-nav-left">
+            <div class="re-logo">
+                <div class="re-logo-circle">
+                    <span class="re-logo-text">CC</span>
+                </div>
+                <span class="re-logo-title">CLASS COMBAT</span>
+            </div>
+        </div>
+        <div class="re-nav-right">
+            <button class="re-nav-btn re-update-btn">
+                <i class="fas fa-sync-alt"></i>
+                Actualizar
+            </button>
+            <button class="re-nav-btn re-invite-btn" ng-click="vm.openCreateForm()">
+                <i class="fas fa-user-plus"></i>
+                <span>Crear nueva Clase</span>
+            </button>
+            <div class="re-profile-btn">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="re-main-container">
+        <!-- Sidebar fijo -->
+        <aside class="re-sidebar">
+            <div class="re-sidebar-content">
+                <nav class="re-sidebar-nav">
+                    <a href="" class="re-nav-item re-active" data-section="home">
+                        <img src="app/image/icons/inicio.png" alt="Inicio" class="re-nav-icon">
+                        <span class="re-nav-label">Inicio</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="classes">
+                        <img src="app/image/icons/batalla.png" alt="Clases" class="re-nav-icon">
+                        <span class="re-nav-label">Mis Clases</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="exams">
+                        <img src="app/image/icons/examen.png" alt="Exámenes" class="re-nav-icon">
+                        <span class="re-nav-label">Exámenes</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="map">
+                        <img src="app/image/icons/mapa.png" alt="Mapa" class="re-nav-icon">
+                        <span class="re-nav-label">Mapa</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="missions">
+                        <img src="app/image/icons/mision.png" alt="Misiones" class="re-nav-icon">
+                        <span class="re-nav-label">Misiones</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="roulette">
+                        <img src="app/image/icons/ruleta.png" alt="Ruleta" class="re-nav-icon">
+                        <span class="re-nav-label">Ruleta</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="telescope">
+                        <img src="app/image/icons/telescopio.png" alt="Telescopio" class="re-nav-icon">
+                        <span class="re-nav-label">Telescopio</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="stats">
+                        <img src="app/image/icons/estadistica.png" alt="Estadísticas" class="re-nav-icon">
+                        <span class="re-nav-label">Estadísticas</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="comments">
+                        <img src="app/image/icons/comentarios.png" alt="Comentarios" class="re-nav-icon">
+                        <span class="re-nav-label">Comentarios</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="claims">
+                        <img src="app/image/icons/reclamacion.png" alt="Reclamaciones" class="re-nav-icon">
+                        <span class="re-nav-label">Reclamaciones</span>
+                    </a>
+                </nav>
+
+                <div class="re-sidebar-bottom">
+                    <div class="re-user-profile-image">
+                        <img src="app/image/icons/ig.png" alt="Foto del profesor" class="re-profile-image">
+                        <div class="re-profile-frame"></div>
+                    </div>
+                    <button class="re-settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área de contenido principal -->
+        <main class="re-content-area" ng-controller="ClassroomController as vm">
+            <div class="re-events-container" ng-controller="RandomEventsController as vm">
+                <h2 class="re-events-title">Ruleta de Eventos Aleatorios</h2>
+                
+                <!-- Selección de clase -->
+                <div class="re-form-group">
+                    <label class="re-form-label">Selecciona una clase:</label>
+                    <select ng-model="vm.selectedClass" ng-options="clase as clase.nombre_clase for clase in vm.classList" ng-change="vm.cargarAlumnos()" class="re-form-control">
+                        <option value="">-- Selecciona --</option>
+                    </select>
+                </div>
+
+                <!-- Mostrar alumnos de la clase seleccionada -->
+                <div ng-if="vm.selectedClass" class="re-students-section">
+                    <h4 class="re-students-title">Alumnos de {{ vm.selectedClass.nombre_clase }}</h4>
+                    <ul class="re-students-list">
+                        <li ng-repeat="alumno in vm.alumnosClase" class="re-student-item">{{ alumno.username }}</li>
+                    </ul>
+                    <button class="re-btn re-btn-primary" ng-click="vm.girarRuleta()" ng-disabled="!vm.alumnosClase.length">
+                        <i class="fas fa-sync-alt"></i>
+                        Girar Ruleta
+                    </button>
+                </div>
+
+                <!-- Resultado de la ruleta -->
+                <div ng-if="vm.alumnoSeleccionado" class="re-result-section">
+                    <h3 class="re-result-title">¡Alumno seleccionado: {{ vm.alumnoSeleccionado.username }}!</h3>
+                    <div class="re-action-buttons">
+                        <button class="re-btn re-btn-success" ng-click="vm.darPuntaje('mas')">
+                            <i class="fas fa-plus"></i>
+                             Puntaje
+                        </button>
+                        <button class="re-btn re-btn-danger" ng-click="vm.darPuntaje('menos')">
+                            <i class="fas fa-minus"></i>
+                             Puntaje
+                        </button>
+                        <button class="re-btn re-btn-warning" ng-click="vm.darOro()">
+                            <i class="fas fa-coins"></i>
+                            Dar Oro
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal para dar oro -->
+                <div class="re-modal" ng-if="vm.mostrarModalOro">
+                    <div class="re-modal-content">
+                        <h4 class="re-modal-title">¿Cuánto oro quieres dar a {{ vm.alumnoSeleccionado.username }}?</h4>
+                        <input type="number" ng-model="vm.cantidadOro" min="1" class="re-modal-input" placeholder="Cantidad de oro" />
+                        <div class="re-modal-actions">
+                            <button class="re-btn re-btn-warning" ng-click="vm.confirmarDarOro()">
+                                <i class="fas fa-check"></i>
+                                Confirmar
+                            </button>
+                            <button class="re-btn re-btn-secondary" ng-click="vm.mostrarModalOro = false">
+                                <i class="fas fa-times"></i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    
+    <script>
+        // JavaScript para manejar la navegación
+        document.addEventListener('DOMContentLoaded', function () {
+            const navItems = document.querySelectorAll('.re-nav-item');
+            const contentSections = document.querySelectorAll('.re-content-section');
+
+            // Manejar clics en los elementos de navegación
+            navItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Remover clase active de todos los elementos
+                    navItems.forEach(nav => nav.classList.remove('re-active'));
+
+                    // Agregar clase active al elemento clickeado
+                    this.classList.add('re-active');
+
+                    const section = this.getAttribute('data-section');
+
+                    // Mostrar la sección correspondiente
+                    contentSections.forEach(sec => sec.classList.remove('re-active'));
+                    const targetSection = document.getElementById(section + 'Section');
+                    if (targetSection) {
+                        targetSection.classList.add('re-active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

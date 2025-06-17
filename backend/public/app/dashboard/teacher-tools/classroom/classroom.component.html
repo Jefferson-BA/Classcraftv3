@@ -172,7 +172,7 @@
             </div>
 
             <!-- Tabla/lista de clases creadas -->
-            <div class="class-list-container" ng-if="vm.classList.length > 0">
+            <div class="class-list-container" ng-if="vm.classList.length > 0    ">
                 <h2>Mis Clases</h2>
                 <!-- ...dentro de tu tabla de clases... -->
                 <table class="class-list-table" ng-if="vm.classList.length > 0">
@@ -203,7 +203,14 @@
                                 <button ng-click="vm.editarClase(clase)">Editar</button>
                                 <button ng-click="vm.eliminarClase(clase)">Eliminar</button>
                                 <button ng-click="vm.finalizarClase(clase)">Finalizar</button>
-                                <button ng-click="vm.bloquearClase(clase)">Bloquear</button>
+                                <div style="margin-top: 10px;">
+                                    <div style="font-size: 13px; font-weight: 600;">Bloquear</div>
+                                    <label class="switch" style="margin-top: 2px;">
+                                        <input type="checkbox" ng-checked="clase.estado === 'bloqueada'"
+                                            ng-click="vm.bloquearClase(clase)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

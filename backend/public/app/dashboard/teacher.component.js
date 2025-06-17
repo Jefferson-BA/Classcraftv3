@@ -9,5 +9,8 @@ angular.module('app')
     vm.goToDashboard = function () {
       $location.path('/dashboard/teacher');
     };
+    vm.goToRandomEvents = function () {
+      $location.path('/random-events');
+    };
     vm.$location = $location;
   });

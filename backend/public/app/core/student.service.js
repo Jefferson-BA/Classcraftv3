@@ -6,6 +6,9 @@ angular.module('app')
       },
       getMyClasses: function(alumno_id) {
         return $http.get('/api/students/my-classes/' + alumno_id);
+      },
+      darOro: function(studentId, cantidad) {
+        return $http.post('/api/students/' + studentId + '/dar-oro', { cantidad });
       }
     };
   });

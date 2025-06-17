@@ -25,6 +25,12 @@ angular.module('app')
       },
       eliminarAlumnoDeClase: function(claseId, alumnoId) {
         return $http.delete('/api/classes/' + claseId + '/alumno/' + alumnoId);
+      },
+      getClasesProfesor: function(profesorId) {
+        return $http.get('/api/classes/mis-clases?profesor_id=' + profesorId);
+      },
+      getEstudiantesDeClase: function(claseId) {
+        return $http.get('/api/classes/' + claseId + '/alumnos');
       }
     };
   });

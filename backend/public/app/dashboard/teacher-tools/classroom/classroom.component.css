@@ -1261,3 +1261,734 @@ body::after {
         padding: 10px 14px;
     }
 }
+/* Interruptor tipo iOS */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+.switch input { display: none; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 22px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+/* Estilos para el contenedor de la lista de clases */
+.class-list-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    animation: slideInUp 0.6s ease-out;
+}
+
+.class-list-container h2 {
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.class-list-container h2::before {
+    content: '📚';
+    font-size: 28px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Estilos para la tabla */
+.class-list-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin-top: 20px;
+}
+
+.class-list-table thead th {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+    color: #fff;
+    font-weight: 600;
+    padding: 20px 15px;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.class-list-table thead th:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.class-list-table thead th:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.class-list-table tbody tr {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.class-list-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.class-list-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+.class-list-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+.class-list-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+.class-list-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+.class-list-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.class-list-table tbody td {
+    padding: 20px 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    vertical-align: middle;
+}
+
+.class-list-table tbody tr td:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.class-list-table tbody tr td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Estilo especial para el código de unión */
+.class-list-table tbody td:nth-child(6) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 5px 0;
+}
+
+.class-list-table tbody td:nth-child(6) button {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.4);
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: #4CAF50;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.class-list-table tbody td:nth-child(6) button:hover {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: rgba(76, 175, 80, 0.6);
+    color: #66BB6A;
+    transform: translateY(-1px);
+}
+
+/* Estilos para las acciones */
+.class-list-table tbody td:last-child {
+    text-align: center;
+    padding: 15px;
+}
+
+.class-list-table tbody td:last-child button {
+    background: rgba(59, 89, 152, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.class-list-table tbody td:last-child button:hover {
+    background: rgba(59, 89, 152, 1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 89, 152, 0.3);
+}
+
+/* Botones específicos */
+.class-list-table tbody td:last-child button[ng-click*="verDetalles"] {
+    background: rgba(33, 150, 243, 0.8);
+}
+
+.class-list-table tbody td:last-child button[ng-click*="verDetalles"]:hover {
+    background: rgba(33, 150, 243, 1);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.class-list-table tbody td:last-child button[ng-click*="editarClase"] {
+    background: rgba(255, 152, 0, 0.8);
+}
+
+.class-list-table tbody td:last-child button[ng-click*="editarClase"]:hover {
+    background: rgba(255, 152, 0, 1);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.class-list-table tbody td:last-child button[ng-click*="eliminarClase"] {
+    background: rgba(244, 67, 54, 0.8);
+}
+
+.class-list-table tbody td:last-child button[ng-click*="eliminarClase"]:hover {
+    background: rgba(244, 67, 54, 1);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.class-list-table tbody td:last-child button[ng-click*="finalizarClase"] {
+    background: rgba(156, 39, 176, 0.8);
+}
+
+.class-list-table tbody td:last-child button[ng-click*="finalizarClase"]:hover {
+    background: rgba(156, 39, 176, 1);
+    box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+}
+
+/* Sección de bloqueo */
+.class-list-table tbody td:last-child > div {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.class-list-table tbody td:last-child > div > div {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Interruptor mejorado */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    border-radius: 26px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+    transition: all 0.4s ease;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+    border-color: rgba(255, 107, 107, 0.6);
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+    background: linear-gradient(135deg, #fff 0%, #ffe6e6 100%);
+}
+
+.slider:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+input:checked + .slider:hover {
+    background: linear-gradient(135deg, #FF5252 0%, #FF7979 100%);
+}
+
+/* Modal de detalles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideInFromBottom 0.4s ease-out;
+    position: relative;
+}
+
+.modal-content h3 {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.modal-content h3::before {
+    content: '🎓';
+    font-size: 24px;
+}
+
+.modal-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-content p b {
+    color: #fff;
+    font-weight: 600;
+    min-width: 120px;
+}
+
+.modal-content hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    margin: 25px 0;
+}
+
+.modal-content h4 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-content h4::before {
+    content: '👥';
+    font-size: 18px;
+}
+
+/* Tabla de estudiantes en el modal */
+.modal-content table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-bottom: 25px;
+}
+
+.modal-content table th {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+    color: #fff;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.modal-content table th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.modal-content table th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.modal-content table td {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    font-size: 14px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.modal-content table tr:hover td {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.modal-content table td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.modal-content table td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+}
+
+.modal-content table td button {
+    background: rgba(59, 89, 152, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-content table td button:hover {
+    background: rgba(59, 89, 152, 1);
+    transform: translateY(-1px);
+}
+
+.modal-content table td button[ng-click*="eliminarAlumno"] {
+    background: rgba(244, 67, 54, 0.8);
+}
+
+.modal-content table td button[ng-click*="eliminarAlumno"]:hover {
+    background: rgba(244, 67, 54, 1);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* Botón cerrar modal */
+.modal-content > button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 12px 24px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin: 20px auto 0;
+    min-width: 120px;
+}
+
+.modal-content > button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Mensaje sin clases */
+.no-classes-msg {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 60px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    margin: 40px 0;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.no-classes-msg p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.no-classes-msg p::before {
+    content: '📖';
+    font-size: 24px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .class-list-table {
+        font-size: 13px;
+    }
+    
+    .class-list-table thead th,
+    .class-list-table tbody td {
+        padding: 15px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .class-list-container {
+        padding: 20px;
+        border-radius: 15px;
+    }
+    
+    .class-list-container h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .class-list-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-spacing: 0 10px;
+    }
+    
+    .class-list-table thead th,
+    .class-list-table tbody td {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
+    
+    .class-list-table tbody td:nth-child(6) {
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px;
+    }
+    
+    .class-list-table tbody td:last-child button {
+        padding: 6px 8px;
+        font-size: 10px;
+        margin: 1px;
+    }
+    
+    .modal-content {
+        margin: 20px;
+        padding: 30px 20px;
+        max-height: 90vh;
+    }
+    
+    .modal-content h3 {
+        font-size: 22px;
+    }
+    
+    .modal-content table {
+        font-size: 12px;
+    }
+    
+    .modal-content table th,
+    .modal-content table td {
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .class-list-container {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .class-list-container h2 {
+        font-size: 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .class-list-table thead th,
+    .class-list-table tbody td {
+        padding: 10px 6px;
+        font-size: 11px;
+    }
+    
+    .class-list-table tbody td:last-child {
+        padding: 10px 6px;
+    }
+    
+    .class-list-table tbody td:last-child button {
+        padding: 4px 6px;
+        font-size: 9px;
+        margin: 1px 0;
+        display: block;
+        width: 100%;
+    }
+    
+    .class-list-table tbody td:last-child > div {
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+    
+    .switch {
+        width: 40px;
+        height: 22px;
+    }
+    
+    .slider:before {
+        height: 16px;
+        width: 16px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(16px);
+    }
+    
+    .modal-content {
+        margin: 10px;
+        padding: 20px 15px;
+    }
+    
+    .modal-content h3 {
+        font-size: 18px;
+    }
+    
+    .modal-content p {
+        font-size: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .modal-content p b {
+        min-width: auto;
+    }
+    
+    .no-classes-msg {
+        padding: 40px 20px;
+    }
+    
+    .no-classes-msg p {
+        font-size: 16px;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
