@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="app/dashboard/Alumno-tools/character-creation/characterCreation.css">
+<div class="character-creation-container">
+    <h2>¡Crea tu personaje!</h2>
+    <p>Completa los siguientes pasos para personalizar tu personaje en ClassCraft.</p>
+    <div class="progress-bar">
+        <div class="progress" ng-style="{'width': (vm.step / 3 * 100) + '%'}"></div>
+    </div>
+    <div class="step-indicator">
+        <span class="step" ng-class="{'active': vm.step === 1}">1</span>
+        <span class="step" ng-class="{'active': vm.step === 2}">2</span>
+        <span class="step" ng-class="{'active': vm.step === 3}">3</span>
+        <span class="step" ng-class="{'active': vm.step === 4}">4</span>
+        <span class="step" ng-class="{'active': vm.step === 5}">5</span>
+    </div>
+    <button class="back-button" ng-click="vm.goBack()">←</button>
+    <div class="character-creation-content">
+
+        <!-- Paso 1: Selección de género -->
+        <div ng-if="vm.step === 1">
+            <h3>Selecciona tu género</h3>
+            <button ng-click="vm.selectGender('masculino')"
+                ng-class="{'selected': vm.gender === 'masculino'}">Masculino</button>
+            <button ng-click="vm.selectGender('femenino')"
+                ng-class="{'selected': vm.gender === 'femenino'}">Femenino</button>
+            <button ng-disabled="!vm.gender" ng-click="vm.nextStep()">Siguiente</button>
+        </div>
+
+        <!-- Paso 2: Selección de personaje -->
+        <div ng-if="vm.step === 2">
+            <h3>Elige tu personaje</h3>
+            <div class="characters-list">
+                <img ng-repeat="img in vm.characterImages[vm.gender]" ng-src="{{img}}"
+                    ng-click="vm.selectCharacter(img)" ng-class="{'selected': vm.character === img}">
+            </div>
+            <button ng-disabled="!vm.character" ng-click="vm.nextStep()">Siguiente</button>
+            <button ng-click="vm.prevStep()">Atrás</button>
+        </div>
+
+        <!-- Paso 3: Selección de clase -->
+        <div ng-if="vm.step === 3">
+            <h3>Elige tu clase</h3>
+            <div class="classes-list">
+                <div ng-repeat="clase in vm.classImages" style="display:inline-block;">
+                    <img ng-src="{{clase.img}}" ng-click="vm.selectClass(clase.name)"
+                        ng-class="{'selected': vm.class === clase.name}">
+                    <div>{{clase.name | uppercase}}</div>
+                </div>
+            </div>
+            <button ng-disabled="!vm.class" ng-click="vm.finish()">Finalizar</button>
+            <button ng-click="vm.prevStep()">Atrás</button>
+        </div>
+    </div>

@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('AlumnoController', function($location, $rootScope) {
+  .controller('AlumnoController', function($location, $rootScope , $window) {
     const vm = this;
 
     // Mensaje de bienvenida (puedes personalizarlo o quitarlo)
@@ -24,4 +24,10 @@ angular.module('app')
 
     // Si necesitas el usuario logueado:
     // vm.currentUser = $rootScope.currentUser;
+    vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
+    vm.showCharacterCreation = !vm.currentUser.personaje_creado;
+
+    vm.onCharacterCreated = function() {
+      vm.showCharacterCreation = false;
+    };
   });

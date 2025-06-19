@@ -1,0 +1,26 @@
+.character-creation-container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 500px;
+  margin: 40px auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.characters-list img,
+.classes-list img {
+  width: 100px;
+  margin: 10px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+.characters-list img.selected,
+.classes-list img.selected {
+  border: 2px solid #2196F3;
+}
+button.selected {
+  background: #2196F3;
+  color: #fff;
+}

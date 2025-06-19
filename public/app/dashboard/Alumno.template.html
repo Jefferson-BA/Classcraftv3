@@ -111,6 +111,12 @@
                             <i class="fas fa-hat-wizard character-icon"></i>
                         </div>
                     </div>
+                    <div ng-if="vm.showCharacterCreation">
+                        <character-creation on-finish="vm.onCharacterCreated()"></character-creation>
+                    </div>
+                    <div ng-if="!vm.showCharacterCreation">
+                        <!-- Aquí va el dashboard normal del alumno -->
+                    </div>
 
                     <div class="tasks-list">
                         <div class="task-item completed">
@@ -125,6 +131,9 @@
                                 </a>
                             </div>
                         </div>
+                        <div ng-if="vm.showCharacterCreation">
+                            <character-creation on-finish="vm.onCharacterCreated()"></character-creation>
+                        </div>
 
                         <div class="task-item completed">
                             <div class="task-check">
@@ -132,7 +141,8 @@
                             </div>
                             <div class="task-content">
                                 <h3 class="task-title">Personalizar tu avatar</h3>
-                                <button class="task-action" ng-click="vm.goToClassroom()">No completado</button>
+                                <button class="task-action" ng-click="vm.showCharacterCreation = true">No
+                                    completado</button>
                             </div>
                         </div>
 

@@ -110,6 +110,19 @@ exports.darOro = (req, res) => {
     }
   );
 };
+exports.crearPersonaje = (req, res) => {
+  const { studentId } = req.params;
+  const { genero, personaje, clase } = req.body;
+  // personaje = imagen seleccionada (puedes guardarla en otro campo si quieres)
+  db.query(
+    'UPDATE students SET genero = ?, clase = ?, personaje_creado = 1 WHERE id = ?',
+    [genero, clase, studentId],
+    (err, result) => {
+      if (err) return res.status(500).json({ message: 'Error al crear personaje' });
+      res.json({ message: 'Personaje creado' });
+    }
+  );
+};
 
 
 module.exports = {
