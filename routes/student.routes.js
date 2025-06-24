@@ -11,6 +11,8 @@ router.put('/:id', StudentController.updateStudent);
 router.delete('/:id', StudentController.deleteStudent);
 router.post('/join-class', StudentController.joinClass);
 router.get('/my-classes/:alumno_id', StudentController.getMyClasses);
+router.post('/:studentId/personaje', StudentController.crearPersonaje);
+//router.post('/:studentId/dar-oro', StudentController.darOro);
 
 
 

@@ -45,6 +45,9 @@ angular.module('app')
           clase: vm.class
         }).then(function() {
           currentUser.personaje_creado = true;
+          currentUser.genero = vm.gender;
+          currentUser.personaje = vm.character;
+          currentUser.clase = vm.class;
           $window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
           vm.onFinish();
         });

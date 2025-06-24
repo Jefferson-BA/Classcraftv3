@@ -7,7 +7,10 @@ angular.module('app')
         .then(function(response) {
           if (response.data && response.data.user) {
             $window.localStorage.setItem('currentUser', JSON.stringify(response.data.user));
-            $location.path('/alumno/classroom');
+            // Cambia esta línea:
+            // $location.path('/alumno/classroom');
+            // Por esta línea:
+            $location.path('/dashboard/alumno');
           } else {
             alert('Respuesta inválida del servidor');
           }

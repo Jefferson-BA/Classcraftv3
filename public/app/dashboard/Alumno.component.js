@@ -1,12 +1,12 @@
 angular.module('app')
-  .controller('AlumnoController', function($location, $rootScope , $window) {
+  .controller('AlumnoController', function ($location, $rootScope, $window) {
     const vm = this;
 
     // Mensaje de bienvenida (puedes personalizarlo o quitarlo)
     vm.message = "Bienvenido al panel del alumno";
 
     // Método para navegar a la sección de clases del alumno
-    vm.goToClassroom = function() {
+    vm.goToClassroom = function () {
       $location.path('/alumno/classroom');
     };
 
@@ -18,7 +18,7 @@ angular.module('app')
     // };
 
     // Si quieres controlar la ruta activa en el sidebar:
-    vm.isActive = function(route) {
+    vm.isActive = function (route) {
       return $location.path() === route;
     };
 
@@ -29,5 +29,6 @@ angular.module('app')
 
     vm.onCharacterCreated = function() {
       vm.showCharacterCreation = false;
+      vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
     };
   });

@@ -15,37 +15,80 @@ body {
 
 /* Animaciones para las estrellas */
 @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    33% { transform: translateY(-10px) translateX(5px); }
-    66% { transform: translateY(5px) translateX(-3px); }
+
+    0%,
+    100% {
+        transform: translateY(0px) translateX(0px);
+    }
+
+    33% {
+        transform: translateY(-10px) translateX(5px);
+    }
+
+    66% {
+        transform: translateY(5px) translateX(-3px);
+    }
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 0.4; }
-    25% { opacity: 0.8; }
-    75% { opacity: 0.6; }
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    25% {
+        opacity: 0.8;
+    }
+
+    75% {
+        opacity: 0.6;
+    }
 }
 
 @keyframes drift {
-    0% { transform: translateX(0px); }
-    50% { transform: translateX(10px); }
-    100% { transform: translateX(0px); }
+    0% {
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
 }
 
 @keyframes glow {
-    0%, 100% { box-shadow: 0 0 15px rgba(102, 126, 234, 0.3); }
-    50% { box-shadow: 0 0 25px rgba(102, 126, 234, 0.6), 0 0 35px rgba(255, 255, 255, 0.2); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(102, 126, 234, 0.6), 0 0 35px rgba(255, 255, 255, 0.2);
+    }
 }
 
 @keyframes slideIn {
     from {
         transform: translateX(-100%);
     }
+
     to {
         transform: translateX(0);
     }
@@ -55,6 +98,7 @@ body {
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(-100%);
     }
@@ -68,11 +112,11 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
         radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
         radial-gradient(2px 2px at 160px 30px, #ffffff, transparent);
     background-repeat: repeat;
     background-size: 200px 100px;
@@ -88,12 +132,12 @@ body::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-        radial-gradient(1px 1px at 60px 20px, rgba(255,255,255,0.7), transparent),
-        radial-gradient(1px 1px at 120px 60px, rgba(255,255,255,0.5), transparent),
-        radial-gradient(2px 2px at 180px 90px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(1px 1px at 30px 90px, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 150px 20px, rgba(255,255,255,0.4), transparent);
+    background-image:
+        radial-gradient(1px 1px at 60px 20px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 120px 60px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(2px 2px at 180px 90px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 30px 90px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 150px 20px, rgba(255, 255, 255, 0.4), transparent);
     background-repeat: repeat;
     background-size: 250px 120px;
     opacity: 0.6;
@@ -327,12 +371,12 @@ body::after {
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    background: linear-gradient(45deg, 
-        rgba(102, 126, 234, 0.6) 0%, 
-        rgba(118, 75, 162, 0.6) 25%, 
-        rgba(255, 255, 255, 0.3) 50%, 
-        rgba(102, 126, 234, 0.6) 75%, 
-        rgba(118, 75, 162, 0.6) 100%);
+    background: linear-gradient(45deg,
+            rgba(102, 126, 234, 0.6) 0%,
+            rgba(118, 75, 162, 0.6) 25%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(102, 126, 234, 0.6) 75%,
+            rgba(118, 75, 162, 0.6) 100%);
     animation: glow 3s ease-in-out infinite;
     z-index: 1;
 }
@@ -501,7 +545,7 @@ body::after {
     transition: margin-left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.sliding-panel.active ~ .content-area {
+.sliding-panel.active~.content-area {
     margin-left: 150px;
 }
 
@@ -655,7 +699,7 @@ body::after {
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .sliding-panel.active ~ .content-area {
+    .sliding-panel.active~.content-area {
         margin-left: 100px;
     }
 }
@@ -666,96 +710,127 @@ body::after {
         flex-wrap: wrap;
         gap: 15px;
     }
-    
+
     .nav-right {
         gap: 10px;
     }
-    
+
     .nav-btn {
         padding: 8px 12px;
         font-size: 12px;
     }
-    
+
     .invite-btn span {
         display: none;
     }
-    
+
     .sidebar {
         width: 80px;
     }
-    
+
     .nav-label {
         display: none;
     }
-    
+
     .nav-item {
         justify-content: center;
         padding: 12px;
     }
-    
+
     .sliding-panel {
         width: 100%;
     }
-    
-    .sliding-panel.active ~ .content-area {
+
+    .sliding-panel.active~.content-area {
         margin-left: 0;
     }
-    
+
     .content-area {
         padding: 20px;
     }
-    
+
     .main-title {
         font-size: 36px;
     }
-    
+
     .character {
         width: 150px;
         height: 200px;
     }
-    
+
     .character-icon {
         font-size: 60px;
     }
-    
+
     .task-content {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
-    
+
     .task-title {
         font-size: 18px;
     }
 }
 
 @media (max-width: 480px) {
+
     .welcome-panel,
     .section-panel {
         padding: 20px;
     }
-    
+
     .main-title {
         font-size: 28px;
     }
-    
+
     .task-item {
         gap: 15px;
         padding: 15px 0;
     }
-    
+
     .user-profile-image {
         width: 45px;
         height: 45px;
     }
-    
+
     .profile-image {
         width: 40px;
         height: 40px;
     }
-    
+
     .profile-frame {
         width: 50px;
         height: 50px;
+    }
+
+    .avatar-summary {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .avatar-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #2196F3;
+        object-fit: cover;
+    }
+
+    .avatar-summary {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .avatar-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #2196F3;
+        object-fit: cover;
     }
 }
