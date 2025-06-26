@@ -100,14 +100,16 @@
 
         <!-- Área de contenido principal -->
         <main class="content-area">
+            <!-- Wizard de creación de personaje -->
             <div ng-if="vm.showCharacterCreation">
                 <character-creation on-finish="vm.onCharacterCreated()"></character-creation>
             </div>
-            <!-- Sección de inicio (por defecto) -->
+
+            <!-- Dashboard normal si ya tiene personaje o aún no ha hecho click en completar -->
             <div ng-if="!vm.showCharacterCreation">
                 <div class="welcome-panel">
                     <h1 class="main-title">BIENVENIDO!</h1>
-                    <p class="subtitle">Empieza contruyendo tu clase en Classcraft!</p>
+                    <p class="subtitle">Empieza construyendo tu clase en Classcraft!</p>
 
                     <div class="avatar-summary" ng-if="vm.currentUser.personaje">
                         <img ng-src="{{vm.currentUser.personaje}}" alt="Avatar" class="avatar-img">
@@ -118,24 +120,6 @@
                     </div>
 
                     <div class="tasks-list">
-                        <div class="task-item completed">
-                            <div class="task-check">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="task-content">
-                                <h3 class="task-title">Ver video tutorial</h3>
-                                <a class="task-action" href="https://www.youtube.com/watch?v=FUsMCYDdQIA"
-                                    target="_blank">
-                                    No completado
-                                </a>
-                            </div>
-                        </div>
-                        <div ng-if="vm.showCharacterCreation">
-                            <character-creation on-finish="vm.onCharacterCreated()"></character-creation>
-                        </div>
-
-                        <!-- Botón para crear personaje si no está completado -->
-                        <!-- Tarea de personalizar avatar -->
                         <!-- Tarea de personalizar avatar -->
                         <div class="task-item" ng-if="!vm.currentUser.personaje_creado">
                             <div class="task-content">
@@ -144,64 +128,11 @@
                                     ng-click="vm.showCharacterCreation = true">Completar</button>
                             </div>
                         </div>
-
-                        <!-- Wizard de creación de personaje -->
-                        <div ng-if="vm.showCharacterCreation">
-                            <character-creation on-finish="vm.onCharacterCreated()"></character-creation>
-                        </div>
-
-                        <!-- Dashboard normal si ya tiene personaje -->
-                        <div ng-if="!vm.showCharacterCreation && vm.currentUser.personaje_creado">
-                            <div class="avatar-summary">
-                                <img ng-src="{{vm.currentUser.personaje}}" alt="Avatar" class="avatar-img">
-                                <div>
-                                    <strong>Clase:</strong> {{vm.currentUser.clase | uppercase}}<br>
-                                    <strong>Género:</strong> {{vm.currentUser.genero | uppercase}}
-                                </div>
-                            </div>
-                            <!-- ...resto del dashboard... -->
-                        </div>
-
-
-                        <div class="task-item pending">
-                            <div class="task-check">
-                                <div class="task-circle"></div>
-                            </div>
-                            <div class="task-content">
-                                <h3 class="task-title">Unirse a una Clase</h3>
-                                <button class="task-action">No completado</button>
-                            </div>
-                        </div>
-
-                        <div class="task-item pending">
-                            <div class="task-check">
-                                <div class="task-circle"></div>
-                            </div>
-                            <div class="task-content">
-                                <h3 class="task-title">Comprar un item</h3>
-                                <button class="task-action">No completado</button>
-                            </div>
-                        </div>
+                        <!-- ...otras tareas aquí si las tienes... -->
                     </div>
                 </div>
+                <!-- ...resto del dashboard aquí si lo tienes... -->
             </div>
-
-            <!-- Otras secciones (ocultas por defecto) -->
-            <div class="content-section" id="examsSection">
-                <div class="section-panel">
-                    <h1 class="section-title">Exámenes</h1>
-                    <p>Contenido de exámenes aquí...</p>
-                </div>
-            </div>
-
-            <div class="content-section" id="mapSection">
-                <div class="section-panel">
-                    <h1 class="section-title">Mapa</h1>
-                    <p>Contenido del mapa aquí...</p>
-                </div>
-            </div>
-
-            <!-- Agregar más secciones según sea necesario -->
         </main>
     </div>
 

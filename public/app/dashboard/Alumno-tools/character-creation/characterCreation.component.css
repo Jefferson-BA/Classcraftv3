@@ -1,13 +1,35 @@
+.character-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+}
+.character-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+}
 .character-creation-container {
   background: #fff;
   border-radius: 20px;
   padding: 30px;
   max-width: 500px;
-  margin: 60px auto;
+  width: 90vw;
   box-shadow: 0 4px 24px rgba(0,0,0,0.18);
   text-align: center;
-  z-index: 1001;
   position: relative;
+}
+.close-modal-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
 }
 .characters-list img,
 .classes-list img {
