@@ -118,7 +118,14 @@ const crearPersonaje = (req, res) => {
     'UPDATE students SET genero = ?, personaje = ?, clase = ?, personaje_creado = 1 WHERE id = ?',
     [genero, personaje, clase, studentId],
     (err, result) => {
-      if (err) return res.status(500).json({ message: 'Error al crear personaje' });
+      if (err) {
+        console.error('Error SQL:', err);
+        return res.status(500).json({ message: 'Error al crear personaje' });
+      }
+      if (result.affectedRows === 0) {
+        // No se encontró el estudiante
+        return res.status(404).json({ message: 'Estudiante no encontrado' });
+      }
       res.json({ message: 'Personaje creado' });
     }
   );
