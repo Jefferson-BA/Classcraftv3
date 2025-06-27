@@ -113,23 +113,35 @@ exports.darOro = (req, res) => {
 // Tu función para crear personaje:
 const crearPersonaje = (req, res) => {
   const { studentId } = req.params;
-  const { genero, personaje, clase } = req.body;
+  const { nombre, apellido, genero, personaje, clase } = req.body;
   db.query(
-    'UPDATE students SET genero = ?, personaje = ?, clase = ?, personaje_creado = 1 WHERE id = ?',
-    [genero, personaje, clase, studentId],
+    'UPDATE students SET nombre = ?, apellido = ?, genero = ?, personaje = ?, clase = ?, personaje_creado = 1 WHERE id = ?',
+    [nombre, apellido, genero, personaje, clase, studentId],
     (err, result) => {
       if (err) {
         console.error('Error SQL:', err);
         return res.status(500).json({ message: 'Error al crear personaje' });
       }
       if (result.affectedRows === 0) {
-        // No se encontró el estudiante
-        return res.status(404).json({ message: 'Estudiante no encontrado' });
+        // Si no existe, crea el registro
+        db.query(
+          'INSERT INTO students (id, nombre, apellido, genero, personaje, clase, personaje_creado) VALUES (?, ?, ?, ?, ?, ?, 1)',
+          [studentId, nombre, apellido, genero, personaje, clase],
+          (err2) => {
+            if (err2) {
+              console.error('Error SQL (insert):', err2);
+              return res.status(500).json({ message: 'Error al crear estudiante' });
+            }
+            res.json({ message: 'Personaje creado' });
+          }
+        );
+      } else {
+        res.json({ message: 'Personaje creado' });
       }
-      res.json({ message: 'Personaje creado' });
     }
   );
 };
+
 
 
 module.exports = {

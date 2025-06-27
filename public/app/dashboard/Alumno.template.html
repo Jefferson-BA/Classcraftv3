@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Combat Dashboard</title>
-    <link rel="stylesheet" href="app/dashboard/teacher.component.css">
+    <link rel="stylesheet" href="app/dashboard/Alumno.component.css">
 </head>
 
 <body>
@@ -114,8 +114,19 @@
                     <div class="avatar-summary" ng-if="vm.currentUser.personaje">
                         <img ng-src="{{vm.currentUser.personaje}}" alt="Avatar" class="avatar-img">
                         <div>
-                            <strong>Clase:</strong> {{vm.currentUser.clase | uppercase}}<br>
-                            <strong>Género:</strong> {{vm.currentUser.genero | uppercase}}
+                            <strong>Nombre:</strong> {{vm.currentUser.nombre}} {{vm.currentUser.apellido}}<br>
+                            <strong>Clase:</strong> {{vm.currentUser.clase | uppercase}}
+                            <img ng-if="vm.currentUser.clase" ng-src="app/image/clases/{{vm.currentUser.clase}}.png"
+                                alt="Clase" style="width:40px;vertical-align:middle;"><br>
+                            <strong>Género:</strong> {{vm.currentUser.genero | uppercase}}<br>
+                            <strong>Nivel:</strong> {{vm.currentUser.nivel}}<br>
+                            <strong>Oro:</strong> {{vm.currentUser.oro}}<br>
+                            <strong>HP:</strong> {{vm.currentUser.hp}}<br>
+                            <strong>MP:</strong> {{vm.currentUser.mp}}<br>
+                            <strong>XP:</strong> {{vm.currentUser.xp}}<br>
+                            <strong>Mascota:</strong>
+                            <span ng-if="vm.currentUser.mascota_activa">ID {{vm.currentUser.mascota_activa}}</span>
+                            <span ng-if="!vm.currentUser.mascota_activa">Sin mascota</span>
                         </div>
                     </div>
 
@@ -130,6 +141,7 @@
                         </div>
                         <!-- ...otras tareas aquí si las tienes... -->
                     </div>
+
                 </div>
                 <!-- ...resto del dashboard aquí si lo tienes... -->
             </div>

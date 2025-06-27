@@ -5,13 +5,15 @@ angular.module('app')
       onFinish: '&'
     },
     controller: function($window, $http) {
-      const vm = this;
-      vm.step = 1;
-      vm.gender = null;
-      vm.character = null;
-      vm.class = null;
+      const $ctrl = this;
+      $ctrl.step = 1;
+      $ctrl.nombre = '';
+      $ctrl.apellido = '';
+      $ctrl.gender = null;
+      $ctrl.character = null;
+      $ctrl.class = null;
 
-      vm.characterImages = {
+      $ctrl.characterImages = {
         masculino: [
           'app/image/personajes/m1.png',
           'app/image/personajes/m2.png',
@@ -24,32 +26,36 @@ angular.module('app')
         ]
       };
 
-      vm.classImages = [
+      $ctrl.classImages = [
         { name: 'guerrero', img: 'app/image/clases/guerrero.png' },
         { name: 'curador', img: 'app/image/clases/curador.png' },
         { name: 'mago', img: 'app/image/clases/mago.png' }
       ];
 
-      vm.selectGender = function(g) { vm.gender = g; };
-      vm.selectCharacter = function(img) { vm.character = img; };
-      vm.selectClass = function(clase) { vm.class = clase; };
+      $ctrl.selectGender = function(g) { $ctrl.gender = g; };
+      $ctrl.selectCharacter = function(img) { $ctrl.character = img; };
+      $ctrl.selectClass = function(clase) { $ctrl.class = clase; };
 
-      vm.nextStep = function() { vm.step++; };
-      vm.prevStep = function() { vm.step--; };
+      $ctrl.nextStep = function() { $ctrl.step++; };
+      $ctrl.prevStep = function() { $ctrl.step--; };
 
-      vm.finish = function() {
+      $ctrl.finish = function() {
         const currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
         $http.post('/api/students/' + currentUser.id + '/personaje', {
-          genero: vm.gender,
-          personaje: vm.character,
-          clase: vm.class
+          nombre: $ctrl.nombre,
+          apellido: $ctrl.apellido,
+          genero: $ctrl.gender,
+          personaje: $ctrl.character,
+          clase: $ctrl.class
         }).then(function() {
           currentUser.personaje_creado = true;
-          currentUser.genero = vm.gender;
-          currentUser.personaje = vm.character;
-          currentUser.clase = vm.class;
+          currentUser.genero = $ctrl.gender;
+          currentUser.personaje = $ctrl.character;
+          currentUser.clase = $ctrl.class;
+          currentUser.nombre = $ctrl.nombre;
+          currentUser.apellido = $ctrl.apellido;
           $window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
-          vm.onFinish();
+          $ctrl.onFinish();
         });
       };
     }

@@ -41,23 +41,32 @@ const loginTeacher = (req, res) => {
 
 // Registro de alumno
 const registerStudent = (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, nombre, apellido } = req.body;
   if (!username || !email || !password) {
     return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
   }
   // Verifica si el email ya existe
-  db.query('SELECT id FROM users WHERE email = ?', [email], (err, results) => {
+  db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
     if (err) return res.status(500).json({ message: 'Error en la base de datos.' });
     if (results.length > 0) {
-      return res.status(409).json({ message: 'El correo ya está registrado.' });
+      return res.status(400).json({ message: 'El correo ya está registrado.' });
     }
-    // Inserta el usuario con rol student
+    // Crea el usuario
     db.query(
-      'INSERT INTO users (username, email, password, role, created_at) VALUES (?, ?, ?, "student", NOW())',
-      [username, email, password],
-      (err, result) => {
-        if (err) return res.status(500).json({ message: 'Error al registrar alumno.' });
-        res.status(201).json({ message: 'Alumno registrado exitosamente' });
+      'INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, "student")',
+      [username, password, email],
+      (err2, result) => {
+        if (err2) return res.status(500).json({ message: 'Error al registrar usuario.' });
+        const userId = result.insertId;
+        // Crea el registro en students con el mismo id
+        db.query(
+          'INSERT INTO students (id, nombre, apellido) VALUES (?, ?, ?)',
+          [userId, nombre || username, apellido || ''],
+          (err3) => {
+            if (err3) return res.status(500).json({ message: 'Error al crear estudiante.' });
+            res.status(201).json({ message: 'Alumno registrado exitosamente', userId });
+          }
+        );
       }
     );
   });

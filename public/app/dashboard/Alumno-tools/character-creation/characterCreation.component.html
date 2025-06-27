@@ -6,11 +6,20 @@
     <button class="close-modal-btn" ng-click="$ctrl.onFinish()">×</button>
     <h2>¡Crea tu personaje!</h2>
 
+
+    <div ng-if="$ctrl.step === 1">
+      <h3>Completa tus datos</h3>
+      <input type="text" placeholder="Nombre" ng-model="$ctrl.nombre" required>
+      <input type="text" placeholder="Apellido" ng-model="$ctrl.apellido" required>
+    </div>
+
     <!-- Paso 1: Selección de género -->
     <div ng-if="$ctrl.step === 1">
       <h3>Selecciona tu género</h3>
-      <button ng-click="$ctrl.selectGender('masculino')" ng-class="{'selected': $ctrl.gender === 'masculino'}">Masculino</button>
-      <button ng-click="$ctrl.selectGender('femenino')" ng-class="{'selected': $ctrl.gender === 'femenino'}">Femenino</button>
+      <button ng-click="$ctrl.selectGender('masculino')"
+        ng-class="{'selected': $ctrl.gender === 'masculino'}">Masculino</button>
+      <button ng-click="$ctrl.selectGender('femenino')"
+        ng-class="{'selected': $ctrl.gender === 'femenino'}">Femenino</button>
       <button ng-disabled="!$ctrl.gender" ng-click="$ctrl.nextStep()">Siguiente</button>
     </div>
 
@@ -18,7 +27,8 @@
     <div ng-if="$ctrl.step === 2">
       <h3>Elige tu personaje</h3>
       <div class="characters-list">
-        <img ng-repeat="img in $ctrl.characterImages[$ctrl.gender]" ng-src="{{img}}" ng-click="$ctrl.selectCharacter(img)" ng-class="{'selected': $ctrl.character === img}">
+        <img ng-repeat="img in $ctrl.characterImages[$ctrl.gender]" ng-src="{{img}}"
+          ng-click="$ctrl.selectCharacter(img)" ng-class="{'selected': $ctrl.character === img}">
       </div>
       <button ng-disabled="!$ctrl.character" ng-click="$ctrl.nextStep()">Siguiente</button>
       <button ng-click="$ctrl.prevStep()">Atrás</button>
@@ -29,7 +39,8 @@
       <h3>Elige tu clase</h3>
       <div class="classes-list">
         <div ng-repeat="clase in $ctrl.classImages" style="display:inline-block;">
-          <img ng-src="{{clase.img}}" ng-click="$ctrl.selectClass(clase.name)" ng-class="{'selected': $ctrl.class === clase.name}">
+          <img ng-src="{{clase.img}}" ng-click="$ctrl.selectClass(clase.name)"
+            ng-class="{'selected': $ctrl.class === clase.name}">
           <div>{{clase.name | uppercase}}</div>
         </div>
       </div>
