@@ -142,6 +142,42 @@ const crearPersonaje = (req, res) => {
   );
 };
 
+const darOro = (req, res) => {
+  const { studentId } = req.params;
+  let { cantidad } = req.body;
+  cantidad = Number(cantidad);
+
+  if (isNaN(cantidad) || cantidad <= 0) {
+    return res.status(400).json({ message: 'La cantidad de oro debe ser un número positivo.' });
+  }
+
+  db.query(
+    'UPDATE students SET oro = oro + ? WHERE id = ?',
+    [cantidad, studentId],
+    (err, result) => {
+      if (err) {
+        console.error('Error SQL:', err);
+        return res.status(500).json({ message: 'Error al dar oro' });
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Estudiante no encontrado' });
+      }
+      db.query('SELECT oro FROM students WHERE id = ?', [studentId], (err2, rows) => {
+        if (err2) return res.json({ message: 'Oro actualizado' });
+        res.json({ message: 'Oro actualizado', oro: rows[0].oro });
+      });
+    }
+  );
+};
+const getStudent = (req, res) => {
+  const { studentId } = req.params;
+  db.query('SELECT * FROM students WHERE id = ?', [studentId], (err, rows) => {
+    if (err) return res.status(500).json({ message: 'Error al obtener estudiante' });
+    if (!rows.length) return res.status(404).json({ message: 'Estudiante no encontrado' });
+    res.json(rows[0]);
+  });
+};
+
 
 
 module.exports = {
@@ -152,5 +188,7 @@ module.exports = {
   deleteStudent,
   joinClass,
   getMyClasses,
-  crearPersonaje
+  crearPersonaje,
+  darOro,
+  getStudent
 };

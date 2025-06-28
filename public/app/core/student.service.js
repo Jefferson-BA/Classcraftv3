@@ -9,6 +9,10 @@ angular.module('app')
       },
       darOro: function(studentId, cantidad) {
         return $http.post('/api/students/' + studentId + '/dar-oro', { cantidad });
+      },
+      getStudentById: function(studentId) {
+        return $http.get('/api/students/' + studentId);
       }
+      // ...agrega aquí otros métodos si los necesitas...
     };
   });

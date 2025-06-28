@@ -47,6 +47,13 @@ angular.module('app')
       vm.mostrarModalOro = true;
     };
 
+    vm.reloadStudent = function() {
+      StudentService.getStudentById(vm.currentUser.id).then(function(resp) {
+        Object.assign(vm.currentUser, resp.data);
+        $window.localStorage.setItem('currentUser', JSON.stringify(vm.currentUser));
+      });
+    };
+
     vm.confirmarDarOro = function() {
       StudentService.darOro(vm.alumnoSeleccionado.id, vm.cantidadOro)
         .then(function(response) {

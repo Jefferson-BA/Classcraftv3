@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="app/dashboard/Alumno.component.css">
 </head>
 
-<body>
+<body ng-controller="AlumnoController as vm">
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
@@ -99,7 +99,7 @@
 
 
         <!-- Área de contenido principal -->
-        <main class="content-area">
+        <main class="content-area" ng-controller="AlumnoController as vm">
             <!-- Wizard de creación de personaje -->
             <div ng-if="vm.showCharacterCreation">
                 <character-creation on-finish="vm.onCharacterCreated()"></character-creation>
@@ -111,22 +111,22 @@
                     <h1 class="main-title">BIENVENIDO!</h1>
                     <p class="subtitle">Empieza construyendo tu clase en Classcraft!</p>
 
-                    <div class="avatar-summary" ng-if="vm.currentUser.personaje">
-                        <img ng-src="{{vm.currentUser.personaje}}" alt="Avatar" class="avatar-img">
+                    <div class="avatar-summary" ng-if="vm.student">
+                        <img ng-src="{{vm.student.personaje}}" alt="Avatar" class="avatar-img">
                         <div>
-                            <strong>Nombre:</strong> {{vm.currentUser.nombre}} {{vm.currentUser.apellido}}<br>
-                            <strong>Clase:</strong> {{vm.currentUser.clase | uppercase}}
-                            <img ng-if="vm.currentUser.clase" ng-src="app/image/clases/{{vm.currentUser.clase}}.png"
-                                alt="Clase" style="width:40px;vertical-align:middle;"><br>
-                            <strong>Género:</strong> {{vm.currentUser.genero | uppercase}}<br>
-                            <strong>Nivel:</strong> {{vm.currentUser.nivel}}<br>
-                            <strong>Oro:</strong> {{vm.currentUser.oro}}<br>
-                            <strong>HP:</strong> {{vm.currentUser.hp}}<br>
-                            <strong>MP:</strong> {{vm.currentUser.mp}}<br>
-                            <strong>XP:</strong> {{vm.currentUser.xp}}<br>
+                            <strong>Nombre:</strong> {{vm.student.nombre}} {{vm.student.apellido}}<br>
+                            <strong>Clase:</strong> {{vm.student.clase | uppercase}}
+                            <img ng-if="vm.student.clase" ng-src="app/image/clases/{{vm.student.clase}}.png" alt="Clase"
+                                style="width:40px;vertical-align:middle;"><br>
+                            <strong>Género:</strong> {{vm.student.genero | uppercase}}<br>
+                            <strong>Nivel:</strong> {{vm.student.nivel}}<br>
+                            <strong>Oro:</strong> <span class="currency-amount">{{vm.student.oro}}</span><br>
+                            <strong>HP:</strong> {{vm.student.hp}}<br>
+                            <strong>MP:</strong> {{vm.student.mp}}<br>
+                            <strong>XP:</strong> {{vm.student.xp}}<br>
                             <strong>Mascota:</strong>
-                            <span ng-if="vm.currentUser.mascota_activa">ID {{vm.currentUser.mascota_activa}}</span>
-                            <span ng-if="!vm.currentUser.mascota_activa">Sin mascota</span>
+                            <span ng-if="vm.student.mascota_activa">ID {{vm.student.mascota_activa}}</span>
+                            <span ng-if="!vm.student.mascota_activa">Sin mascota</span>
                         </div>
                     </div>
 

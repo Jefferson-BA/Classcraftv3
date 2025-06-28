@@ -1,6 +1,8 @@
 angular.module('app')
-  .controller('AlumnoController', function ($location, $rootScope, $window) {
+  .controller('AlumnoController', function ($location, $rootScope, $window, StudentService) {
     const vm = this;
+    vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser')) || {};
+
 
     // Mensaje de bienvenida (puedes personalizarlo o quitarlo)
     vm.message = "Bienvenido al panel del alumno";
@@ -9,26 +11,28 @@ angular.module('app')
     vm.goToClassroom = function () {
       $location.path('/alumno/classroom');
     };
-
-    // Puedes agregar aquí lógica para cerrar sesión, cargar datos del alumno, etc.
-    // Por ejemplo:
-    // vm.logout = function() {
-    //   // Limpiar sesión y redirigir
-    //   $location.path('/login/alumno');
-    // };
-
-    // Si quieres controlar la ruta activa en el sidebar:
     vm.isActive = function (route) {
       return $location.path() === route;
     };
 
     // Si necesitas el usuario logueado:
-    // vm.currentUser = $rootScope.currentUser;
+
     vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
     vm.showCharacterCreation = !vm.currentUser.personaje_creado;
 
-    vm.onCharacterCreated = function() {
+    vm.onCharacterCreated = function () {
       vm.showCharacterCreation = false;
       vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
     };
+    vm.loadStudent = function () {
+      if (!vm.currentUser.id) return;
+      StudentService.getStudentById(vm.currentUser.id).then(function (resp) {
+        vm.student = resp.data;
+      });
+    };
+    vm.loadStudent();
+
+
+
+
   });
