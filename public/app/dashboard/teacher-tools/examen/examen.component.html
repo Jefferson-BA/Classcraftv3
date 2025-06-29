@@ -93,41 +93,53 @@
                     </button>
                 </div>
             </div>
+
+
         </aside>
 
-          <form ng-submit="vm.createExam()" class="re-exam-form">
-        <h2>Crear Examen</h2>
-        <div class="re-form-group">
-            <label class="re-form-label">Título</label>
-            <input ng-model="vm.exam.titulo" class="re-form-control" placeholder="Título" required>
-        </div>
-        <div class="re-form-group">
-            <label class="re-form-label">Descripción</label>
-            <textarea ng-model="vm.exam.descripcion" class="re-form-control" placeholder="Descripción"></textarea>
-        </div>
-        <div class="re-form-group">
-            <label class="re-form-label">URL de imagen (opcional)</label>
-            <input ng-model="vm.exam.imagen" class="re-form-control" placeholder="URL de imagen (opcional)">
-        </div>
-        <div class="re-form-group">
-            <label class="re-form-label">Tiempo (min)</label>
-            <input ng-model="vm.exam.tiempo_limite" class="re-form-control" type="number" placeholder="Tiempo (min)"
-                required>
-        </div>
-        <div class="re-form-group">
-            <label class="re-form-label">XP total</label>
-            <input ng-model="vm.exam.xp_total" class="re-form-control" type="number" placeholder="XP total" required>
-        </div>
-        
-        <div ng-repeat="p in vm.exam.preguntas" class="re-form-group">
-            <label class="re-form-label">Pregunta {{$index + 1}}</label>
-            <input ng-model="p.pregunta" class="re-form-control" placeholder="Pregunta" required>
-            <input ng-model="p.imagen" class="re-form-control" placeholder="URL imagen (opcional)">
-            <input ng-model="p.puntaje" class="re-form-control" type="number" placeholder="Puntaje" required>
-        </div>
-        <button type="button" class="re-btn re-btn-secondary" ng-click="vm.addPregunta()">Agregar pregunta</button>
-        <button type="submit" class="re-btn re-btn-primary">Crear examen</button>
-    </form>
+        <form ng-submit="vm.createExam()" class="re-exam-form">
+            <h2>Crear Examen</h2>
+            <div class="re-form-group">
+                <label class="re-form-label">Título</label>
+                <input ng-model="vm.exam.titulo" class="re-form-control" placeholder="Título" required>
+            </div>
+            <div class="re-form-group">
+                <label class="re-form-label">Descripción</label>
+                <textarea ng-model="vm.exam.descripcion" class="re-form-control" placeholder="Descripción"></textarea>
+            </div>
+            <div class="re-form-group">
+                <label class="re-form-label">URL de imagen (opcional)</label>
+                <input ng-model="vm.exam.imagen" class="re-form-control" placeholder="URL de imagen (opcional)">
+            </div>
+            <div class="re-form-group">
+                <label class="re-form-label">Tiempo (min)</label>
+                <input ng-model="vm.exam.tiempo_limite" class="re-form-control" type="number" placeholder="Tiempo (min)"
+                    required>
+            </div>
+            <div class="re-form-group">
+                <label class="re-form-label">XP total</label>
+                <input ng-model="vm.exam.xp_total" class="re-form-control" type="number" placeholder="XP total"
+                    required>
+            </div>
+
+            <div ng-repeat="p in vm.exam.preguntas" class="re-form-group">
+                <label class="re-form-label">Pregunta {{$index + 1}}</label>
+                <input ng-model="p.pregunta" class="re-form-control" placeholder="Pregunta" required>
+                <input ng-model="p.imagen" class="re-form-control" placeholder="URL imagen (opcional)">
+                <input ng-model="p.puntaje" class="re-form-control" type="number" placeholder="Puntaje" required>
+            </div>
+            <button type="button" class="re-btn re-btn-secondary" ng-click="vm.addPregunta()">Agregar pregunta</button>
+            <button type="submit" class="re-btn re-btn-primary">Crear examen</button>
+        </form>
+    </div>
+    <div ng-if="vm.examenes.length > 0">
+        <h2>Mis Exámenes</h2>
+        <ul>
+            <li ng-repeat="examen in vm.examenes track by examen.id">
+                {{examen.titulo}} - {{examen.descripcion}}
+            </li>
+        </ul>
+    </div>
 
 
 

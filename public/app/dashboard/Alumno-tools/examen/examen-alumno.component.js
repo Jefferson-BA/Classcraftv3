@@ -1,25 +1,28 @@
 angular.module('app')
-  .controller('ExamStudentViewController', function(ExamService, $routeParams, $window) {
+  .controller('ExamStudentViewController', function (ExamService, $routeParams, $window, $location) {
     const vm = this;
     vm.examId = $routeParams.examId;
     vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
     vm.respuestas = [];
+    vm.showModal = false;
 
-    ExamService.getExamWithQuestions(vm.examId).then(function(resp) {
+    ExamService.getExamWithQuestions(vm.examId).then(function (resp) {
       vm.exam = resp.data.exam;
       vm.preguntas = resp.data.questions;
     });
 
-    vm.finishExam = function() {
+    vm.finishExam = function () {
       ExamService.finishExam({
         student_id: vm.currentUser.id,
         exam_id: vm.examId,
-        respuestas: vm.respuestas,
-        nota: 0, // Calcula la nota real
-        xp_obtenido: 0, // Calcula XP real
-        hp_perdido: 0 // Calcula HP perdido
-      }).then(function() {
+        respuestas: vm.respuestas
+      }).then(function () {
         alert('Examen enviado');
       });
+    };
+
+    vm.closeModal = function () {
+      vm.showModal = false;
+      $location.path('/dashboard/alumno/examenes');
     };
   });

@@ -94,21 +94,22 @@
                     </button>
                 </div>
             </div>
-        </aside>
 
+
+
+        </aside>
         <div class="re-content-area">
             <h2>Exámenes Disponibles</h2>
             <ul>
-                <li ng-repeat="examen in vm.examenes">
+                <li ng-repeat="examen in vm.examenes track by examen.id">
                     {{examen.titulo}} -
-                    <a href="" ng-click="vm.goToExam(examen.id)" ng-class="{'active': vm.selectedExamId === examen.id}">
+                    <a href="" ng-click="vm.goToExam(examen.id)">
                         Responder
                     </a>
                 </li>
-
-
             </ul>
         </div>
+
 
 
 

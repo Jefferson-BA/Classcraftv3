@@ -57,11 +57,7 @@ angular.module('app')
         controller: 'ExamCreateController',
         controllerAs: 'vm'
       })
-      .when('/dashboard/alumno/examenes', {
-        templateUrl: 'app/dashboard/Alumno-tools/examen/examen-list.component.html',
-        controller: 'ExamStudentListController',
-        controllerAs: 'vm'
-      })
+
 
       // STUDENT DASHBOARD
       .when('/dashboard/alumno', {
@@ -87,6 +83,11 @@ angular.module('app')
       .when('/dashboard/alumno/examen/:examId', {
         templateUrl: 'app/dashboard/Alumno-tools/examen/examen.component.html',
         controller: 'ExamStudentViewController',
+        controllerAs: 'vm'
+      })
+      .when('/dashboard/alumno/examenes', {
+        templateUrl: 'app/dashboard/Alumno-tools/examen/examen-list.component.html',
+        controller: 'ExamStudentListController',
         controllerAs: 'vm'
       })
 

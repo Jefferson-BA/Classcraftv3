@@ -96,20 +96,26 @@
         </aside>
 
         <div class="re-content-area" ng-if="vm.exam">
-        <h2>{{vm.exam.titulo}}</h2>
-        <p>{{vm.exam.descripcion}}</p>
-        <img ng-if="vm.exam.imagen" ng-src="{{vm.exam.imagen}}" style="max-width:200px;">
-        <form ng-submit="vm.finishExam()">
-            <div ng-repeat="p in vm.preguntas">
-                <div>
-                    <strong>{{p.pregunta}}</strong>
-                    <img ng-if="p.imagen" ng-src="{{p.imagen}}" style="max-width:100px;">
-                    <input ng-model="vm.respuestas[$index].respuesta" placeholder="Respuesta" required>
+            <h2>{{vm.exam.titulo}}</h2>
+            <p>{{vm.exam.descripcion}}</p>
+            <img ng-if="vm.exam.imagen" ng-src="{{vm.exam.imagen}}" style="max-width:200px;">
+            <form ng-submit="vm.finishExam()">
+                <div ng-repeat="p in vm.preguntas">
+                    <div>
+                        <strong>{{p.pregunta}}</strong>
+                        <img ng-if="p.imagen" ng-src="{{p.imagen}}" style="max-width:100px;">
+                        <input ng-model="vm.respuestas[$index].respuesta" placeholder="Respuesta" required>
+                    </div>
+                </div>
+                <button type="submit" class="re-btn re-btn-primary">Enviar examen</button>
+            </form>
+            <div ng-if="vm.showModal" class="modal">
+                <div class="modal-content">
+                    <h3>¡Examen terminado!</h3>
+                    <button ng-click="vm.closeModal()">Cerrar</button>
                 </div>
             </div>
-            <button type="submit" class="re-btn re-btn-primary">Enviar examen</button>
-        </form>
-    </div>
+        </div>
 
 
 

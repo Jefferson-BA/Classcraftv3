@@ -4,6 +4,7 @@ const ExamController = require('../controllers/exam.controller');
 
 router.post('/', ExamController.createExam);
 router.get('/student/:studentId', ExamController.getExamsForStudent);
-router.get('/:examId', ExamController.getExamWithQuestions);
+router.get('/:examId/questions', ExamController.getExamWithQuestions);
+router.get('/teacher/:teacherId', ExamController.getExamsForTeacher);
 
 module.exports = router;

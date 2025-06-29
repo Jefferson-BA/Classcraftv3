@@ -32,14 +32,23 @@ const getExamsForStudent = (req, res) => {
 
 // Obtener examen con sus preguntas
 const getExamWithQuestions = (req, res) => {
-  Exam.getExamWithQuestions(req.params.examId, (err, data) => {
+  Exam.getExamWithQuestions(req.params.examId, (err, result) => {
     if (err) return res.status(500).json({ message: 'Error al obtener examen' });
-    res.json(data);
+    res.json(result); // <-- Debe ser un objeto { exam, questions }
+  });
+};
+const getExamsForTeacher = (req, res) => {
+  const teacherId = req.params.teacherId;
+  Exam.getExamsForTeacher(teacherId, (err, exams) => {
+    if (err) return res.status(500).json({ message: 'Error al obtener exámenes' });
+    res.json(exams);
   });
 };
 
+
 // === EXPORTACIÓN DE FUNCIONES ===
 module.exports = {
+  getExamsForTeacher,
   createExam,
   getExamsForStudent,
   getExamWithQuestions

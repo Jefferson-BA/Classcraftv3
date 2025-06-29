@@ -42,14 +42,21 @@
   <script src="app/layout/footer/footer.component.js"></script>
 
   <!-- Componente del maestro -->
+
   <script src="app/dashboard/teacher.component.js"></script>
   <script src="app/dashboard/teacher-tools/classroom/classroom.component.js"></script>
 
-  <script src="app/dashboard/teacher-tools/examen/examen.service.js"></script>
 
-  <script src="app/dashboard/Alumno-tools/examen/examen.component.js"></script>
+  <!-- Componente de creación de examen -->
+  <script src="app/dashboard/Alumno-tools/examen/examen-list.component.js"></script>
+  
+  <script src="app/dashboard/Alumno-tools/examen/examen-alumno.component.js"></script>
+  <script src="app/dashboard/Alumno-tools/examen/examen-student.service.js"></script>
+
+  <script src="app/dashboard/teacher-tools/examen/examen-teacher.service.js"></script>
 
   <!-- En public/index.html, dentro del <head> -->
+
   <script src="app/dashboard/teacher-tools/examen/examen.component.js"></script>
 
   <!-- Componente de selección de rol -->
@@ -62,7 +69,6 @@
   <script src="app/dashboard/Alumno-tools/classroom/classroom.component.js"></script>
 
 
-  <script src="app/dashboard/Alumno-tools/examen/examen-list.component.js"></script>
 
   <!-- Componente de creación de personaje -->
 
@@ -91,7 +97,8 @@
           path === '/alumno/classroom' ||
           path === '/random-events' ||
           path === '/dashboard/teacher/examen/create' ||
-          path === '/dashboard/alumno/examenes'
+          path === '/dashboard/alumno/examenes' ||
+          path === '/dashboard/alumno/examen/5'
         );
       };
     });
