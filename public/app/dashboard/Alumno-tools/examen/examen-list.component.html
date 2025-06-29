@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <!-- Navbar Principal -->   
+    <!-- Navbar Principal -->
     <nav class="re-navbar">
         <div class="re-nav-left">
             <div class="re-logo">
@@ -82,7 +82,7 @@
                         <span class="re-nav-label">Reclamaciones</span>
                     </a>
                 </nav>
-                
+
 
                 <div class="re-sidebar-bottom">
                     <div class="re-user-profile-image">
@@ -96,20 +96,26 @@
             </div>
         </aside>
 
+        <div class="re-content-area">
+            <h2>Exámenes Disponibles</h2>
+            <ul>
+                <li ng-repeat="examen in vm.examenes">
+                    {{examen.titulo}} -
+                    <a href="" ng-click="vm.goToExam(examen.id)" ng-class="{'active': vm.selectedExamId === examen.id}">
+                        Responder
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+
 
 
     </div>
 
 
-    <div class="re-content-area">
-  <h2>Exámenes Disponibles</h2>
-  <ul>
-    <li ng-repeat="examen in vm.examenes">
-      {{examen.titulo}} -
-      <a href="#!/dashboard/alumno/examen/{{examen.id}}">Responder</a>
-    </li>
-  </ul>
-</div>
+
 
 
 

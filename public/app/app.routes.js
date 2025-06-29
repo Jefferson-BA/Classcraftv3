@@ -85,7 +85,7 @@ angular.module('app')
         controllerAs: 'vm'
       })
       .when('/dashboard/alumno/examen/:examId', {
-        templateUrl: 'app/dashboard/Alumno-tools/examen/examen-student.component.html',
+        templateUrl: 'app/dashboard/Alumno-tools/examen/examen.component.html',
         controller: 'ExamStudentViewController',
         controllerAs: 'vm'
       })
