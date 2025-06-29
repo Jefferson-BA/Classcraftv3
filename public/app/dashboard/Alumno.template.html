@@ -126,15 +126,7 @@
                             <strong>HP:</strong> {{vm.student.hp}}<br>
                             <strong>MP:</strong> {{vm.student.mp}}<br>
                             <strong>XP:</strong> {{vm.student.xp}}<br>
-                            <strong>Mascota:</strong>
-                            <span ng-if="vm.student.mascota_activa">ID {{vm.student.mascota_activa}}</span>
-                            <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
-                            <div ng-if="misMascotas.length > 0">
-                                <div ng-repeat="mascota in misMascotas">
-                                    <span>{{mascota.nombre}}</span>
-                                    <span>{{mascota.habilidad}}</span>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
 

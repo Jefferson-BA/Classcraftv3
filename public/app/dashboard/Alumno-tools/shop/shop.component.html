@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Combat Dashboard - Ruleta de Eventos</title>
-    <link rel="stylesheet" href="app/dashboard/teacher-tools/examen/examen.component.css">
+    <link rel="stylesheet" href="app/dashboard/Alumno-tools/shop/shop.component.css">
 
 </head>
 
@@ -94,16 +94,42 @@
                 </div>
             </div>
         </aside>
+        <div class="re-shop-container">
+            <h2>Tienda de Mascotas</h2>
+            <div class="re-shop-grid">
+                <div ng-repeat="mascota in mascotasTienda" class="re-shop-pet-card">
+                    <div class="re-shop-pet-name">{{mascota.nombre}}</div>
 
-        <h2>Tienda de Mascotas</h2>
-        <div ng-repeat="mascota in mascotasTienda">
-            <span>{{mascota.nombre}}</span>
-            <span>Habilidad: {{mascota.habilidad}}</span>
-            <span>Efecto: {{mascota.efecto}}</span>
-            <span>Nivel requerido: {{mascota.nivel_requerido}}</span>
-            <span>Oro: {{mascota.precio_oro}}</span>
-            <button ng-click="comprarMascota(mascota.id)">Comprar</button>
+                    <div class="re-shop-pet-info">
+                        <div class="re-shop-pet-detail">
+                            <span class="re-shop-pet-label">Habilidad:</span>
+                            <span class="re-shop-pet-value">{{mascota.habilidad}}</span>
+                        </div>
+
+                        <div class="re-shop-pet-detail">
+                            <span class="re-shop-pet-label">Efecto:</span>
+                            <span class="re-shop-pet-value">{{mascota.efecto}}</span>
+                        </div>
+
+                        <div class="re-shop-pet-level">
+                            Nivel {{mascota.nivel_requerido}}
+                        </div>
+
+                        <div class="re-shop-separator"></div>
+
+                        <div class="re-shop-pet-price">
+                            {{mascota.precio_oro}} oro
+                        </div>
+                    </div>
+
+                    <button ng-click="comprarMascota(mascota.id)" class="re-shop-buy-btn">
+                        Comprar
+                    </button>
+                </div>
+            </div>
         </div>
+
+
 
 
 
