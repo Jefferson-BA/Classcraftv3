@@ -98,6 +98,8 @@
             <h2>Tienda de Mascotas</h2>
             <div class="re-shop-grid">
                 <div ng-repeat="mascota in mascotasTienda" class="re-shop-pet-card">
+                    <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}" >
+                    <span>{{mascota.nombre}}</span>
                     <div class="re-shop-pet-name">{{mascota.nombre}}</div>
 
                     <div class="re-shop-pet-info">

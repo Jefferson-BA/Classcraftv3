@@ -115,18 +115,47 @@
 
                     <div class="avatar-summary" ng-if="vm.student">
                         <img ng-src="{{vm.student.personaje}}" alt="Avatar" class="avatar-img">
-                        <div>
-                            <strong>Nombre:</strong> {{vm.student.nombre}} {{vm.student.apellido}}<br>
-                            <strong>Clase:</strong> {{vm.student.clase | uppercase}}
-                            <img ng-if="vm.student.clase" ng-src="app/image/clases/{{vm.student.clase}}.png" alt="Clase"
-                                style="width:40px;vertical-align:middle;"><br>
-                            <strong>Género:</strong> {{vm.student.genero | uppercase}}<br>
-                            <strong>Nivel:</strong> {{vm.student.nivel}}<br>
-                            <strong>Oro:</strong> <span class="currency-amount">{{vm.student.oro}}</span><br>
-                            <strong>HP:</strong> {{vm.student.hp}}<br>
-                            <strong>MP:</strong> {{vm.student.mp}}<br>
-                            <strong>XP:</strong> {{vm.student.xp}}<br>
-                            
+                        <div class="info-personal">
+                            <div class="stat-line">
+                                <strong>Nombre:</strong>
+                                <span>{{vm.student.nombre}} {{vm.student.apellido}}</span>
+                            </div>
+                            <div class="stat-line">
+                                <strong>Clase:</strong>
+                                <span>
+                                    {{vm.student.clase | uppercase}}
+                                    <img ng-if="vm.student.clase" ng-src="app/image/clases/{{vm.student.clase}}.png"
+                                        alt="Clase" style="width:30px;vertical-align:middle;">
+                                </span>
+                            </div>
+                            <div class="stat-line">
+                                <strong>Género:</strong>
+                                <span>{{vm.student.genero | uppercase}}</span>
+                            </div>
+                            <div class="stat-line">
+                                <strong>Nivel:</strong>
+                                <span>{{vm.student.nivel}}</span>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas de Combate -->
+                        <div class="stats-combate">
+                            <div class="stat-line">
+                                <strong>Oro:</strong>
+                                <span class="currency-amount">{{vm.student.oro}}</span>
+                            </div>
+                            <div class="stat-line">
+                                <strong>HP:</strong>
+                                <span>{{vm.student.hp}}</span>
+                            </div>
+                            <div class="stat-line">
+                                <strong>MP:</strong>
+                                <span>{{vm.student.mp}}</span>
+                            </div>
+                            <div class="stat-line">
+                                <strong>XP:</strong>
+                                <span>{{vm.student.xp}}</span>
+                            </div>
                         </div>
                     </div>
 

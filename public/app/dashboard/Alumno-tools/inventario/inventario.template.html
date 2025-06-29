@@ -95,15 +95,40 @@
             </div>
         </aside>
 
-        <h2>Inventario de Mascotas</h2>
-        <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
-        <div ng-if="misMascotas.length > 0">
-            <div ng-repeat="mascota in misMascotas">
-                <strong>{{mascota.nombre}}</strong><br>
-                Habilidad: {{mascota.habilidad}}<br>
-                Efecto: {{mascota.efecto}}<br>
-                Nivel requerido: {{mascota.nivel_requerido}}<br>
-                <hr>
+       <div class="re-inventory-container">
+    <h2>Inventario de Mascotas</h2>
+    
+    <div ng-if="misMascotas.length === 0" class="re-empty-inventory">
+        Mascotas: sin mascotas
+    </div>
+    
+    <div ng-if="misMascotas.length > 0" class="re-pets-container">
+        <div class="re-pets-grid">
+            <div ng-repeat="mascota in misMascotas" class="re-pet-card">
+                <div class="re-pet-image-container">
+                    <div class="re-pet-image-frame"></div>
+                    <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}" class="re-pet-image">
+                </div>
+                
+                <div class="re-pet-name">{{mascota.nombre}}</div>
+                
+                <div class="re-pet-info">
+                    <div class="re-pet-detail">
+                        <span class="re-pet-label">Habilidad:</span>
+                        <span class="re-pet-value">{{mascota.habilidad}}</span>
+                    </div>
+                    
+                    <div class="re-pet-detail">
+                        <span class="re-pet-label">Efecto:</span>
+                        <span class="re-pet-value">{{mascota.efecto}}</span>
+                    </div>
+                    
+                    <div class="re-pet-separator"></div>
+                    
+                    <div class="re-pet-level">
+                        Nivel {{mascota.nivel_requerido}}
+                    </div>
+                </div>
             </div>
         </div>
 

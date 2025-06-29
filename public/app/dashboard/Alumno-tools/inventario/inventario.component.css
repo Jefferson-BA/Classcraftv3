@@ -1,0 +1,320 @@
+/* Contenedor principal del inventario */
+.re-inventory-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1000px;
+    width: 100%;
+    animation: re-fadeInUp 0.6s ease-out;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+}
+
+/* Título del inventario */
+.re-inventory-container h2 {
+    color: #fff;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    animation: re-glow 3s ease-in-out infinite;
+}
+
+/* Estado sin mascotas */
+.re-empty-inventory {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: re-fadeInUp 0.5s ease-out;
+}
+
+.re-empty-inventory::before {
+    content: '🐾';
+    font-size: 64px;
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0.5;
+    animation: re-pulse 2s ease-in-out infinite;
+}
+
+.re-empty-inventory {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Contenedor de mascotas */
+.re-pets-container {
+    animation: re-fadeInUp 0.6s ease-out;
+}
+
+/* Grid de mascotas */
+.re-pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Tarjeta individual de mascota */
+.re-pet-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: re-fadeInUp 0.6s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.re-pet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.re-pet-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 100%;
+    animation: re-drift 3s ease-in-out infinite;
+}
+
+/* Contenedor de imagen */
+.re-pet-image-container {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+/* Nombre de la mascota */
+.re-pet-name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.re-pet-name::before {
+    content: '✨';
+    font-size: 16px;
+    animation: re-twinkle 2s ease-in-out infinite;
+}
+
+/* Información de la mascota */
+.re-pet-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.re-pet-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+    width: 100%;
+}
+
+.re-pet-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 80px;
+    flex-shrink: 0;
+}
+/* Contenedor de imagen */
+.re-pet-image-container {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
+/* Imagen de la mascota */
+.re-pet-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* Marco decorativo para la imagen */
+.re-pet-image-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    background: linear-gradient(45deg, 
+        rgba(102, 126, 234, 0.3) 0%, 
+        rgba(118, 75, 162, 0.3) 25%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(102, 126, 234, 0.3) 75%, 
+        rgba(118, 75, 162, 0.3) 100%);
+    animation: re-glow 3s ease-in-out infinite;
+    z-index: 1;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.re-pet-card:hover .re-pet-image {
+    transform: scale(1.02);
+}
+
+.re-pet-card:hover .re-pet-image-frame {
+    animation-duration: 1.5s;
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive para imagen rectangular */
+@media (max-width: 768px) {
+    .re-pet-image-container {
+        height: 100px;
+    }
+}
+
+@media (max-width: 580px) {
+    .re-pet-image-container {
+        height: 80px;
+    }
+}
+
+.re-pet-value {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+    line-height: 1.4;
+}
+
+/* Nivel requerido */
+.re-pet-level {
+    background: rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    align-self: center;
+}
+
+.re-pet-level::before {
+    content: '⭐';
+    font-size: 14px;
+    animation: re-twinkle 3s ease-in-out infinite;
+}
+
+/* Separador personalizado */
+.re-pet-separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    margin: 15px 0;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .re-inventory-container {
+        padding: 25px;
+        margin: 20px;
+    }
+    
+    .re-inventory-container h2 {
+        font-size: 24px;
+    }
+    
+    .re-pets-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .re-pet-card {
+        padding: 20px;
+    }
+    
+    .re-pet-name {
+        font-size: 18px;
+    }
+    
+    .re-pet-image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .re-pet-image-frame {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .re-inventory-container {
+        padding: 20px;
+        margin: 15px;
+    }
+    
+    .re-pet-card {
+        padding: 15px;
+    }
+    
+    .re-pet-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .re-pet-image-frame {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .re-pets-grid {
+        grid-template-columns: 1fr;
+    }
+}

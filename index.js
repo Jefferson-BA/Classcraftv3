@@ -26,6 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/shop', require('./routes/shop.routes'));
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 // Redirigir rutas que no sean API al index.html (para HTML5 mode)
 app.get('*', (req, res) => {
