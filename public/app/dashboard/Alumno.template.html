@@ -20,14 +20,14 @@
             </div>
         </div>
         <div class="nav-right">
-            <button class="nav-btn update-btn">
-                <i class="fas fa-sync-alt"></i>
-                Tienda
-            </button>
-            <button class="nav-btn invite-btn">
+            <a href="/dashboard/alumno/inventario" class="nav-btn invite-btn">
                 <i class="fas fa-user-plus"></i>
                 <span>Inventario</span>
-            </button>
+            </a>
+            <a href="/dashboard/alumno/shop" class="nav-btn update-btn">
+                <i class="fas fa-sync-alt"></i>
+                <span>Tienda</span>
+            </a>
             <div class="profile-btn">
                 <i class="fas fa-user"></i>
             </div>
@@ -128,7 +128,15 @@
                             <strong>XP:</strong> {{vm.student.xp}}<br>
                             <strong>Mascota:</strong>
                             <span ng-if="vm.student.mascota_activa">ID {{vm.student.mascota_activa}}</span>
-                            <span ng-if="!vm.student.mascota_activa">Sin mascota</span>
+                            <span ng-if="!vm.student.mascota_activa">
+                                <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
+                                <div ng-if="misMascotas.length > 0">
+                                    <div ng-repeat="mascota in misMascotas">
+                                        <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}">
+                                        <span>{{mascota.nombre}}</span>
+                                    </div>
+                                </div>
+                            </span>
                         </div>
                     </div>
 

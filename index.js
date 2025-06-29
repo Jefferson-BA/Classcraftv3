@@ -23,7 +23,7 @@ app.use('/api/teachers', teacherRoutes);
 app.use('/api/exams', examRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/auth', authRoutes);
-
+app.use('/api/shop', require('./routes/shop.routes'));
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, 'public')));
 

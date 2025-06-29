@@ -19,8 +19,15 @@ const registerTeacher = (userData, callback) => {
     );
   });
 };
-
+const createUser = (user, callback) => {
+  db.query(
+    'INSERT INTO users (nombre, apellido, email, password, rol) VALUES (?, ?, ?, ?, ?)',
+    [user.nombre, user.apellido, user.email, user.password, user.rol],
+    callback
+  );
+};
 module.exports = {
   registerTeacher,
+  createUser
   // ...otros métodos...
 };

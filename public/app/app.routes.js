@@ -90,7 +90,26 @@ angular.module('app')
         controller: 'ExamStudentListController',
         controllerAs: 'vm'
       })
+      .when('/alumno/inventario', {
+        templateUrl: 'app/dashboard/Alumno-tools/inventario/inventario.template.html',
+        controller: 'InventarioController'
+      })
+      // Si tienes una vista separada para la tienda:
+      .when('/alumno/shop', {
+        templateUrl: 'app/dashboard/Alumno-tools/shop/shop.component.html',
+        controller: 'ShopController'
+      })
+      .when('/dashboard/alumno/inventario', {
+        templateUrl: 'app/dashboard/Alumno-tools/inventario/inventario.template.html',
+        controller: 'InventarioController'
+      })
+      .when('/dashboard/alumno/shop', {
+        templateUrl: 'app/dashboard/Alumno-tools/shop/shop.component.html',
+        controller: 'ShopController'
+      })
+
 
       // FALLBACK
       .otherwise({ redirectTo: '/' });
+
   });

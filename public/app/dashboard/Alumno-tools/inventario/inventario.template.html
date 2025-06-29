@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Combat Dashboard - Ruleta de Eventos</title>
+    <link rel="stylesheet" href="app/dashboard/teacher-tools/examen/examen.component.css">
+
+</head>
+
+<body>
+    <!-- Navbar Principal -->
+    <nav class="re-navbar">
+        <div class="re-nav-left">
+            <div class="re-logo">
+                <div class="re-logo-circle">
+                    <span class="re-logo-text">CC</span>
+                </div>
+                <span class="re-logo-title">CLASS COMBAT</span>
+            </div>
+        </div>
+        <div class="re-nav-right">
+            <button class="re-nav-btn re-update-btn">
+                <i class="fas fa-sync-alt"></i>
+                Actualizar
+            </button>
+            <button class="re-nav-btn re-invite-btn" ng-click="vm.openCreateForm()">
+                <i class="fas fa-user-plus"></i>
+                <span>Crear nueva Clase</span>
+            </button>
+            <div class="re-profile-btn">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="re-main-container">
+        <!-- Sidebar fijo -->
+        <aside class="re-sidebar">
+            <div class="re-sidebar-content">
+                <nav class="re-sidebar-nav">
+                    <a href="" class="re-nav-item re-active" data-section="home">
+                        <img src="app/image/icons/inicio.png" alt="Inicio" class="re-nav-icon">
+                        <span class="re-nav-label">Inicio</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="classes">
+                        <img src="app/image/icons/batalla.png" alt="Clases" class="re-nav-icon">
+                        <span class="re-nav-label">Mis Clases</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="exams">
+                        <img src="app/image/icons/examen.png" alt="Exámenes" class="re-nav-icon">
+                        <span class="re-nav-label">Exámenes</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="map">
+                        <img src="app/image/icons/mapa.png" alt="Mapa" class="re-nav-icon">
+                        <span class="re-nav-label">Mapa</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="missions">
+                        <img src="app/image/icons/mision.png" alt="Misiones" class="re-nav-icon">
+                        <span class="re-nav-label">Misiones</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="roulette">
+                        <img src="app/image/icons/ruleta.png" alt="Ruleta" class="re-nav-icon">
+                        <span class="re-nav-label">Ruleta</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="telescope">
+                        <img src="app/image/icons/telescopio.png" alt="Telescopio" class="re-nav-icon">
+                        <span class="re-nav-label">Telescopio</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="stats">
+                        <img src="app/image/icons/estadistica.png" alt="Estadísticas" class="re-nav-icon">
+                        <span class="re-nav-label">Estadísticas</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="comments">
+                        <img src="app/image/icons/comentarios.png" alt="Comentarios" class="re-nav-icon">
+                        <span class="re-nav-label">Comentarios</span>
+                    </a>
+                    <a href="#" class="re-nav-item" data-section="claims">
+                        <img src="app/image/icons/reclamacion.png" alt="Reclamaciones" class="re-nav-icon">
+                        <span class="re-nav-label">Reclamaciones</span>
+                    </a>
+                </nav>
+
+                <div class="re-sidebar-bottom">
+                    <div class="re-user-profile-image">
+                        <img src="app/image/icons/ig.png" alt="Foto del profesor" class="re-profile-image">
+                        <div class="re-profile-frame"></div>
+                    </div>
+                    <button class="re-settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <h2>Inventario de Mascotas</h2>
+        <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
+        <div ng-if="misMascotas.length > 0">
+            <div ng-repeat="mascota in misMascotas">
+                <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}">
+                <span>{{mascota.nombre}}</span>
+            </div>
+        </div>
+
+        <h2>Tienda de Mascotas</h2>
+        <div ng-repeat="mascota in mascotasTienda">
+            <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}">
+            <span>{{mascota.nombre}}</span>
+            <span>Oro: 500</span>
+            <button ng-click="comprarMascota(mascota.id)">Comprar</button>
+        </div>
+
+        <!-- inventario.template.html o shop.component.html -->
+        <div ng-repeat="mascota in mascotasTienda">
+            <span>{{mascota.nombre}}</span>
+            <span>Oro: {{mascota.precio_oro}}</span>
+            <button ng-click="comprarMascota(mascota.id)">Comprar</button>
+        </div>
+        <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
+        <div ng-if="misMascotas.length > 0">
+            <div ng-repeat="mascota in misMascotas">
+                <span>{{mascota.nombre}}</span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>
