@@ -21,6 +21,7 @@ angular.module('app')
 
     vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
     vm.showCharacterCreation = !vm.currentUser.personaje_creado;
+    
 
     vm.onCharacterCreated = function () {
       vm.showCharacterCreation = false;

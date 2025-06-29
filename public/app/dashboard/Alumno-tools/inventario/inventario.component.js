@@ -11,18 +11,17 @@ angular.module('app')
         };
 
         $scope.cargarMisMascotas = function () {
-            $http.get('/api/shop/mis-mascotas/' + $scope.currentStudentId)
-                .then(function (resp) {
-                    $scope.misMascotas = resp.data;
-                });
+            StudentService.getMisMascotas($scope.currentStudentId).then(function (resp) {
+                $scope.misMascotas = resp.data;
+            });
         };
 
         $scope.comprarMascota = function (mascotaId) {
-            $http.post('/api/shop/comprar-mascota', { studentId: $scope.currentStudentId, mascotaId: mascotaId })
-                .then(function (resp) {
+            StudentService.comprarMascota($scope.currentStudentId, mascotaId)
+                .then(function () {
                     alert('¡Mascota comprada!');
                     $scope.cargarMisMascotas();
-                    $scope.cargarOro(); // Si tienes función para actualizar oro
+                    $scope.cargarOro(); // Si tienes esta función para mostrar el oro actualizado
                 }, function (err) {
                     alert(err.data.error);
                 });

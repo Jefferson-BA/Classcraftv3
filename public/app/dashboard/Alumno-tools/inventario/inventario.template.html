@@ -99,29 +99,11 @@
         <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
         <div ng-if="misMascotas.length > 0">
             <div ng-repeat="mascota in misMascotas">
-                <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}">
-                <span>{{mascota.nombre}}</span>
-            </div>
-        </div>
-
-        <h2>Tienda de Mascotas</h2>
-        <div ng-repeat="mascota in mascotasTienda">
-            <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}">
-            <span>{{mascota.nombre}}</span>
-            <span>Oro: 500</span>
-            <button ng-click="comprarMascota(mascota.id)">Comprar</button>
-        </div>
-
-        <!-- inventario.template.html o shop.component.html -->
-        <div ng-repeat="mascota in mascotasTienda">
-            <span>{{mascota.nombre}}</span>
-            <span>Oro: {{mascota.precio_oro}}</span>
-            <button ng-click="comprarMascota(mascota.id)">Comprar</button>
-        </div>
-        <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
-        <div ng-if="misMascotas.length > 0">
-            <div ng-repeat="mascota in misMascotas">
-                <span>{{mascota.nombre}}</span>
+                <strong>{{mascota.nombre}}</strong><br>
+                Habilidad: {{mascota.habilidad}}<br>
+                Efecto: {{mascota.efecto}}<br>
+                Nivel requerido: {{mascota.nivel_requerido}}<br>
+                <hr>
             </div>
         </div>
 

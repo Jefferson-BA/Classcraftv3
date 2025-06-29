@@ -128,15 +128,13 @@
                             <strong>XP:</strong> {{vm.student.xp}}<br>
                             <strong>Mascota:</strong>
                             <span ng-if="vm.student.mascota_activa">ID {{vm.student.mascota_activa}}</span>
-                            <span ng-if="!vm.student.mascota_activa">
-                                <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
-                                <div ng-if="misMascotas.length > 0">
-                                    <div ng-repeat="mascota in misMascotas">
-                                        <img ng-src="{{mascota.imagen}}" alt="{{mascota.nombre}}">
-                                        <span>{{mascota.nombre}}</span>
-                                    </div>
+                            <div ng-if="misMascotas.length === 0">Mascotas: sin mascotas</div>
+                            <div ng-if="misMascotas.length > 0">
+                                <div ng-repeat="mascota in misMascotas">
+                                    <span>{{mascota.nombre}}</span>
+                                    <span>{{mascota.habilidad}}</span>
                                 </div>
-                            </span>
+                            </div>
                         </div>
                     </div>
 
