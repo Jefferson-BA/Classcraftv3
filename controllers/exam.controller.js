@@ -6,19 +6,41 @@ const Exam = require('../models/exam.model');
 const createExam = (req, res) => {
   const { titulo, descripcion, imagen, tiempo_limite, xp_total, teacher_id, preguntas } = req.body;
 
-  Exam.createExam({ titulo, descripcion, imagen, tiempo_limite, xp_total, teacher_id }, (err, result) => {
-    if (err) return res.status(500).json({ message: 'Error al crear examen' });
+  const examData = { titulo, descripcion, imagen, tiempo_limite, xp_total, teacher_id };
+
+  Exam.createExam(examData, (err, result) => {
+    if (err) {
+      console.error('Error al crear examen:', err); // <-- LOG
+      return res.status(500).json({ message: 'Error al crear examen' });
+    }
 
     const examId = result.insertId;
 
-    // Guardar preguntas si existen
-    if (preguntas && preguntas.length) {
-      preguntas.forEach(p => {
-        Exam.addQuestion({ exam_id: examId, pregunta: p.pregunta, imagen: p.imagen, puntaje: p.puntaje }, () => {});
-      });
+    if (preguntas && preguntas.length > 0) {
+      let pending = preguntas.length;
+      let errorSent = false;
+      for (const pregunta of preguntas) {
+        const questionData = {
+          exam_id: examId,
+          pregunta: pregunta.pregunta,
+          imagen: pregunta.imagen,
+          puntaje: pregunta.puntaje
+        };
+        Exam.addQuestion(questionData, (err2) => {
+          if (err2 && !errorSent) {
+            errorSent = true;
+            console.error('Error al agregar pregunta:', err2); // <-- LOG
+            return res.status(500).json({ message: 'Error al agregar pregunta' });
+          }
+          pending--;
+          if (pending === 0 && !errorSent) {
+            return res.json({ message: 'Examen creado con preguntas' });
+          }
+        });
+      }
+    } else {
+      return res.json({ message: 'Examen creado' });
     }
-
-    res.json({ message: 'Examen creado', examId });
   });
 };
 
@@ -37,6 +59,7 @@ const getExamWithQuestions = (req, res) => {
     res.json(result); // <-- Debe ser un objeto { exam, questions }
   });
 };
+
 const getExamsForTeacher = (req, res) => {
   const teacherId = req.params.teacherId;
   Exam.getExamsForTeacher(teacherId, (err, exams) => {
@@ -44,7 +67,6 @@ const getExamsForTeacher = (req, res) => {
     res.json(exams);
   });
 };
-
 
 // === EXPORTACIÓN DE FUNCIONES ===
 module.exports = {

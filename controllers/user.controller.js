@@ -36,6 +36,7 @@ const updateUser = (req, res) => {
   });
 };
 
+
 module.exports = {
   getAllUsers,
   getUserById,
