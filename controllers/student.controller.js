@@ -178,9 +178,34 @@ const getStudent = (req, res) => {
   });
 };
 
+const startExam = (req, res) => {
+  const { student_id, exam_id } = req.body;
+  db.query('INSERT INTO student_exam_status (student_id, exam_id, inicio) VALUES (?, ?, NOW())', [student_id, exam_id], (err) => {
+    if (err) return res.status(500).json({ message: 'Error al registrar inicio' });
+    res.json({ message: 'Inicio registrado' });
+  });
+};
+
+const finishExam = (req, res) => {
+  const { student_id, exam_id, respuestas, nota, xp_obtenido, hp_perdido } = req.body;
+  // Guardar respuestas
+  respuestas.forEach(r => {
+    db.query('INSERT INTO student_exam_answers SET ?', {
+      student_id, exam_id, question_id: r.question_id, opcion_id: r.opcion_id, respuesta: r.respuesta, es_correcta: r.es_correcta, puntaje_obtenido: r.puntaje_obtenido
+    });
+  });
+  // Registrar fin
+  db.query('UPDATE student_exam_status SET fin = NOW() WHERE student_id = ? AND exam_id = ?', [student_id, exam_id]);
+  // Guardar nota
+  db.query('INSERT INTO student_notas (student_id, exam_id, nota, xp_obtenido, hp_perdido) VALUES (?, ?, ?, ?, ?)', [student_id, exam_id, nota, xp_obtenido, hp_perdido]);
+  res.json({ message: 'Examen finalizado y nota registrada' });
+};
+
 
 
 module.exports = {
+  startExam,
+  finishExam,
   getAllStudents,
   getStudentById,
   createStudent,

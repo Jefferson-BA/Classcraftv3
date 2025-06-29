@@ -1,6 +1,7 @@
 angular.module('app')
   .controller('AlumnoController', function ($location, $rootScope, $window, StudentService) {
     const vm = this;
+    vm.$location = $location;
     vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser')) || {};
 
 
@@ -14,6 +15,7 @@ angular.module('app')
     vm.isActive = function (route) {
       return $location.path() === route;
     };
+
 
     // Si necesitas el usuario logueado:
 
@@ -32,7 +34,9 @@ angular.module('app')
     };
     vm.loadStudent();
 
-
+    vm.goToExamList = function () {
+      vm.$location.path('/dashboard/alumno/examenes');
+    };
 
 
   });

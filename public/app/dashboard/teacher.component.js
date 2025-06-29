@@ -1,6 +1,8 @@
 angular.module('app')
   .controller('TeacherController', function ($location) {
     const vm = this;
+    vm.$location = $location;
+
     vm.message = "Bienvenido al panel del maestro";
 
     vm.goToClassroom = function () {
@@ -12,5 +14,7 @@ angular.module('app')
     vm.goToRandomEvents = function () {
       $location.path('/random-events');
     };
-    vm.$location = $location;
+    vm.goToExamCreate = function () {
+      vm.$location.path('/dashboard/teacher/examen/create');
+    };
   });

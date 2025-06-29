@@ -50,7 +50,9 @@
                         <img src="app/image/icons/batalla.png" alt="Clases" class="nav-icon">
                         <span class="nav-label">Mis Clases</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="exams">
+                    <a href="" class="nav-item"
+                        ng-class="{'active': vm.$location.path() === '/dashboard/alumno/examenes'}"
+                        ng-click="vm.goToExamList()" data-section="exams">
                         <img src="app/image/icons/examen.png" alt="Exámenes" class="nav-icon">
                         <span class="nav-label">Exámenes</span>
                     </a>

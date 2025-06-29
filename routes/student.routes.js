@@ -14,6 +14,9 @@ router.get('/my-classes/:alumno_id', StudentController.getMyClasses);
 router.post('/:studentId/personaje', StudentController.crearPersonaje);
 router.post('/:studentId/dar-oro', StudentController.darOro);
 router.get('/:studentId', StudentController.getStudent);
+router.post('/exam/start', StudentController.startExam);
+router.post('/exam/finish', StudentController.finishExam);
+
 
 
 

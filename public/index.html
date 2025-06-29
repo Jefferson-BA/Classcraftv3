@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <title>ClassCraft</title>
   <base href="/" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="app/dashboard/Alumno-tools/character-creation/characterCreation.css">
+
 </head>
 
 <body ng-controller="MainLayoutController as main">
@@ -46,8 +45,12 @@
   <script src="app/dashboard/teacher.component.js"></script>
   <script src="app/dashboard/teacher-tools/classroom/classroom.component.js"></script>
 
-  <!-- En public/index.html, dentro del <head> -->
+  <script src="app/dashboard/teacher-tools/examen/examen.service.js"></script>
 
+  <script src="app/dashboard/Alumno-tools/examen/examen.component.js"></script>
+
+  <!-- En public/index.html, dentro del <head> -->
+  <script src="app/dashboard/teacher-tools/examen/examen.component.js"></script>
 
   <!-- Componente de selección de rol -->
   <script src="app/enrollment/role-selection.component.js"></script>
@@ -58,12 +61,15 @@
   <script src="app/home/home.component.js"></script>
   <script src="app/dashboard/Alumno-tools/classroom/classroom.component.js"></script>
 
+
+  <script src="app/dashboard/Alumno-tools/examen/examen-list.component.js"></script>
+
   <!-- Componente de creación de personaje -->
 
   <script src="app/dashboard/teacher-tools/random-events/randomEvents.component.js"></script>
   <link rel="stylesheet" href="app/dashboard/teacher-tools/random-events/randomEvents.component.css">
 
-<script src="app/dashboard/Alumno-tools/character-creation/characterCreation.component.js"></script>
+  <script src="app/dashboard/Alumno-tools/character-creation/characterCreation.component.js"></script>
 
   <!-- Rutas -->
   <script src="app/app.routes.js"></script>
@@ -83,7 +89,9 @@
           path === '/login/alumno' ||
           path == '/dashboard/alumno' ||
           path === '/alumno/classroom' ||
-          path === '/random-events'
+          path === '/random-events' ||
+          path === '/dashboard/teacher/examen/create' ||
+          path === '/dashboard/alumno/examenes'
         );
       };
     });

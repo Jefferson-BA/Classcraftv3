@@ -37,7 +37,7 @@
     <!-- Contenido principal -->
     <div class="main-container">
         <!-- Sidebar fijo -->
-        <aside class="sidebar">
+        <aside class="re-sidebar">
             <div class="sidebar-content">
                 <nav class="sidebar-nav">
                     <a href="" class="nav-item" ng-class="{'active': vm.$location.path() === '/dashboard/teacher'}"
@@ -50,7 +50,9 @@
                         <img src="app/image/icons/batalla.png" alt="Clases" class="nav-icon">
                         <span class="nav-label">Mis Clases</span>
                     </a>
-                    <a href="#" class="nav-item" data-section="exams">
+                    <a href="" class="nav-item"
+                        ng-class="{'active': vm.$location.path() === '/dashboard/teacher/examen/create'}"
+                        ng-click="vm.goToExamCreate()" data-section="exams">
                         <img src="app/image/icons/examen.png" alt="Exámenes" class="nav-icon">
                         <span class="nav-label">Exámenes</span>
                     </a>

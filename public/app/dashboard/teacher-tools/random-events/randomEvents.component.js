@@ -55,11 +55,18 @@ angular.module('app')
     };
 
     vm.confirmarDarOro = function() {
+      if (vm.cantidadOro <= 0) {
+        alert('La cantidad de oro debe ser mayor a cero.');
+        return;
+      }
       StudentService.darOro(vm.alumnoSeleccionado.id, vm.cantidadOro)
         .then(function(response) {
           alert('Se dio ' + vm.cantidadOro + ' de oro a ' + vm.alumnoSeleccionado.username);
           vm.mostrarModalOro = false;
-          vm.alumnoSeleccionado = null;
+          // Recargar oro del alumno seleccionado en la lista (opcional)
+          StudentService.getStudentById(vm.alumnoSeleccionado.id).then(function(resp) {
+            vm.alumnoSeleccionado.oro = resp.data.oro;
+          });
         });
     };
   });

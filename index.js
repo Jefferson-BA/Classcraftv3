@@ -8,17 +8,20 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
 // Rutas API
 const classRoutes = require('./routes/class.routes');
-app.use('/api/classes', classRoutes);
-
+const teacherRoutes = require('./routes/teacher.routes');
+const examRoutes = require('./routes/exam.routes');
 const studentRoutes = require('./routes/student.routes');
-app.use('/api/students', studentRoutes);
 const authRoutes = require('./routes/auth.routes');
+
+app.use('/api/classes', classRoutes);
+app.use('/api/teachers', teacherRoutes);
+app.use('/api/exams', examRoutes);
+app.use('/api/students', studentRoutes);
 app.use('/api/auth', authRoutes);
 
 // Servir archivos estáticos del frontend

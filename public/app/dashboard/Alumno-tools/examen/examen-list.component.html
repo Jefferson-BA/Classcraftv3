@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Combat Dashboard - Ruleta de Eventos</title>
-    <link rel="stylesheet" href="app/dashboard/teacher-tools/examen/examen.component.css">
+    <link rel="stylesheet" href="app/dashboard/teacher-tools/examen/examen.list.component.css">
 
 </head>
 
 <body>
-    <!-- Navbar Principal -->
+    <!-- Navbar Principal -->   
     <nav class="re-navbar">
         <div class="re-nav-left">
             <div class="re-logo">
@@ -82,6 +82,7 @@
                         <span class="re-nav-label">Reclamaciones</span>
                     </a>
                 </nav>
+                
 
                 <div class="re-sidebar-bottom">
                     <div class="re-user-profile-image">
@@ -100,21 +101,15 @@
     </div>
 
 
-    <div class="re-content-area" ng-if="vm.exam">
-        <h2>{{vm.exam.titulo}}</h2>
-        <p>{{vm.exam.descripcion}}</p>
-        <img ng-if="vm.exam.imagen" ng-src="{{vm.exam.imagen}}" style="max-width:200px;">
-        <form ng-submit="vm.finishExam()">
-            <div ng-repeat="p in vm.preguntas">
-                <div>
-                    <strong>{{p.pregunta}}</strong>
-                    <img ng-if="p.imagen" ng-src="{{p.imagen}}" style="max-width:100px;">
-                    <input ng-model="vm.respuestas[$index].respuesta" placeholder="Respuesta" required>
-                </div>
-            </div>
-            <button type="submit" class="re-btn re-btn-primary">Enviar examen</button>
-        </form>
-    </div>
+    <div class="re-content-area">
+  <h2>Exámenes Disponibles</h2>
+  <ul>
+    <li ng-repeat="examen in vm.examenes">
+      {{examen.titulo}} -
+      <a href="#!/dashboard/alumno/examen/{{examen.id}}">Responder</a>
+    </li>
+  </ul>
+</div>
 
 
 
