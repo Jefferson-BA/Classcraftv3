@@ -138,25 +138,52 @@
                 <button type="submit" class="re-btn re-btn-primary">Crear examen</button>
             </form>
 
-            <div>
-                <h2>Mis Exámenes</h2>
-                <ul>
-                    <li ng-repeat="examen in vm.examenes track by examen.id">
-                        {{examen.titulo}} - {{examen.descripcion}}
-                        <button ng-click="vm.viewExamDetails(examen)">Ver detalles</button>
-                    </li>
-                </ul>
+            <div class="re-my-exams-section">
+                <div class="re-section-header">
+                    <h2 class="re-my-exams-title">Mis Exámenes</h2>
+                    <div class="re-title-decoration"></div>
+                </div>
+                <div class="re-exams-container">
+                    <ul class="re-exams-list">
+                        <li ng-repeat="examen in vm.examenes track by examen.id" class="re-exam-item">
+                            <div class="re-exam-content">
+                                <div class="re-exam-info">
+                                    <span class="re-exam-title">{{examen.titulo}}</span>
+                                    <span class="re-exam-separator">-</span>
+                                    <span class="re-exam-description">{{examen.descripcion}}</span>
+                                </div>
+                                <div class="re-exam-actions">
+                                    <button ng-click="vm.viewExamDetails(examen)" class="re-exam-details-btn">
+                                        <span class="re-btn-text">Ver detalles</span>
+                                        <span class="re-btn-icon">👁️</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="re-exam-overlay"></div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div ng-if="vm.selectedExam">
-                <h3>Alumnos del examen: {{vm.selectedExam.titulo}}</h3>
-                <ul>
-                    <li ng-repeat="alumno in vm.examStudents track by alumno.id">
-                        {{alumno.nombre}} -
-                        <span ng-if="alumno.estado === 'finalizado'">Finalizó</span>
-                        <span ng-if="alumno.estado === 'pendiente'">Falta iniciar</span>
-                    </li>
-                </ul>
+            <div ng-if="vm.selectedExam" class="re-exam-students-section">
+                <div class="re-exam-header">
+                    <h3 class="re-exam-students-title">Alumnos en examen: {{vm.selectedExam.titulo}}</h3>
+                </div>
+                <div class="re-students-container">
+                    <ul class="re-students-grid">
+                        <li ng-repeat="alumno in vm.examStudents track by alumno.id" class="re-student-card">
+                            <div class="re-student-info">
+                                <span class="re-student-name">{{alumno.nombre}}</span>
+                                <div class="re-student-status">
+                                    <span ng-if="alumno.estado === 'finalizado'"
+                                        class="re-status-badge re-status-completed">Finalizó</span>
+                                    <span ng-if="alumno.estado === 'pendiente'"
+                                        class="re-status-badge re-status-pending">Falta iniciar</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
