@@ -23,7 +23,7 @@ angular.module('app')
                 return $http.delete('/api/exams/' + examId);
             },
             updateExam: function (exam) {
-                return $http.put('/api/exams/' + exam.id, exam);
+                return $http.put('/api/exams/' + exam.examen_id, exam);
             },
             cambiarEstadoExamen: function (examId, nuevoEstado) {
                 return $http.patch('/api/exams/' + examId + '/estado', { estado: nuevoEstado });

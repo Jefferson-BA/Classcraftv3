@@ -81,9 +81,8 @@ const deleteExam = (req, res) => {
 };
 
 const updateExam = (req, res) => {
-  const examId = req.params.id;
+  const examId = req.params.id; // <-- debe ser el mismo que usas en el frontend
   const examData = req.body;
-  console.log('Datos recibidos para actualizar:', examId, examData); // <-- Agrega esto
   Exam.updateExam(examId, examData, (err, result) => {
     if (err) return res.status(500).json({ message: 'Error al actualizar el examen' });
     res.json({ message: 'Examen actualizado correctamente' });
