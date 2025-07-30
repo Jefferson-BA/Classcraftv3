@@ -18,8 +18,15 @@ angular.module('app')
             },
             getExamStudentsStatus: function (examId) {
                 return $http.get('/api/exams/' + examId + '/students-status');
+            },
+            deleteExam: function (examId) {
+                return $http.delete('/api/exams/' + examId);
+            },
+            updateExam: function (exam) {
+                return $http.put('/api/exams/' + exam.id, exam);
+            },
+            cambiarEstadoExamen: function (examId, nuevoEstado) {
+                return $http.patch('/api/exams/' + examId + '/estado', { estado: nuevoEstado });
             }
-
         };
-
     });

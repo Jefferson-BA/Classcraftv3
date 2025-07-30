@@ -2,10 +2,13 @@ angular.module('app')
   .controller('ExamStudentViewController', function (ExamService, $routeParams, $window, $location) {
     const vm = this;
     vm.examId = $routeParams.examId;
-    vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
+    vm.currentUser = JSON.parse($window.localStorage.getItem('currentUser') || '{}');
     vm.respuestas = [];
     vm.showModal = false;
+    vm.exam = {};
+    vm.preguntas = [];
 
+    // Cargar examen y preguntas
     ExamService.getExamWithQuestions(vm.examId).then(function (resp) {
       vm.exam = resp.data.exam;
       vm.preguntas = resp.data.questions;
@@ -17,6 +20,7 @@ angular.module('app')
         exam_id: vm.examId,
         respuestas: vm.respuestas
       }).then(function () {
+        vm.showModal = true;
         alert('Examen enviado');
       });
     };

@@ -80,20 +80,21 @@ angular.module('app')
         controller: 'RandomEventsController',
         controllerAs: 'vm'
       })
-      .when('/dashboard/alumno/examen/:examId', {
-        templateUrl: 'app/dashboard/Alumno-tools/examen/examen.component.html',
-        controller: 'ExamStudentViewController',
-        controllerAs: 'vm'
-      })
       .when('/dashboard/alumno/examenes', {
         templateUrl: 'app/dashboard/Alumno-tools/examen/examen-list.component.html',
         controller: 'ExamStudentListController',
+        controllerAs: 'vm'
+      })
+      .when('/dashboard/alumno/examen/:examId', {
+        templateUrl: 'app/dashboard/Alumno-tools/examen/examen.component.html',
+        controller: 'ExamStudentViewController',
         controllerAs: 'vm'
       })
       .when('/alumno/inventario', {
         templateUrl: 'app/dashboard/Alumno-tools/inventario/inventario.template.html',
         controller: 'InventarioController'
       })
+
       // Si tienes una vista separada para la tienda:
       .when('/alumno/shop', {
         templateUrl: 'app/dashboard/Alumno-tools/shop/shop.component.html',
@@ -107,6 +108,7 @@ angular.module('app')
         templateUrl: 'app/dashboard/Alumno-tools/shop/shop.component.html',
         controller: 'ShopController'
       })
+
 
 
       // FALLBACK

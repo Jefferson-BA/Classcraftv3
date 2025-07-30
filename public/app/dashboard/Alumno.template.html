@@ -14,7 +14,7 @@
         <div class="nav-left">
             <div class="logo">
                 <div class="logo-circle">
-                    <span class="logo-text">CC</span>
+                    <img src="app/image/icons/CLASSCOMBAT.png" alt="" width="70">
                 </div>
                 <span class="logo-title">CLASS COMBAT</span>
             </div>
@@ -90,6 +90,7 @@
                     <div class="user-profile-image">
                         <img src="app/image/icons/ig.png" alt="Foto del profesor" class="profile-image">
                         <div class="profile-frame"></div>
+                        
                     </div>
                     <button class="settings-btn">
                         <i class="fas fa-cog"></i>
@@ -168,78 +169,14 @@
                                     ng-click="vm.showCharacterCreation = true">Completar</button>
                             </div>
                         </div>
-                        <!-- ...otras tareas aquí si las tienes... -->
                     </div>
 
                 </div>
-                <!-- ...resto del dashboard aquí si lo tienes... -->
             </div>
         </main>
     </div>
 
-    <script>
-        // JavaScript para manejar la navegación y el panel deslizable
-        document.addEventListener('DOMContentLoaded', function () {
-            const navItems = document.querySelectorAll('.nav-item');
-            const contentSections = document.querySelectorAll('.content-section');
-            const slidingPanel = document.getElementById('classesPanel');
-            const closePanelBtn = document.getElementById('closePanelBtn');
-
-            // Manejar clics en los elementos de navegación
-            navItems.forEach(item => {
-                item.addEventListener('click', function (e) {
-                    if (this.getAttribute('href') && this.getAttribute('href').startsWith('#!')) {
-                        return;
-                    }
-                    e.preventDefault();
-
-                    // Remover clase active de todos los elementos
-                    navItems.forEach(nav => nav.classList.remove('active'));
-
-                    // Agregar clase active al elemento clickeado
-                    this.classList.add('active');
-
-                    const section = this.getAttribute('data-section');
-
-                    // Si es la sección de clases, mostrar el panel deslizable
-                    if (section === 'classes') {
-                        slidingPanel.classList.add('active');
-                    } else {
-                        // Ocultar panel deslizable si está abierto
-                        slidingPanel.classList.remove('active');
-
-                        // Mostrar la sección correspondiente
-                        contentSections.forEach(sec => sec.classList.remove('active'));
-                        const targetSection = document.getElementById(section + 'Section');
-                        if (targetSection) {
-                            targetSection.classList.add('active');
-                        }
-                    }
-                });
-            });
-
-            // Cerrar panel deslizable
-            closePanelBtn.addEventListener('click', function () {
-                slidingPanel.classList.remove('active');
-
-                // Volver a la sección de inicio
-                navItems.forEach(nav => nav.classList.remove('active'));
-                navItems[0].classList.add('active'); // Primer elemento (inicio)
-
-                contentSections.forEach(sec => sec.classList.remove('active'));
-                document.getElementById('homeSection').classList.add('active');
-            });
-
-            // Cerrar panel al hacer clic fuera de él
-            document.addEventListener('click', function (e) {
-                if (slidingPanel.classList.contains('active') &&
-                    !slidingPanel.contains(e.target) &&
-                    !e.target.closest('[data-section="classes"]')) {
-                    slidingPanel.classList.remove('active');
-                }
-            });
-        });
-    </script>
+    
 </body>
 
 </html>

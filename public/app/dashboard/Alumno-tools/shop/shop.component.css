@@ -65,6 +65,22 @@
     background-size: 200% 100%;
     animation: re-drift 3s ease-in-out infinite;
 }
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.navbar {
+    position: relative;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 /* Nombre de la mascota en tienda */
 .re-shop-pet-name {
@@ -261,4 +277,127 @@
         padding: 10px 20px;
         font-size: 13px;
     }
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .nav-right {
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .invite-btn span {
+        display: none;
+    }
+
+    .sidebar {
+        width: 80px;
+    }
+
+    .nav-label {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .content-area {
+        padding: 20px;
+    }
+
+    .welcome-panel {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    .main-title {
+        font-size: 36px;
+    }
+
+    .avatar-summary {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .avatar-img {
+        width: 220px;
+        height: 280px;
+    }
+
+    .avatar-summary > div {
+        width: 100%;
+    }
+
+    .task-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .task-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-panel {
+        padding: 20px 15px;
+    }
+
+    .main-title {
+        font-size: 28px;
+    }
+
+    .task-item {
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    .user-profile-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .profile-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-frame {
+        width: 50px;
+        height: 50px;
+    }
+
+    .avatar-img {
+        width: 180px;
+        height: 230px;
+    }
+
+    .avatar-summary .info-personal,
+    .avatar-summary .stats-combate {
+        padding: 20px;
+    }
+
+    .avatar-summary .stat-line {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Mejora la estabilidad del layout */
+.avatar-summary * {
+    box-sizing: border-box;
 }

@@ -20,10 +20,10 @@ const authRoutes = require('./routes/auth.routes');
 
 app.use('/api/classes', classRoutes);
 app.use('/api/teachers', teacherRoutes);
-app.use('/api/exams', examRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/shop', require('./routes/shop.routes'));
+app.use('/', examRoutes);
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));

@@ -1,4 +1,5 @@
 const Exam = require('../models/exam.model');
+const db = require('../config/db');
 
 // === GESTIÓN DE EXÁMENES ===
 
@@ -10,7 +11,7 @@ const createExam = (req, res) => {
 
   Exam.createExam(examData, (err, result) => {
     if (err) {
-      console.error('Error al crear examen:', err); // <-- LOG
+      console.error('Error al crear examen:', err);
       return res.status(500).json({ message: 'Error al crear examen' });
     }
 
@@ -29,7 +30,7 @@ const createExam = (req, res) => {
         Exam.addQuestion(questionData, (err2) => {
           if (err2 && !errorSent) {
             errorSent = true;
-            console.error('Error al agregar pregunta:', err2); // <-- LOG
+            console.error('Error al agregar pregunta:', err2);
             return res.status(500).json({ message: 'Error al agregar pregunta' });
           }
           pending--;
@@ -60,6 +61,7 @@ const getExamWithQuestions = (req, res) => {
   });
 };
 
+// Obtener exámenes de un maestro
 const getExamsForTeacher = (req, res) => {
   const teacherId = req.params.teacherId;
   Exam.getExamsForTeacher(teacherId, (err, exams) => {
@@ -68,10 +70,33 @@ const getExamsForTeacher = (req, res) => {
   });
 };
 
+// Eliminar examen
+const deleteExam = (req, res) => {
+  const examId = req.params.id;
+  db.query('DELETE FROM exams WHERE id = ?', [examId], (err, result) => {
+    if (err) return res.status(500).json({ message: 'Error al eliminar el examen' });
+    if (result.affectedRows === 0) return res.status(404).json({ message: 'Examen no encontrado' });
+    res.json({ message: 'Examen eliminado correctamente' });
+  });
+};
+
+const updateExam = (req, res) => {
+  const examId = req.params.id;
+  const examData = req.body;
+  console.log('Datos recibidos para actualizar:', examId, examData); // <-- Agrega esto
+  Exam.updateExam(examId, examData, (err, result) => {
+    if (err) return res.status(500).json({ message: 'Error al actualizar el examen' });
+    res.json({ message: 'Examen actualizado correctamente' });
+  });
+};
+
+
 // === EXPORTACIÓN DE FUNCIONES ===
 module.exports = {
   getExamsForTeacher,
   createExam,
   getExamsForStudent,
-  getExamWithQuestions
+  getExamWithQuestions,
+  deleteExam,
+  updateExam
 };

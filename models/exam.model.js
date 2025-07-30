@@ -28,7 +28,7 @@ const getExamsForStudent = (studentId, callback) => {
 // Obtener exámenes creados por un profesor
 const getExamsForTeacher = (teacherId, callback) => {
   db.query(
-    'SELECT id, titulo, descripcion, imagen, tiempo_limite, xp_total FROM exams WHERE teacher_id = ?',
+    'SELECT id AS examen_id, titulo, descripcion, imagen, tiempo_limite, xp_total FROM exams WHERE teacher_id = ?',
     [teacherId],
     (err, rows) => {
       if (err) return callback(err);
@@ -51,6 +51,14 @@ const getExamWithQuestions = (examId, callback) => {
   });
 };
 
+const updateExam = (examId, examData, callback) => {
+  db.query(
+    'UPDATE exams SET titulo = ?, descripcion = ?, imagen = ?, tiempo_limite = ?, xp_total = ? WHERE id = ?',
+    [examData.titulo, examData.descripcion, examData.imagen, examData.tiempo_limite, examData.xp_total, examId],
+    callback
+  );
+};
+
 // === EXPORTACIÓN DE FUNCIONES ===
 module.exports = {
   createExam,
@@ -58,5 +66,6 @@ module.exports = {
   addOption,
   getExamsForStudent,
   getExamsForTeacher,
-  getExamWithQuestions
+  getExamWithQuestions,
+  updateExam
 };

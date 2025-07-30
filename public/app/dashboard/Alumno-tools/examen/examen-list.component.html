@@ -21,14 +21,15 @@
             </div>
         </div>
         <div class="re-nav-right">
-            <button class="re-nav-btn re-update-btn">
+            <a href="/dashboard/alumno/inventario" class="re-nav-btn re-update-btn">
                 <i class="fas fa-sync-alt"></i>
-                Actualizar
-            </button>
-            <button class="re-nav-btn re-invite-btn" ng-click="vm.openCreateForm()">
+                <span>Inventario</span>
+            </a>
+
+            <a href="/dashboard/alumno/shop" class="re-nav-btn re-invite-btn" ng-click="vm.openCreateForm()">
                 <i class="fas fa-user-plus"></i>
-                <span>Crear nueva Clase</span>
-            </button>
+                <span>Tienda</span>
+            </a>
             <div class="re-profile-btn">
                 <i class="fas fa-user"></i>
             </div>
@@ -41,11 +42,12 @@
         <aside class="re-sidebar">
             <div class="re-sidebar-content">
                 <nav class="re-sidebar-nav">
-                    <a href="" class="re-nav-item re-active" data-section="home">
+
+                    <a href="/dashboard/alumno" class="re-nav-item re-active" data-section="home">
                         <img src="app/image/icons/inicio.png" alt="Inicio" class="re-nav-icon">
-                        <span class="re-nav-label">Inicio</span>
+                        <span class="nav-label">Inicio</span>
                     </a>
-                    <a href="#" class="re-nav-item" data-section="classes">
+                    <a href="/alumno/classroom" class="re-nav-item" data-section="classes">
                         <img src="app/image/icons/batalla.png" alt="Clases" class="re-nav-icon">
                         <span class="re-nav-label">Mis Clases</span>
                     </a>
@@ -99,27 +101,56 @@
 
         </aside>
         <div class="re-content-area">
-            <h2>Exámenes Disponibles</h2>
-            <ul>
-                <li ng-repeat="examen in vm.examenes track by examen.id">
-                    {{examen.titulo}} -
-                    <a href="" ng-click="vm.goToExam(examen.id)">
-                        Responder
-                    </a>
-                </li>
-            </ul>
+            <div class="re-examenes-container">
+                <!-- Título principal -->
+                <div class="re-examenes-header">
+                    <h2 class="re-examenes-title">Exámenes Disponibles</h2>
+                </div>
+                <div class="re-pagination" style="text-align:center; margin-bottom:20px;">
+                    <button class="re-btn" ng-disabled="vm.currentPage === 1" ng-click="vm.setPage(vm.currentPage - 1)">
+                        Anterior
+                    </button>
+                    <span>Página {{vm.currentPage}} de {{vm.totalPages || 1}}</span>
+                    <button class="re-btn" ng-disabled="vm.currentPage === vm.totalPages"
+                        ng-click="vm.setPage(vm.currentPage + 1)">
+                        Siguiente
+                    </button>
+                </div>
+
+                <!-- Lista de exámenes -->
+                <div class="re-examenes-list-container">
+                    <ul class="re-examenes-list">
+                        <li class="re-examen-item" ng-repeat="examen in vm.getPagedExams() track by examen.id">
+                            <!-- ...contenido del examen... -->
+                            <div class="re-examen-content">
+                                <div class="re-examen-titulo">{{examen.titulo}}</div>
+                                <div class="re-examen-info">
+                                    <div class="re-examen-info-item">
+                                        <span class="re-icon">📚</span>
+                                        <span>Materia: {{examen.materia || 'General'}}</span>
+                                    </div>
+                                    <div class="re-examen-info-item">
+                                        <span class="re-icon">⏱️</span>
+                                        <span>Duración: {{examen.duracion || '60'}} min</span>
+                                    </div>
+                                    <div class="re-examen-status re-status-disponible">
+                                        Disponible
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="re-examen-actions">
+                                <a href="" ng-click="vm.goToExam(examen.id)" class="re-examen-link re-responder-btn">
+                                    <span class="re-icon"></span>
+                                    Responder
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
         </div>
-
-
-
-
-    </div>
-
-
-
-
-
-
 </body>
 
 </html>

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Combat Dashboard - Ruleta de Eventos</title>
     <link rel="stylesheet" href="app/dashboard/teacher-tools/examen/examen.component.css">
-
 </head>
 
 <body>
@@ -15,7 +14,7 @@
         <div class="re-nav-left">
             <div class="re-logo">
                 <div class="re-logo-circle">
-                    <span class="re-logo-text">CC</span>
+                    <span class="re-logo-text"></span>
                 </div>
                 <span class="re-logo-title">CLASS COMBAT</span>
             </div>
@@ -23,11 +22,11 @@
         <div class="re-nav-right">
             <button class="re-nav-btn re-update-btn">
                 <i class="fas fa-sync-alt"></i>
-                Actualizar
+                Inventario
             </button>
             <button class="re-nav-btn re-invite-btn" ng-click="vm.openCreateForm()">
                 <i class="fas fa-user-plus"></i>
-                <span>Crear nueva Clase</span>
+                <span>Tienda</span>
             </button>
             <div class="re-profile-btn">
                 <i class="fas fa-user"></i>
@@ -101,26 +100,32 @@
             <button ng-if="!vm.showForm" ng-click="vm.showCreateForm()" class="re-btn re-btn-primary">Crear nuevo
                 examen</button>
 
+            <!-- Formulario con estilos mejorados -->
             <form ng-if="vm.showForm" ng-submit="vm.createExam()" class="re-exam-form">
                 <h2>Crear Examen</h2>
+
                 <div class="re-form-group">
                     <label class="re-form-label">Título</label>
                     <input ng-model="vm.exam.titulo" class="re-form-control" placeholder="Título" required>
                 </div>
+
                 <div class="re-form-group">
                     <label class="re-form-label">Descripción</label>
                     <textarea ng-model="vm.exam.descripcion" class="re-form-control"
                         placeholder="Descripción"></textarea>
                 </div>
+
                 <div class="re-form-group">
                     <label class="re-form-label">URL de imagen (opcional)</label>
                     <input ng-model="vm.exam.imagen" class="re-form-control" placeholder="URL de imagen (opcional)">
                 </div>
+
                 <div class="re-form-group">
                     <label class="re-form-label">Tiempo (min)</label>
                     <input ng-model="vm.exam.tiempo_limite" class="re-form-control" type="number"
                         placeholder="Tiempo (min)" required>
                 </div>
+
                 <div class="re-form-group">
                     <label class="re-form-label">XP total</label>
                     <input ng-model="vm.exam.xp_total" class="re-form-control" type="number" placeholder="XP total"
@@ -133,38 +138,61 @@
                     <input ng-model="p.imagen" class="re-form-control" placeholder="URL imagen (opcional)">
                     <input ng-model="p.puntaje" class="re-form-control" type="number" placeholder="Puntaje" required>
                 </div>
-                <button type="button" class="re-btn re-btn-secondary" ng-click="vm.addPregunta()">Agregar
-                    pregunta</button>
-                <button type="submit" class="re-btn re-btn-primary">Crear examen</button>
+
+                
             </form>
 
-            <div class="re-my-exams-section">
-                <div class="re-section-header">
-                    <h2 class="re-my-exams-title">Mis Exámenes</h2>
-                    <div class="re-title-decoration"></div>
-                </div>
-                <div class="re-exams-container">
-                    <ul class="re-exams-list">
-                        <li ng-repeat="examen in vm.examenes track by examen.id" class="re-exam-item">
-                            <div class="re-exam-content">
-                                <div class="re-exam-info">
-                                    <span class="re-exam-title">{{examen.titulo}}</span>
-                                    <span class="re-exam-separator">-</span>
-                                    <span class="re-exam-description">{{examen.descripcion}}</span>
-                                </div>
-                                <div class="re-exam-actions">
-                                    <button ng-click="vm.viewExamDetails(examen)" class="re-exam-details-btn">
-                                        <span class="re-btn-text">Ver detalles</span>
-                                        <span class="re-btn-icon">👁️</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="re-exam-overlay"></div>
-                        </li>
-                    </ul>
-                </div>
+
+            <!-- Tabla adicional de exámenes -->
+            <div ng-if="!vm.showForm">
+                <h2>Mis Exámenes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="examen in vm.examenes track by examen.examen_id">
+                            <td>{{examen.titulo}}</td>
+                            <td>
+                                <span ng-if="examen.estado === 'bloqueado'" style="color:red;">Bloqueado</span>
+                                <span ng-if="examen.estado !== 'bloqueado'" style="color:green;">Activo</span>
+                            </td>
+                            <td>
+                                <button ng-click="vm.viewExamDetails(examen)">Ver detalles</button>
+                                <button ng-click="vm.editExam(examen)">Editar</button>
+                                <button ng-click="vm.deleteExam(examen)">Eliminar</button>
+                                <button ng-click="vm.toggleBlockExam(examen)">
+                                    {{examen.estado === 'bloqueado' ? 'Desbloquear' : 'Bloquear'}}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
+            <!-- Formulario edición simple -->
+            <div ng-if="vm.showForm">
+                <form ng-submit="vm.editMode ? vm.updateExam() : vm.createExam()">
+                    <!-- ...más campos... -->
+                    <button type="submit">{{vm.editMode ? 'Actualizar' : 'Crear'}} Examen</button>
+                    <button type="button" ng-click="vm.cancelForm()">Cancelar</button>
+                </form>
+            </div>
+
+            <!-- Previsualización de examen -->
+            <div ng-if="vm.selectedExam">
+                <h3>Previsualización de Examen</h3>
+                <p><strong>Título:</strong> {{vm.selectedExam.titulo}}</p>
+                <p><strong>Descripción:</strong> {{vm.selectedExam.descripcion}}</p>
+                <!-- ...más detalles... -->
+                <button ng-click="vm.selectedExam = null">Cerrar</button>
+            </div>
+
+            <!-- Alumnos del examen -->
             <div ng-if="vm.selectedExam" class="re-exam-students-section">
                 <div class="re-exam-header">
                     <h3 class="re-exam-students-title">Alumnos en examen: {{vm.selectedExam.titulo}}</h3>
@@ -187,15 +215,7 @@
             </div>
         </div>
 
-
-
     </div>
-
-
-
-
-
-
 </body>
 
 </html>
